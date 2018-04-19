@@ -77,7 +77,7 @@ int CApp::OnExecute()
 		OnUpdate();
 		OnRender();
 	}
-	
+
 	return state;
 }
 

@@ -76,24 +76,16 @@
 			isa = PBXGroup;
 			children = (
 				F6758CD92088D6E00036A8E8 /* main.cpp */,
-				F6758CDB2088D6E00036A8E8 /* include */,
 				F6758CDD2088D6E00036A8E8 /* src */,
 			);
 			path = "Z-Renderer";
-			sourceTree = "<group>";
-		};
-		F6758CDB2088D6E00036A8E8 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				F6758CDC2088D6E00036A8E8 /* CApp.h */,
-			);
-			name = include;
 			sourceTree = "<group>";
 		};
 		F6758CDD2088D6E00036A8E8 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				F6758CDE2088D6E00036A8E8 /* CApp.cpp */,
+				F6758CDC2088D6E00036A8E8 /* CApp.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
