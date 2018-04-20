@@ -1,2 +1,2 @@
 # Z-Renderer
-a tiny software raster renderer 
+a tiny software rasterize renderer 
