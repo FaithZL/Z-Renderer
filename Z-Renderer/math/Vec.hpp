@@ -11,4 +11,27 @@
 
 #include <stdio.h>
 
+class Vec {
+    
+public:
+    double R(){
+        return x;
+    }
+    double G();
+    double B();
+    double A();
+    
+    double X();
+    double Y();
+    double Z();
+    double W();
+    
+protected:
+    
+    double x;
+    double y;
+    double z;
+    double w;
+};
+
 #endif /* Vec_hpp */

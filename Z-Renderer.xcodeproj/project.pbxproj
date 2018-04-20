@@ -11,6 +11,8 @@
 		F6758CD72088D6E00036A8E8 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6758CD62088D6E00036A8E8 /* SDL2.framework */; };
 		F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CD92088D6E00036A8E8 /* main.cpp */; };
 		F6758CDF2088D6E00036A8E8 /* CApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CDE2088D6E00036A8E8 /* CApp.cpp */; };
+		F6758CEC2089B9030036A8E8 /* Canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CEA2089B9030036A8E8 /* Canvas.cpp */; };
+		F6758CF02089BA570036A8E8 /* Vec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CEE2089BA570036A8E8 /* Vec.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,10 @@
 		F6758CD92088D6E00036A8E8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F6758CDC2088D6E00036A8E8 /* CApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CApp.h; sourceTree = "<group>"; };
 		F6758CDE2088D6E00036A8E8 /* CApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CApp.cpp; sourceTree = "<group>"; };
+		F6758CEA2089B9030036A8E8 /* Canvas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Canvas.cpp; sourceTree = "<group>"; };
+		F6758CEB2089B9030036A8E8 /* Canvas.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Canvas.hpp; sourceTree = "<group>"; };
+		F6758CEE2089BA570036A8E8 /* Vec.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec.cpp; sourceTree = "<group>"; };
+		F6758CEF2089BA570036A8E8 /* Vec.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vec.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,9 @@
 		F6758CD82088D6E00036A8E8 /* Z-Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				F6758CED2089B9BE0036A8E8 /* geometry */,
+				F6758CE82088EFF90036A8E8 /* common */,
+				F6758CE62088EF710036A8E8 /* math */,
 				F6758CD92088D6E00036A8E8 /* main.cpp */,
 				F6758CDD2088D6E00036A8E8 /* src */,
 			);
@@ -88,6 +97,31 @@
 				F6758CDC2088D6E00036A8E8 /* CApp.h */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		F6758CE62088EF710036A8E8 /* math */ = {
+			isa = PBXGroup;
+			children = (
+				F6758CEE2089BA570036A8E8 /* Vec.cpp */,
+				F6758CEF2089BA570036A8E8 /* Vec.hpp */,
+			);
+			path = math;
+			sourceTree = "<group>";
+		};
+		F6758CE82088EFF90036A8E8 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				F6758CEA2089B9030036A8E8 /* Canvas.cpp */,
+				F6758CEB2089B9030036A8E8 /* Canvas.hpp */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		F6758CED2089B9BE0036A8E8 /* geometry */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = geometry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +194,8 @@
 			files = (
 				F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */,
 				F6758CDF2088D6E00036A8E8 /* CApp.cpp in Sources */,
+				F6758CF02089BA570036A8E8 /* Vec.cpp in Sources */,
+				F6758CEC2089B9030036A8E8 /* Canvas.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,4 +11,11 @@
 
 #include <stdio.h>
 
+class Cancas {
+public:
+    void putPixel(int x , int y , int z , u_int32_t color);
+    
+    void drawLine();
+};
+
 #endif /* Canvas_hpp */
