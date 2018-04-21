@@ -28,7 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F6464CE6208B1FAF0019A75F /* ZMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMath.h; sourceTree = "<group>"; };
+		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
 		F6758CD12088D6E00036A8E8 /* Z-Renderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Z-Renderer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +109,6 @@
 			children = (
 				F6758CEE2089BA570036A8E8 /* Vec3.cpp */,
 				F6758CEF2089BA570036A8E8 /* Vec3.hpp */,
-				F6464CE6208B1FAF0019A75F /* ZMath.h */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -119,6 +118,7 @@
 			children = (
 				F6758CDE2088D6E00036A8E8 /* CApp.cpp */,
 				F6758CDC2088D6E00036A8E8 /* CApp.h */,
+				F6464CE6208B1FAF0019A75F /* Macro.h */,
 			);
 			path = common;
 			sourceTree = "<group>";

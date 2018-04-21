@@ -9,12 +9,7 @@
 #ifndef ZMath_h
 #define ZMath_h
 
-#include <cmath>
 
-const double min = 0.00000001;
-
-bool equal(double v1 , double v2) {
-    return fabs(v1 - v2) < min;
-}
+#define Equal(v1 , v2) fabs((v1) - (v2)) < 0.00000001
 
 #endif /* ZMath_h */

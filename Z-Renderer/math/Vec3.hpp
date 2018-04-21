@@ -9,8 +9,8 @@
 #ifndef Vec_hpp
 #define Vec_hpp
 
-#include "ZMath.h"
-
+#include "Macro.h"
+#include <cmath>
 
 class Vec3 {
     
@@ -25,28 +25,32 @@ public:
     
     double normalize() const;
     
-    double dot(Vec3 &other) const;
+    double dot(const Vec3 &other) const;
     
-    Vec3 cross(Vec3 &other) const;
+    Vec3 cross(const Vec3 &other) const;
     
-    Vec3 interpolate(Vec3 &other , double factor) const ;
+    Vec3 interpolate(const Vec3 &other , double factor) const ;
     
-    Vec3 operator + (Vec3 &other) const {
+    Vec3 operator + (const Vec3 &other) const {
         return Vec3(x + other.x , y + other.y , z + other.z);
     }
     
-    Vec3 operator - (Vec3 &other) const {
+    Vec3 operator - (const Vec3 &other) const {
         return Vec3(x - other.x , y - other.y , z - other.z);
     }
     
-    Vec3 operator * (Vec3 &other) const {
+    Vec3 operator * (const Vec3 &other) const {
         return Vec3(x * other.x , y * other.y , z * other.z);
     }
     
-    bool operator == (Vec3 &other) const {
-        return equal(x, other.x)
-            && equal(y, other.y)
-            && equal(z , other.z);
+    Vec3 operator - () const {
+        return Vec3(-x , -y , -z);
+    }
+    
+    bool operator == (const Vec3 &other) const {
+        return Equal(x, other.x)
+            && Equal(y, other.y)
+            && Equal(z , other.z);
     }
 };
 

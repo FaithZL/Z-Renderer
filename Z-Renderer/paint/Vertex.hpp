@@ -9,12 +9,12 @@
 #ifndef Vertex_hpp
 #define Vertex_hpp
 
-//#include "Vec3.hpp"
+#include "Vec3.hpp"
 
 class Vertex {
    
 public:
-//    Vec3 pos;
+    Vec3 pos;
     
 };
 
