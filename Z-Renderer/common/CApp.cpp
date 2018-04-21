@@ -13,6 +13,9 @@ const int SCREEN_HEIGHT	= 600;
 
 
 CApp::CApp() :
+    window(nullptr),
+    renderer(nullptr),
+    _canvas(nullptr),
 	running(false)
 {
 }
@@ -30,13 +33,20 @@ int CApp::OnInit()
 		return APP_FAILED;
 	}
 	
-	window = SDL_CreateWindow(APPTITLE, 
+    _canvas = new Canvas(SCREEN_WIDTH , SCREEN_HEIGHT);
+    
+	window = SDL_CreateWindow(APPTITLE,
 							  SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
 							  SCREEN_WIDTH, SCREEN_HEIGHT, 
 							  SDL_WINDOW_SHOWN);
+    
+    SDL_Surface * surface = SDL_GetWindowSurface(window);
+    
+    _canvas->setSurface(surface);
 
 	if (window != NULL) {
-		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+//        renderer = SDL_CreateSoftwareRenderer(surface);
 	}
 	
 	// Success
@@ -105,9 +115,11 @@ void CApp::OnUpdate()
 
 void CApp::OnRender()
 {
-	SDL_RenderClear(renderer);
+    SDL_RenderClear(renderer);
 
-	// Do your drawing here
+    _canvas->update();
+    
+    SDL_UpdateWindowSurface(window);
 	
-	SDL_RenderPresent(renderer);
+    SDL_RenderPresent(renderer);
 }

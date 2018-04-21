@@ -12,11 +12,12 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include "Vec3.hpp"
+#include "Color.hpp"
 
 class Canvas {
 public:
     
-    Canvas();
+    Canvas(unsigned width = 800 , unsigned height = 600);
     
     void clear();
     
@@ -24,9 +25,22 @@ public:
     
     void lock();
     
+    void update();
+    
+    uint32_t * getPixels() const;
+    
     void unlock();
     
-    void putPixel(int x , int y , int z , u_int32_t color);
+    /**
+     * draw a point to NDC
+     * @param x     -1 <= x <= 1
+     * @param y     -1 <= y <= 1
+     * @param z     -1 <= z <= 1
+     * @param color [description]
+     */
+    void drawPoint(double x , double y , double z , const Color &color);
+    
+    void putPixel(int x , int y , const Color &color);
     
     void drawLine();
     
@@ -44,7 +58,7 @@ protected:
     
     unsigned _height;
     
-    int _bufferSize;
+    unsigned _bufferSize;
     
     double * _depthBuffer;
     

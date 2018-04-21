@@ -39,6 +39,8 @@ private:
 
 	SDL_Window*		window;
 	SDL_Renderer*	renderer;
+    
+    Canvas *        _canvas;
 
 	// Initialize application
 	int 			OnInit();
