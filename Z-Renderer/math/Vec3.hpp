@@ -12,6 +12,7 @@
 #include "Macro.h"
 #include <cmath>
 
+
 class Vec3 {
     
 public:

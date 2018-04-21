@@ -11,16 +11,55 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include "Vec3.hpp"
 
-class Cancas {
+class Canvas {
 public:
+    
+    Canvas();
+    
+    void clear();
+    
+    void render();
+    
+    void lock();
+    
+    void unlock();
+    
     void putPixel(int x , int y , int z , u_int32_t color);
     
     void drawLine();
     
+    SDL_Surface * getSurface() const {
+        return _surface;
+    }
+    
+    void setSurface(SDL_Surface * p) {
+        _surface = p;
+    }
+    
 protected:
     
-    SDL_Surface _surface;
+    unsigned _width;
+    
+    unsigned _height;
+    
+    int _bufferSize;
+    
+    double * _depthBuffer;
+    
+    SDL_Surface * _surface;
 };
 
 #endif /* Canvas_hpp */
+
+
+
+
+
+
+
+
+
+
+

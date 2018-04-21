@@ -7,3 +7,9 @@
 //
 
 #include "Canvas.hpp"
+
+
+Canvas::Canvas():
+_surface(nullptr){
+    
+}

@@ -6,7 +6,7 @@
 // ============================================================================
 // [Defines & Constants]
 // ============================================================================
-#define APPTITLE 		"SDL2 Template Program"
+#define APPTITLE 		"Z-Renderer"
 
 const int SCREEN_WIDTH 	= 800;
 const int SCREEN_HEIGHT	= 600;
