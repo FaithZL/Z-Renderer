@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "Macro.h"
 #include <cmath>
+#include "Vec3.hpp"
+
 class Mat4 {
     
 public:
@@ -38,20 +40,29 @@ public:
         return true;
     }
     
-    Mat4 operator * (const Mat4 &other) const {
-        
-        double values[16];
-        for(int index = 0; index < 16; index++) {
-            int i = index / 4;
-            int j = index % 4;
-            values[index] = m[i*4] * other.m[j]
-                        + m[i*4 + 1] * other.m[1*4 + j]
-                        + m[i*4 + 2] * other.m[2*4 + j]
-                        + m[i*4 + 3] * other.m[3*4 + j];
-        }
-        return Mat4(values);
-
-    }
+    Mat4 operator * (const Mat4 &other) const ;
+    
+    static Mat4 perspective(double radian , double ratio , double nearPlane , double farPlane);
+    
+    static Mat4 translate(double x , double y , double z);
+    
+    static Mat4 translate(const Vec3 &vec);
+    
+    static Mat4 rotateX(double x);
+    
+    static Mat4 rotateY(double y);
+    
+    static Mat4 rotateZ(double z);
+    
+    static Mat4 rotate(const Vec3 &vec);
+    
+    static Mat4 rotate(double ax , double ay , double az);
+    
+    static Mat4 scale(const Vec3 &v);
+    
+    static Mat4 scale(double x , double y , double z);
+    
+    Vec3 transform(const Vec3 &vec);
     
     static Mat4 identity() {
         double a[16] = {
