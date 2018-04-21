@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6758CD52088D6E00036A8E8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6758CD42088D6E00036A8E8 /* Cocoa.framework */; };
 		F6758CD72088D6E00036A8E8 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6758CD62088D6E00036A8E8 /* SDL2.framework */; };
 		F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CD92088D6E00036A8E8 /* main.cpp */; };
@@ -28,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		F6464CE6208B1FAF0019A75F /* ZMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMath.h; sourceTree = "<group>"; };
+		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
+		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
 		F6758CD12088D6E00036A8E8 /* Z-Renderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Z-Renderer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6758CD42088D6E00036A8E8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F6758CD62088D6E00036A8E8 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = Library/Frameworks/../../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = DEVELOPER_DIR; };
@@ -53,6 +56,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F6464CE7208B26CC0019A75F /* paint */ = {
+			isa = PBXGroup;
+			children = (
+				F6758CEA2089B9030036A8E8 /* Canvas.cpp */,
+				F6758CEB2089B9030036A8E8 /* Canvas.hpp */,
+				F6464CE8208B27330019A75F /* Vertex.cpp */,
+				F6464CE9208B27330019A75F /* Vertex.hpp */,
+			);
+			path = paint;
+			sourceTree = "<group>";
+		};
 		F6758CC72088D6E00036A8E8 = {
 			isa = PBXGroup;
 			children = (
@@ -82,22 +96,12 @@
 		F6758CD82088D6E00036A8E8 /* Z-Renderer */ = {
 			isa = PBXGroup;
 			children = (
-				F6758CED2089B9BE0036A8E8 /* geometry */,
+				F6464CE7208B26CC0019A75F /* paint */,
 				F6758CE82088EFF90036A8E8 /* common */,
 				F6758CE62088EF710036A8E8 /* math */,
 				F6758CD92088D6E00036A8E8 /* main.cpp */,
-				F6758CDD2088D6E00036A8E8 /* src */,
 			);
 			path = "Z-Renderer";
-			sourceTree = "<group>";
-		};
-		F6758CDD2088D6E00036A8E8 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				F6758CDE2088D6E00036A8E8 /* CApp.cpp */,
-				F6758CDC2088D6E00036A8E8 /* CApp.h */,
-			);
-			name = src;
 			sourceTree = "<group>";
 		};
 		F6758CE62088EF710036A8E8 /* math */ = {
@@ -113,17 +117,10 @@
 		F6758CE82088EFF90036A8E8 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				F6758CEA2089B9030036A8E8 /* Canvas.cpp */,
-				F6758CEB2089B9030036A8E8 /* Canvas.hpp */,
+				F6758CDE2088D6E00036A8E8 /* CApp.cpp */,
+				F6758CDC2088D6E00036A8E8 /* CApp.h */,
 			);
 			path = common;
-			sourceTree = "<group>";
-		};
-		F6758CED2089B9BE0036A8E8 /* geometry */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = geometry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */,
+				F6464CEA208B27330019A75F /* Vertex.cpp in Sources */,
 				F6758CDF2088D6E00036A8E8 /* CApp.cpp in Sources */,
 				F6758CF02089BA570036A8E8 /* Vec3.cpp in Sources */,
 				F6758CEC2089B9030036A8E8 /* Canvas.cpp in Sources */,

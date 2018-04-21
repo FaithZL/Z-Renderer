@@ -10,12 +10,17 @@
 #define Canvas_hpp
 
 #include <stdio.h>
+#include <SDL2/SDL.h>
 
 class Cancas {
 public:
     void putPixel(int x , int y , int z , u_int32_t color);
     
     void drawLine();
+    
+protected:
+    
+    SDL_Surface _surface;
 };
 
 #endif /* Canvas_hpp */

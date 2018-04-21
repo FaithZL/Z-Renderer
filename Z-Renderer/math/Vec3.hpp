@@ -9,8 +9,8 @@
 #ifndef Vec_hpp
 #define Vec_hpp
 
-#include <stdio.h>
 #include "ZMath.h"
+
 
 class Vec3 {
     
