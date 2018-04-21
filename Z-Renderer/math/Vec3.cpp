@@ -6,4 +6,13 @@
 //  Copyright © 2018年 SATAN_Z. All rights reserved.
 //
 
-#include "Vec.hpp"
+#include "Vec3.hpp"
+
+Vec3::Vec3(double x , double y ,double z):
+x(x),
+y(y),
+z(z){
+    
+}
+
+
