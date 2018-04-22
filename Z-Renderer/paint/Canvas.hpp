@@ -89,7 +89,7 @@ protected:
     }
     
     inline unsigned getIndex(int px , int py) const {
-        return (unsigned)((_width - 1) * py + px);
+        return (unsigned)((_width) * py + px);
     }
     
     inline unsigned getPX(double x) const {

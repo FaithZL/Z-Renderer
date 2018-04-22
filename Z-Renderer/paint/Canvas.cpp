@@ -36,20 +36,13 @@ void Canvas::update() {
 }
 
 void Canvas::render() {
-//    for (double i = -1 ; i <= 1 ; i = i + 0.001) {
-//        drawPoint(i , i, i , Color(1 , 0 ,0 ,0));
-//    }
-//
-//    for (int i = 0 ; i < 600; ++ i) {
-//        putPixel(i , i, Color(1 , 1 ,1 ,1));
-//    }
     Vertex v1(Vec3(-1 , -1 ,-1) , Color(1 , 0 , 0 , 0));
-    Vertex v2(Vec3(1 , -1 , 1) , Color(0 , 1 , 0 , 0));
-//    Vertex v3(Vec3(1 , -0.99 , 1) , Color(0 , 0 , 1 , 0));
-//    LineBresenham(0 , 0, 600, 600, Color(1 , 0 ,0 ,0));
+    Vertex v2(Vec3(0 , 1 , 1) , Color(0 , 1 , 0 , 0));
+    Vertex v3(Vec3(1 , -0.5 , 1) , Color(0 , 0 , 1 , 0));
+
     drawLine(v2, v1);
-//    drawLine(v2, v3);
-//    drawLine(v3, v1);
+    drawLine(v2, v3);
+    drawLine(v3, v1);
 }
 
 void Canvas::lock() {
