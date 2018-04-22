@@ -36,7 +36,12 @@ void Canvas::update() {
 
 void Canvas::render() {
     for (double i = -1 ; i <= 1 ; i = i + 0.001) {
+//        putPixel(i , i, Color(1 , 1 ,1 ,1));
         drawPoint(i , i, i , Color(1 , 0 ,0 ,0));
+    }
+    
+    for (int i = 0 ; i < 600; ++ i) {
+        putPixel(i , i, Color(1 , 1 ,1 ,1));
     }
 }
 
@@ -63,12 +68,8 @@ void Canvas::drawPoint(double x , double y , double z , const Color &color) {
         return;
     }
     
-    double startX = -1;
-    double hw = _width / 2;
-    double px = (x - startX) * hw;
-    double startY = 1;
-    double hh = -(_height / 2);
-    double py = (y - startY) * hh;
+    double px = getPX(x);
+    double py = getPY(y);
     
     unsigned index = getIndex(px, py);
     double depth = _depthBuffer[index];
@@ -79,9 +80,6 @@ void Canvas::drawPoint(double x , double y , double z , const Color &color) {
     putPixel(px, py, color);
 }
 
-uint32_t * Canvas::getPixels() const {
-    return (uint32_t *) _surface->pixels;
-}
 
 
 

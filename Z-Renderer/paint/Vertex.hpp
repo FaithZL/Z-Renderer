@@ -11,6 +11,7 @@
 
 #include "Vec3.hpp"
 #include "Color.hpp"
+#include "Mat4.hpp"
 
 class Vertex {
    
@@ -24,6 +25,8 @@ public:
     Vertex(Vec3 pos , Vec3 normal , double u , double v , Color color = Color());
     
     Vertex interpolate(Vertex vertex , double factor);
+    
+    void transform(const Mat4 &mat4);
 };
 
 #endif /* Vertex_hpp */

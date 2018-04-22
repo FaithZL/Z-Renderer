@@ -25,3 +25,7 @@ Vertex Vertex::interpolate(Vertex vertex, double factor){
     Color c = vertex.color.interpolate(vertex.color, factor);
     return Vertex(p , nor , tu , tv , c);
 }
+
+void Vertex::transform(const Mat4 &mat4) {
+    pos = mat4.transform(pos);
+}

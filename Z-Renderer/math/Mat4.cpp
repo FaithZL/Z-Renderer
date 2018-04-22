@@ -24,7 +24,7 @@ Mat4 Mat4::operator*(const Mat4 &other) const {
     
 }
 
-Vec3 Mat4::transform(const Vec3 &vec) {
+Vec3 Mat4::transform(const Vec3 &vec) const {
     double x = vec.x * m[0*4 + 0] + vec.y * m[1*4 + 0] + vec.z * m[2*4 + 0] + m[3*4 + 0];
     double y = vec.x * m[0*4 + 1] + vec.y * m[1*4 + 1] + vec.z * m[2*4 + 1] + m[3*4 + 1];
     double z = vec.x * m[0*4 + 2] + vec.y * m[1*4 + 2] + vec.z * m[2*4 + 2] + m[3*4 + 2];

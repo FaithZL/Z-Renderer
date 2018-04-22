@@ -27,11 +27,27 @@ public:
     
     void update();
     
-    unsigned getIndex(int px , int py) const {
+    inline unsigned getIndex(int px , int py) const {
         return (unsigned)(_width * py + px);
     }
     
-    uint32_t * getPixels() const;
+    inline unsigned getPX(double x) const {
+        double startX = -1;
+        double hw = _width / 2;
+        double px = (x - startX) * hw;
+        return px;
+    }
+    
+    inline unsigned getPY(double y) const {
+        double startY = 1;
+        double hh = -(_height / 2);
+        double py = (y - startY) * hh;
+        return py;
+    }
+    
+    inline uint32_t * getPixels() const {
+        return (uint32_t *) _surface->pixels;
+    }
     
     void unlock();
     
@@ -54,6 +70,10 @@ public:
     
     void setSurface(SDL_Surface * p) {
         _surface = p;
+    }
+    
+    ~Canvas(){
+        delete [] _depthBuffer;
     }
     
 protected:

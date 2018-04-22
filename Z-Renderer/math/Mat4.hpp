@@ -62,7 +62,7 @@ public:
     
     static Mat4 scale(double x , double y , double z);
     
-    Vec3 transform(const Vec3 &vec);
+    Vec3 transform(const Vec3 &vec) const;
     
     static Mat4 identity() {
         double a[16] = {
