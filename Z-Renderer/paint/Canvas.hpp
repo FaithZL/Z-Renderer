@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include "Vec3.hpp"
+#include "Vertex.hpp"
 #include "Color.hpp"
 
 class Canvas {
@@ -60,9 +60,26 @@ public:
      */
     void drawPoint(double x , double y , double z , const Color &color);
     
+    void drawPoint(const Vertex &vert);
+    
+    void drawPixel(int px , int py , double z , const Color &color) {
+        if (!isPassDepth(px , py, z)) {
+            return;
+        }
+        putPixel(px , py , color);
+        _setDepth(px, py, z);
+    }
+    
     void putPixel(int px , int py , const Color &color);
     
-    void drawLine();
+    inline bool isPassDepth(int px , int py , double z) {
+        unsigned index = getIndex(px , py);
+        return z < _depthBuffer[index]
+                && z <= 1;
+    }
+    
+    void drawLine(const Vertex &vert1 , const Vertex &vert2);
+
     
     SDL_Surface * getSurface() const {
         return _surface;
@@ -77,6 +94,15 @@ public:
     }
     
 protected:
+    
+    inline void _setDepth(int px , int py , double z) {
+        unsigned index = getIndex(px, py);
+        _depthBuffer[index] = z;
+    }
+    
+    inline double _getDepth(int px , int py) {
+        return _depthBuffer[getIndex(px , py)];
+    }
     
     int _width;
     

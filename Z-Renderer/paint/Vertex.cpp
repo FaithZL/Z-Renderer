@@ -8,14 +8,15 @@
 
 #include "Vertex.hpp"
 
-Vertex::Vertex(Vec3 pos , Vec3 normal , double u , double v , Color color):
+Vertex::Vertex(Vec3 pos , Color color, Vec3 normal , double u , double v):
 pos(pos),
 normal(normal),
 u(u),
 v(v),
 color(color){
-    
+
 }
+
 
 Vertex Vertex::interpolate(Vertex vertex, double factor){
     Vec3 p = pos.interpolate(vertex.pos , factor);
@@ -23,7 +24,7 @@ Vertex Vertex::interpolate(Vertex vertex, double factor){
     float tu = u + (vertex.u - u) * factor;
     float tv = v + (vertex.v - v) * factor;
     Color c = vertex.color.interpolate(vertex.color, factor);
-    return Vertex(p , nor , tu , tv , c);
+    return Vertex(p , c , nor , tu , tv);
 }
 
 void Vertex::transform(const Mat4 &mat4) {

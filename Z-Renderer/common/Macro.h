@@ -10,6 +10,5 @@
 #define ZMath_h
 
 
-#define Equal(v1 , v2) (fabs((v1) - (v2)) < 0.00000001)
 
 #endif /* ZMath_h */

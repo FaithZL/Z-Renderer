@@ -22,7 +22,7 @@ public:
     double u;
     double v;
     
-    Vertex(Vec3 pos , Vec3 normal , double u , double v , Color color = Color());
+    Vertex(Vec3 pos , Color color = Color(), Vec3 normal = Vec3() , double u = 0 , double v = 0);
     
     Vertex interpolate(Vertex vertex , double factor);
     

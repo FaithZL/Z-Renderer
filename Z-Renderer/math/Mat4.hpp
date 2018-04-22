@@ -10,8 +10,7 @@
 #define Mat4_hpp
 
 #include <stdio.h>
-#include "Macro.h"
-#include <cmath>
+#include "MathUtil.hpp"
 #include "Vec3.hpp"
 
 class Mat4 {
@@ -33,7 +32,7 @@ public:
     
     bool operator == (const Mat4 &other) const {
         for (int i = 0; i < 16 ; ++ i) {
-            if (!Equal(other.m[1],this->m[1])) {
+            if (!MathUtil::equal(other.m[1],this->m[1])) {
                 return false;
             }
         }

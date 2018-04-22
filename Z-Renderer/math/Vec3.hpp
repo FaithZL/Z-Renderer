@@ -11,7 +11,7 @@
 
 #include "Macro.h"
 #include <cmath>
-
+#include "MathUtil.hpp"
 
 class Vec3 {
     
@@ -49,9 +49,9 @@ public:
     }
     
     bool operator == (const Vec3 &other) const {
-        return Equal(x, other.x)
-            && Equal(y, other.y)
-            && Equal(z , other.z);
+        return MathUtil::equal(x, other.x)
+            && MathUtil::equal(y, other.y)
+            && MathUtil::equal(z , other.z);
     }
 };
 
