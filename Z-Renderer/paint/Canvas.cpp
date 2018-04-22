@@ -79,10 +79,24 @@ void Canvas::drawTriangleRasterize(const Vertex &v1, const Vertex &v2, const Ver
         // 平底三角形
         _drawTriangleBottomRasterize(*pVert1 , *pVert2 , *pVert3);
     } else {
-        double my = pVert2->pos.y;
+        double ty = pVert2->pos.y;
         // 求直线方程
-        double startX = pVert3->pos.x;
-        double startY = pVert3->pos.y;
+        Line param = MathUtil::getLineParam(pVert1->pos.x,
+                                          pVert1->pos.y,
+                                          pVert3->pos.x,
+                                          pVert3->pos.y);
+        double k = param.k;
+        double b = param.b;
+        
+        double tx = (ty - b) / k;
+        
+        if (tx <= pVert2->pos.x) {
+            // p2 在左边
+            
+        } else {
+            // p2 在右边
+            
+        }
     }
     
     return;

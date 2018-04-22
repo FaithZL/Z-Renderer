@@ -14,6 +14,11 @@
 
 #define Min 0.0000000001
 
+struct Line {
+    double k = 1.0f;
+    double b = 0.0f;
+};
+
 class MathUtil {
     
 public:
@@ -29,6 +34,20 @@ public:
         return v1 + (v2 - v1) * (factor);
     }
     
+    static inline Line getLineParam(double x1 , double y1 , double x2 , double y2){
+        Line ret;
+        double k = (y2 - y1) / (x2 - x1);
+        double b = y1 - k * x1;
+        ret.k = k;
+        ret.b = b;
+        return ret;
+    }
 };
 
 #endif /* MathUtil_hpp */
+
+
+
+
+
+
