@@ -78,7 +78,7 @@ public:
                 && z <= 1;
     }
     
-    void drawLine(const Vertex &vert1 , const Vertex &vert2);
+    void drawLine(Vertex vert1 , Vertex vert2);
 
     
     SDL_Surface * getSurface() const {

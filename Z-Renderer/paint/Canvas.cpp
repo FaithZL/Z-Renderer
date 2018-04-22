@@ -46,7 +46,7 @@ void Canvas::render() {
     Vertex v1(Vec3(-1 , -1 ,-1) , Color(1 , 0.5 , 0.2 , 0));
     Vertex v2(Vec3(1 , 1 , 1) , Color(0.2 , 0.9 , 1 , 0));
 //    LineBresenham(0 , 0, 600, 600, Color(1 , 0 ,0 ,0));
-    drawLine(v1, v2);
+    drawLine(v2, v1);
 }
 
 void Canvas::lock() {
@@ -68,30 +68,36 @@ void Canvas::putPixel(int px , int py , const Color &color) {
     pixels[index] = color.uint32();
 }
 
-void Canvas::drawLine(const Vertex &vert1, const Vertex &vert2) {
+void Canvas::drawLine(Vertex vert1, Vertex vert2) {
     Vec3 pos1 = vert1.pos;
     Vec3 pos2 = vert2.pos;
     
     int px1 = getPX(pos1.x);
     int py1 = getPY(pos1.y);
-    double z1 = pos1.z;
-    Color color1 = vert1.color;
     
     int px2 = getPX(pos2.x);
     int py2 = getPY(pos2.y);
-    double z2 = pos2.z;
-    Color color2 = vert2.color;
-    
+ 
     int dx = abs(px2 - px1);
     int dy = abs(py2 - py1);
     if (dx >= dy) {
         //以dx=1作为步长，否则会出现断点
         if (px1 > px2) {
-            swap(px1 , px2);
-            swap(py1 , py2);
-            swap(z1 , z2);
-            swap(color1, color2);
+            swap(vert1, vert2);
         }
+        Vec3 pos1 = vert1.pos;
+        Vec3 pos2 = vert2.pos;
+        
+        int px1 = getPX(pos1.x);
+        int py1 = getPY(pos1.y);
+        double z1 = pos1.z;
+        Color color1 = vert1.color;
+        
+        int px2 = getPX(pos2.x);
+        int py2 = getPY(pos2.y);
+        double z2 = pos2.z;
+        Color color2 = vert2.color;
+        
         int sign = py2 >= py1 ? 1 : -1;  //斜率[-1,1]
         int k = sign * dy * 2;
         int e = -dx * sign;
@@ -101,8 +107,7 @@ void Canvas::drawLine(const Vertex &vert1, const Vertex &vert2) {
             Color color = color1.interpolate(color2, factor);
             drawPixel(x , y , z, color);
             e += k;
-            if (sign * e > 0)
-            {
+            if (sign * e > 0) {
                 y += sign;
                 e -= 2 * dx * sign;
             }
@@ -110,11 +115,22 @@ void Canvas::drawLine(const Vertex &vert1, const Vertex &vert2) {
     } else {
         //以dy = 1 作为步长
         if (py1 > py2) {
-            swap(px1 , px2);
-            swap(py1 , py2);
-            swap(z1 , z2);
-            swap(color1, color2);
+            swap(vert1, vert2);
         }
+        
+        Vec3 pos1 = vert1.pos;
+        Vec3 pos2 = vert2.pos;
+        
+        int px1 = getPX(pos1.x);
+        int py1 = getPY(pos1.y);
+        double z1 = pos1.z;
+        Color color1 = vert1.color;
+        
+        int px2 = getPX(pos2.x);
+        int py2 = getPY(pos2.y);
+        double z2 = pos2.z;
+        Color color2 = vert2.color;
+        
         int sign = px2 > px1 ? 1 : -1;
         int k = sign * dx * 2;
         int e = -dy * sign;
