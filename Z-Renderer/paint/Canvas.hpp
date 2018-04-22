@@ -40,9 +40,9 @@ public:
      * @param z     -1 <= z <= 1
      * @param color [description]
      */
-    void drawPoint(double x , double y , double z , const Color &color);
+    void drawPointRasterize(double x , double y , double z , const Color &color);
     
-    void drawPoint(const Vertex &vert);
+    void drawPointRasterize(const Vertex &vert);
     
     void drawPixel(int px , int py , double z , const Color &color) {
         if (!isPassDepth(px , py, z)) {
@@ -52,7 +52,7 @@ public:
         _setDepth(px, py, z);
     }
     
-    void drawTriangle(Vertex v1 , Vertex v2 , Vertex v3);
+    void drawTriangleRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
     void putPixel(int px , int py , const Color &color);
     
@@ -62,8 +62,7 @@ public:
                 && z >= - 1;
     }
     
-    void drawLine(const Vertex &vert1 , const Vertex &vert2);
-
+    void drawLineRasterize(const Vertex &vert1 , const Vertex &vert2);
     
     SDL_Surface * getSurface() const {
         return _surface;
@@ -84,6 +83,26 @@ protected:
         _depthBuffer[index] = z;
     }
     
+    /**
+     *     1
+     *
+     *  3       2
+     * @param v1 [description]
+     * @param v2 [description]
+     * @param v3 [description]
+     */
+    void _drawTriangleTopRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    
+    /**
+     * 1     2
+     *
+     *     3
+     * @param v1 [description]
+     * @param v2 [description]
+     * @param v3 [description]
+     */    
+    void _drawTriangleBottomRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    
     inline double _getDepth(int px , int py) {
         return _depthBuffer[getIndex(px , py)];
     }
@@ -92,14 +111,14 @@ protected:
         return (unsigned)((_width) * py + px);
     }
     
-    inline unsigned getPX(double x) const {
+    inline unsigned _getPX(double x) const {
         double startX = -1;
         double hw = _width / 2;
         double px = (x - startX) * hw;
         return px;
     }
     
-    inline unsigned getPY(double y) const {
+    inline unsigned _getPY(double y) const {
         double startY = 1;
         double hh = -(_height / 2);
         double py = (y - startY) * hh;
