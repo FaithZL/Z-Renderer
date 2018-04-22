@@ -27,24 +27,6 @@ public:
     
     void update();
     
-    inline unsigned getIndex(int px , int py) const {
-        return (unsigned)(_width * py + px);
-    }
-    
-    inline unsigned getPX(double x) const {
-        double startX = -1;
-        double hw = _width / 2;
-        double px = (x - startX) * hw;
-        return px;
-    }
-    
-    inline unsigned getPY(double y) const {
-        double startY = 1;
-        double hh = -(_height / 2);
-        double py = (y - startY) * hh;
-        return py;
-    }
-    
     inline uint32_t * getPixels() const {
         return (uint32_t *) _surface->pixels;
     }
@@ -70,6 +52,8 @@ public:
         _setDepth(px, py, z);
     }
     
+    void drawTriangle(Vertex v1 , Vertex v2 , Vertex v3);
+    
     void putPixel(int px , int py , const Color &color);
     
     inline bool isPassDepth(int px , int py , double z) {
@@ -78,7 +62,7 @@ public:
                 && z <= 1;
     }
     
-    void drawLine(Vertex vert1 , Vertex vert2);
+    void drawLine(const Vertex &vert1 , const Vertex &vert2);
 
     
     SDL_Surface * getSurface() const {
@@ -102,6 +86,24 @@ protected:
     
     inline double _getDepth(int px , int py) {
         return _depthBuffer[getIndex(px , py)];
+    }
+    
+    inline unsigned getIndex(int px , int py) const {
+        return (unsigned)(_width * py + px);
+    }
+    
+    inline unsigned getPX(double x) const {
+        double startX = -1;
+        double hw = _width / 2;
+        double px = (x - startX) * hw;
+        return px;
+    }
+    
+    inline unsigned getPY(double y) const {
+        double startY = 1;
+        double hh = -(_height / 2);
+        double py = (y - startY) * hh;
+        return py;
     }
     
     int _width;

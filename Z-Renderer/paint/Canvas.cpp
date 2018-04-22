@@ -57,6 +57,10 @@ void Canvas::unlock() {
     SDL_UnlockSurface(_surface);
 }
 
+void Canvas::drawTriangle(Vertex v1, Vertex v2, Vertex v3) {
+    
+}
+
 void Canvas::putPixel(int px , int py , const Color &color) {
     bool outX = px < 0 || px > _width - 1;
     bool outY = py < 0 || py > _height - 1;
@@ -68,9 +72,13 @@ void Canvas::putPixel(int px , int py , const Color &color) {
     pixels[index] = color.uint32();
 }
 
-void Canvas::drawLine(Vertex vert1, Vertex vert2) {
-    Vec3 pos1 = vert1.pos;
-    Vec3 pos2 = vert2.pos;
+void Canvas::drawLine(const Vertex &vert1, const Vertex &vert2) {
+    
+    const Vertex * pVert1 = &vert1;
+    const Vertex * pVert2 = &vert2;
+    
+    Vec3 pos1 = pVert1->pos;
+    Vec3 pos2 = pVert2->pos;
     
     int px1 = getPX(pos1.x);
     int py1 = getPY(pos1.y);
@@ -83,20 +91,20 @@ void Canvas::drawLine(Vertex vert1, Vertex vert2) {
     if (dx >= dy) {
         //以dx=1作为步长，否则会出现断点
         if (px1 > px2) {
-            swap(vert1, vert2);
+            swap(pVert1, pVert2);
         }
-        Vec3 pos1 = vert1.pos;
-        Vec3 pos2 = vert2.pos;
+        Vec3 pos1 = pVert1->pos;
+        Vec3 pos2 = pVert2->pos;
         
         int px1 = getPX(pos1.x);
         int py1 = getPY(pos1.y);
         double z1 = pos1.z;
-        Color color1 = vert1.color;
+        Color color1 = pVert1->color;
         
         int px2 = getPX(pos2.x);
         int py2 = getPY(pos2.y);
         double z2 = pos2.z;
-        Color color2 = vert2.color;
+        Color color2 = pVert2->color;
         
         int sign = py2 >= py1 ? 1 : -1;  //斜率[-1,1]
         int k = sign * dy * 2;
@@ -115,21 +123,21 @@ void Canvas::drawLine(Vertex vert1, Vertex vert2) {
     } else {
         //以dy = 1 作为步长
         if (py1 > py2) {
-            swap(vert1, vert2);
+            swap(pVert1, pVert2);
         }
         
-        Vec3 pos1 = vert1.pos;
-        Vec3 pos2 = vert2.pos;
+        Vec3 pos1 = pVert1->pos;
+        Vec3 pos2 = pVert2->pos;
         
         int px1 = getPX(pos1.x);
         int py1 = getPY(pos1.y);
         double z1 = pos1.z;
-        Color color1 = vert1.color;
+        Color color1 = pVert1->color;
         
         int px2 = getPX(pos2.x);
         int py2 = getPY(pos2.y);
         double z2 = pos2.z;
-        Color color2 = vert2.color;
+        Color color2 = pVert2->color;
         
         int sign = px2 > px1 ? 1 : -1;
         int k = sign * dx * 2;
