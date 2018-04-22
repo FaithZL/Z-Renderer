@@ -27,6 +27,10 @@ public:
     
     void update();
     
+    unsigned getIndex(int px , int py) const {
+        return (unsigned)(_width * py + px);
+    }
+    
     uint32_t * getPixels() const;
     
     void unlock();
@@ -40,7 +44,7 @@ public:
      */
     void drawPoint(double x , double y , double z , const Color &color);
     
-    void putPixel(int x , int y , const Color &color);
+    void putPixel(int px , int py , const Color &color);
     
     void drawLine();
     
@@ -54,12 +58,15 @@ public:
     
 protected:
     
-    unsigned _width;
+    int _width;
     
-    unsigned _height;
+    int _height;
     
     unsigned _bufferSize;
     
+    /**
+     * -1 <= depth <= 1
+     */
     double * _depthBuffer;
     
     SDL_Surface * _surface;
