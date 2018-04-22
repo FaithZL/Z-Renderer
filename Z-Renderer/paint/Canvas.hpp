@@ -58,8 +58,8 @@ public:
     
     inline bool isPassDepth(int px , int py , double z) {
         unsigned index = getIndex(px , py);
-        return z < _depthBuffer[index]
-                && z <= 1;
+        return z <= _depthBuffer[index]
+                && z >= - 1;
     }
     
     void drawLine(const Vertex &vert1 , const Vertex &vert2);
@@ -89,7 +89,7 @@ protected:
     }
     
     inline unsigned getIndex(int px , int py) const {
-        return (unsigned)(_width * py + px);
+        return (unsigned)((_width - 1) * py + px);
     }
     
     inline unsigned getPX(double x) const {

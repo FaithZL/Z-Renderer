@@ -43,10 +43,13 @@ void Canvas::render() {
 //    for (int i = 0 ; i < 600; ++ i) {
 //        putPixel(i , i, Color(1 , 1 ,1 ,1));
 //    }
-    Vertex v1(Vec3(-1 , -1 ,-1) , Color(1 , 0.5 , 0.2 , 0));
-    Vertex v2(Vec3(1 , 1 , 1) , Color(0.2 , 0.9 , 1 , 0));
+    Vertex v1(Vec3(-1 , -1 ,-1) , Color(1 , 0 , 0 , 0));
+    Vertex v2(Vec3(1 , -1 , 1) , Color(0 , 1 , 0 , 0));
+//    Vertex v3(Vec3(1 , -0.99 , 1) , Color(0 , 0 , 1 , 0));
 //    LineBresenham(0 , 0, 600, 600, Color(1 , 0 ,0 ,0));
     drawLine(v2, v1);
+//    drawLine(v2, v3);
+//    drawLine(v3, v1);
 }
 
 void Canvas::lock() {
@@ -62,8 +65,8 @@ void Canvas::drawTriangle(Vertex v1, Vertex v2, Vertex v3) {
 }
 
 void Canvas::putPixel(int px , int py , const Color &color) {
-    bool outX = px < 0 || px > _width - 1;
-    bool outY = py < 0 || py > _height - 1;
+    bool outX = px < 0 || px > _width;
+    bool outY = py < 0 || py > _height;
     if (outX || outY) {
         return;
     }
