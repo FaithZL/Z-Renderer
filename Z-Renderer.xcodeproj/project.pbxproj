@@ -11,6 +11,9 @@
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CF7208B47530019A75F /* Mat4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF5208B47530019A75F /* Mat4.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
+		F6464D01208E3DBC0019A75F /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CFF208E3DBC0019A75F /* Camera.cpp */; };
+		F6464D04208E3E4D0019A75F /* Ref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464D02208E3E4D0019A75F /* Ref.cpp */; };
+		F6464D07208E3E600019A75F /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464D05208E3E600019A75F /* Node.cpp */; };
 		F6758CD52088D6E00036A8E8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6758CD42088D6E00036A8E8 /* Cocoa.framework */; };
 		F6758CD72088D6E00036A8E8 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6758CD62088D6E00036A8E8 /* SDL2.framework */; };
 		F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CD92088D6E00036A8E8 /* main.cpp */; };
@@ -40,6 +43,13 @@
 		F6464CF6208B47530019A75F /* Mat4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mat4.hpp; sourceTree = "<group>"; };
 		F6464CF8208C7E790019A75F /* MathUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtil.cpp; sourceTree = "<group>"; };
 		F6464CF9208C7E790019A75F /* MathUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MathUtil.hpp; sourceTree = "<group>"; };
+		F6464CFC208E39680019A75F /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		F6464CFF208E3DBC0019A75F /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		F6464D00208E3DBC0019A75F /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		F6464D02208E3E4D0019A75F /* Ref.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ref.cpp; sourceTree = "<group>"; };
+		F6464D03208E3E4D0019A75F /* Ref.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ref.hpp; sourceTree = "<group>"; };
+		F6464D05208E3E600019A75F /* Node.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		F6464D06208E3E600019A75F /* Node.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 		F6758CD12088D6E00036A8E8 /* Z-Renderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Z-Renderer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6758CD42088D6E00036A8E8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F6758CD62088D6E00036A8E8 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = Library/Frameworks/../../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = DEVELOPER_DIR; };
@@ -74,8 +84,22 @@
 				F6464CE9208B27330019A75F /* Vertex.hpp */,
 				F6464CEE208B363C0019A75F /* Color.cpp */,
 				F6464CEF208B363C0019A75F /* Color.hpp */,
+				F6464CFC208E39680019A75F /* Shader.hpp */,
 			);
 			path = paint;
+			sourceTree = "<group>";
+		};
+		F6464CFE208E3D820019A75F /* logic */ = {
+			isa = PBXGroup;
+			children = (
+				F6464CFF208E3DBC0019A75F /* Camera.cpp */,
+				F6464D00208E3DBC0019A75F /* Camera.hpp */,
+				F6464D02208E3E4D0019A75F /* Ref.cpp */,
+				F6464D03208E3E4D0019A75F /* Ref.hpp */,
+				F6464D05208E3E600019A75F /* Node.cpp */,
+				F6464D06208E3E600019A75F /* Node.hpp */,
+			);
+			path = logic;
 			sourceTree = "<group>";
 		};
 		F6758CC72088D6E00036A8E8 = {
@@ -107,6 +131,7 @@
 		F6758CD82088D6E00036A8E8 /* Z-Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				F6464CFE208E3D820019A75F /* logic */,
 				F6464CE7208B26CC0019A75F /* paint */,
 				F6758CE82088EFF90036A8E8 /* common */,
 				F6758CE62088EF710036A8E8 /* math */,
@@ -209,7 +234,10 @@
 				F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */,
 				F6464CF0208B363C0019A75F /* Color.cpp in Sources */,
 				F6464CEA208B27330019A75F /* Vertex.cpp in Sources */,
+				F6464D04208E3E4D0019A75F /* Ref.cpp in Sources */,
+				F6464D07208E3E600019A75F /* Node.cpp in Sources */,
 				F6464CF7208B47530019A75F /* Mat4.cpp in Sources */,
+				F6464D01208E3DBC0019A75F /* Camera.cpp in Sources */,
 				F6758CDF2088D6E00036A8E8 /* CApp.cpp in Sources */,
 				F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */,
 				F6758CF02089BA570036A8E8 /* Vec3.cpp in Sources */,
