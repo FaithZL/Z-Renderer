@@ -14,6 +14,11 @@
 #include "Vertex.hpp"
 #include "Color.hpp"
 
+enum DrawMode {
+    Frame,
+    Fill
+};
+
 class Canvas {
 public:
     
@@ -50,6 +55,14 @@ public:
         }
         putPixel(px , py , color);
         _setDepth(px, py, z);
+    }
+    
+    inline void setDrawMode(DrawMode mode) {
+        _drawMode = mode;
+    }
+    
+    inline DrawMode getDrawMode() const {
+        return _drawMode;
     }
     
     void drawTriangle(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
@@ -134,6 +147,8 @@ protected:
     int _height;
     
     unsigned _bufferSize;
+    
+    DrawMode _drawMode;
     
     /**
      * -1 <= depth <= 1

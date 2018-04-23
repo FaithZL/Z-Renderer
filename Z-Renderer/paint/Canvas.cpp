@@ -17,6 +17,7 @@ Canvas::Canvas(unsigned width , unsigned height):
 _surface(nullptr),
 _width(width),
 _height(height),
+_drawMode(DrawMode::Frame),
 _bufferSize(height * width){
     _depthBuffer = new Ldouble[_bufferSize]();
 }
@@ -43,11 +44,7 @@ void Canvas::render() {
     Vertex v2(Vec3(0 , 1  , 0) , Color(0 , 1 , 0 , 0));
     Vertex v3(Vec3(1 , 0, 0) , Color(0 , 0 , 1 , 0));
     
-    triangleRasterize(v1 , v2 , v3);
-//        drawLineRasterize(v2, v1);
-//        drawLineRasterize(v2, v3);
-//        drawLineRasterize(v3, v1);
-    
+    drawTriangle(v1 , v2 , v3);
 }
 
 void Canvas::lock() {
@@ -58,7 +55,15 @@ void Canvas::unlock() {
     SDL_UnlockSurface(_surface);
 }
 
-
+void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
+    if (_drawMode == Fill) {
+        triangleRasterize(v1, v2, v3);
+    } else if (_drawMode == Frame) {
+        drawLineRasterize(v2, v1);
+        drawLineRasterize(v2, v3);
+        drawLineRasterize(v3, v1);
+    }
+}
 
 void Canvas::triangleRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     
