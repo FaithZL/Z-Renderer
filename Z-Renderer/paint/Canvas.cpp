@@ -41,7 +41,7 @@ void Canvas::update() {
 void Canvas::render() {
     Vertex v1(Vec3(-1 , -1 ,0) , Color(1 , 0 , 0 , 0));
     Vertex v2(Vec3(0 , 1  , 0) , Color(0 , 1 , 0 , 0));
-    Vertex v3(Vec3(1 , -1, 0) , Color(0 , 0 , 1 , 0));
+    Vertex v3(Vec3(1 , 0, 0) , Color(0 , 0 , 1 , 0));
     
     triangleRasterize(v1 , v2 , v3);
 //        drawLineRasterize(v2, v1);
@@ -132,21 +132,12 @@ void Canvas::_triangleTopRasterize(const Vertex &v1, const Vertex &v2, const Ver
     for (int py = startPY ; py * sign < sign * endPY ; py = py + sign) {
         Ldouble ld = 1.0f;
         Ldouble factor = (py - startPY) * ld / (endPY - startPY);
-        Color cs = pVert1->color.interpolate(pVert2->color , factor);
-        Color ce = pVert1->color.interpolate(pVert3->color , factor);
         Vertex vertStart = pVert1->interpolate(*pVert2, factor);
         Vertex vertEnd = pVert1->interpolate(*pVert3, factor);
-//        vertStart.color = cs;
-//        vertEnd.color = ce;
-//        vertStart.pos.x = -1;
-//        vertEnd.pos.x = 1;
-        if (py == 2 || py == 3) {
-//            drawLineRasterize(vertStart, vertEnd);
-        }
+
         drawLineRasterize(vertStart, vertEnd);
     }
 }
-
 
 void Canvas::_triangleBottomRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     const Vertex * pVert1 = &v1;
@@ -161,6 +152,20 @@ void Canvas::_triangleBottomRasterize(const Vertex &v1, const Vertex &v2, const 
     pVert1 = vector.at(0);
     pVert2 = vector.at(1);
     pVert3 = vector.at(2);
+    
+    int startPY = _getPY(pVert3->pos.y);
+    int endPY = _getPY(pVert1->pos.y);
+    
+    int sign = endPY > startPY ? 1 : -1;
+    
+    for (int py = startPY ; py * sign < sign * endPY ; py = py + sign) {
+        Ldouble ld = 1.0f;
+        Ldouble factor = (py - startPY) * ld / (endPY - startPY);
+        Vertex vertStart = pVert1->interpolate(*pVert2, factor);
+        Vertex vertEnd = pVert1->interpolate(*pVert3, factor);
+        
+        drawLineRasterize(vertStart, vertEnd);
+    }
 }
 
 void Canvas::putPixel(int px , int py , const Color &color) {
@@ -211,6 +216,11 @@ void Canvas::drawLineRasterize(const Vertex &vert1, const Vertex &vert2) {
         int sign = py2 >= py1 ? 1 : -1;  //斜率[-1,1]
         int k = sign * dy * 2;
         int e = -dx * sign;
+        
+        if (px2 == px1) {
+            drawPixel(px1, py1, z1, color1);
+        }
+        
         for (int x = px1 , y = py1;x <= px2; ++x) {
             Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
             Ldouble z = MathUtil::interpolate(z1 , z2, factor);
@@ -244,6 +254,9 @@ void Canvas::drawLineRasterize(const Vertex &vert1, const Vertex &vert2) {
         int sign = px2 > px1 ? 1 : -1;
         int k = sign * dx * 2;
         int e = -dy * sign;
+        if (px2 == px1) {
+            drawPixel(px1, py1, z1, color1);
+        }
         for (int x = px1 , y = py1; y <= py2 ; ++y) {
             Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
             Ldouble z = MathUtil::interpolate(z1 , z2, factor);

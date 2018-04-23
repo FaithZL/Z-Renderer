@@ -64,7 +64,7 @@ public:
                 && z >= - 1;
     }
     
-    void scanLineFill(const Vertex &v1 , const Vertex &v2);
+    void scanLineFill(const Vertex &v1 , const Vertex &v2 , int yIdx);
     
     void drawLineRasterize(const Vertex &vert1 , const Vertex &vert2);
     
@@ -118,14 +118,14 @@ protected:
     inline unsigned _getPX(Ldouble x) const {
         Ldouble startX = -1;
         Ldouble hw = _width / 2;
-        unsigned px = (x - startX) * hw;
+        unsigned px = MathUtil::round((x - startX) * hw);
         return px;
     }
     
     inline unsigned _getPY(Ldouble y) const {
         Ldouble startY = 1;
         Ldouble hh = -(_height / 2);
-        unsigned py = (y - startY) * hh;
+        unsigned py = MathUtil::round((y - startY) * hh);
         return py;
     }
     

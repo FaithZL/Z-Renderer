@@ -13,7 +13,7 @@
 #include <cmath>
 
 #define Min 0.0000001
-typedef long double  Ldouble;
+typedef long double Ldouble;
 
 struct Line {
     Ldouble k = 1.0f;
