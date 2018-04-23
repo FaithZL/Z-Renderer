@@ -38,15 +38,14 @@ void Canvas::update() {
 }
 
 void Canvas::render() {
-    Vertex v1(Vec3(-1 , -1 ,-1) , Color(1 , 0 , 0 , 0));
-    Vertex v2(Vec3(0 , 1 , 1) , Color(0 , 1 , 0 , 0));
-    Vertex v3(Vec3(1 , -0.5 , 1) , Color(0 , 0 , 1 , 0));
-
-    drawLineRasterize(v2, v1);
-    drawLineRasterize(v2, v3);
-    drawLineRasterize(v3, v1);
+    Vertex v1(Vec3(-1 , 0 ,0) , Color(1 , 0 , 0 , 0));
+    Vertex v2(Vec3(0 , 1  , 0) , Color(0 , 1 , 0 , 0));
+    Vertex v3(Vec3(1 , 0, 0) , Color(0 , 0 , 1 , 0));
     
-    drawTriangleRasterize(v1 , v2 , v3);
+    //    drawLineRasterize(v2, v1);
+    //    drawLineRasterize(v2, v3);
+    //    drawLineRasterize(v3, v1);
+    triangleRasterize(v1 , v2 , v3);
 }
 
 void Canvas::lock() {
@@ -57,7 +56,9 @@ void Canvas::unlock() {
     SDL_UnlockSurface(_surface);
 }
 
-void Canvas::drawTriangleRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
+
+
+void Canvas::triangleRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     
     const Vertex * pVert1 = &v1;
     const Vertex * pVert2 = &v2;
@@ -74,10 +75,10 @@ void Canvas::drawTriangleRasterize(const Vertex &v1, const Vertex &v2, const Ver
     
     if (MathUtil::equal(pVert1->pos.y , pVert2->pos.y)) {
         // 平顶三角形
-        _drawTriangleTopRasterize(*pVert1 , *pVert2 , *pVert3);
+        _triangleBottomRasterize(*pVert1 , *pVert2 , *pVert3);
     } else if (MathUtil::equal(pVert2->pos.y , pVert3->pos.y)) {
         // 平底三角形
-        _drawTriangleBottomRasterize(*pVert1 , *pVert2 , *pVert3);
+        _triangleTopRasterize(*pVert1 , *pVert2 , *pVert3);
     } else {
         double ty = pVert2->pos.y;
         // 求直线方程
@@ -90,24 +91,63 @@ void Canvas::drawTriangleRasterize(const Vertex &v1, const Vertex &v2, const Ver
         
         double tx = (ty - b) / k;
         
+        double factor = (ty - pVert1->pos.y) / (pVert3->pos.y - pVert1->pos.y);
+        Vertex tVert = pVert1->interpolate(*pVert3 , factor);
         if (tx <= pVert2->pos.x) {
             // p2 在左边
-            
+            _triangleTopRasterize(*pVert1, tVert , *pVert2);
+            _triangleBottomRasterize(*pVert2, tVert , *pVert3);
         } else {
             // p2 在右边
-            
+            _triangleTopRasterize(*pVert1, tVert , *pVert2);
+            _triangleBottomRasterize(*pVert2, tVert , *pVert3);
         }
     }
     
     return;
 }
 
-void Canvas::_drawTriangleTopRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
+void Canvas::_triangleTopRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
+    const Vertex * pVert1 = &v1;
+    const Vertex * pVert2 = &v2;
+    const Vertex * pVert3 = &v3;
+    vector<const Vertex *> vector = {pVert1 , pVert2 , pVert3};
+    // 根据纵坐标排序
+    sort(vector.begin(), vector.end() , [](const Vertex * p1 , const Vertex * p2)->bool {
+        return p1->pos.y >= p2->pos.y;
+    });
+    // 上面的顶点
+    pVert1 = vector.at(0);
+    pVert2 = vector.at(1);
+    pVert3 = vector.at(2);
     
+    int startPY = _getPY(pVert1->pos.y);
+    int endPY = _getPY(pVert3->pos.y);
+    
+    int sign = endPY > startPY ? 1 : -1;
+    
+    for (int py = startPY ; py * sign <= sign * endPY ; py = py + sign) {
+        double factor = (py - startPY) * 1.0f / (endPY - startPY);
+        Vertex vertStart = pVert1->interpolate(*pVert2, factor);
+        Vertex vertEnd = pVert1->interpolate(*pVert3, factor);
+        
+        drawLineRasterize(vertStart, vertEnd);
+    }
 }
 
-void Canvas::_drawTriangleBottomRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
-    
+void Canvas::_triangleBottomRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
+    const Vertex * pVert1 = &v1;
+    const Vertex * pVert2 = &v2;
+    const Vertex * pVert3 = &v3;
+    vector<const Vertex *> vector = {pVert1 , pVert2 , pVert3};
+    // 根据纵坐标排序
+    sort(vector.begin(), vector.end() , [](const Vertex * p1 , const Vertex * p2)->bool {
+        return p1->pos.y >= p2->pos.y;
+    });
+    // 上面的顶点
+    pVert1 = vector.at(0);
+    pVert2 = vector.at(1);
+    pVert3 = vector.at(2);
 }
 
 void Canvas::putPixel(int px , int py , const Color &color) {

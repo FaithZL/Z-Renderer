@@ -52,7 +52,9 @@ public:
         _setDepth(px, py, z);
     }
     
-    void drawTriangleRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    void drawTriangle(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    
+    void triangleRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
     void putPixel(int px , int py , const Color &color);
     
@@ -91,7 +93,7 @@ protected:
      * @param v2 [description]
      * @param v3 [description]
      */
-    void _drawTriangleTopRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    void _triangleTopRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
     /**
      * 1     2
@@ -101,7 +103,7 @@ protected:
      * @param v2 [description]
      * @param v3 [description]
      */    
-    void _drawTriangleBottomRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    void _triangleBottomRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
     inline double _getDepth(int px , int py) {
         return _depthBuffer[getIndex(px , py)];

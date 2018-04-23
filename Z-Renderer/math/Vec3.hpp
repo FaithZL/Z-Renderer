@@ -37,11 +37,18 @@ public:
     }
     
     Vec3 operator - (const Vec3 &other) const {
-        return Vec3(x - other.x , y - other.y , z - other.z);
+        auto ret = Vec3(x - other.x , y - other.y , z - other.z);
+        return ret;
     }
     
     Vec3 operator * (const Vec3 &other) const {
-        return Vec3(x * other.x , y * other.y , z * other.z);
+        auto ret = Vec3(x * other.x , y * other.y , z * other.z);
+        return ret;
+    }
+    
+    Vec3 operator * (double factor) const {
+        auto ret = Vec3(x * factor , y * factor , z * factor);
+        return ret;
     }
     
     Vec3 operator - () const {

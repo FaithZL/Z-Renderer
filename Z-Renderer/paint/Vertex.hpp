@@ -24,7 +24,7 @@ public:
     
     Vertex(Vec3 pos , Color color = Color(), Vec3 normal = Vec3() , double u = 0 , double v = 0);
     
-    Vertex interpolate(Vertex vertex , double factor);
+    Vertex interpolate(const Vertex &vertex , double factor) const;
     
     void transform(const Mat4 &mat4);
 };

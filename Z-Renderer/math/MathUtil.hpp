@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <cmath>
 
-#define Min 0.0000000001
+#define Min 0.0000001
 
 struct Line {
     double k = 1.0f;

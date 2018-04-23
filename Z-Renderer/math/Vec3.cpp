@@ -24,12 +24,27 @@ double Vec3::dot(const Vec3 &other) const {
 }
 
 Vec3 Vec3::cross(const Vec3 &other) const {
-    float X = y * other.z - z * other.y;
-    float Y = z * other.x - x * other.z;
-    float Z = x * other.y - y * other.x;
+    double X = y * other.z - z * other.y;
+    double Y = z * other.x - x * other.z;
+    double Z = x * other.y - y * other.x;
     return Vec3(X , Y , Z);
 }
 
 Vec3 Vec3::interpolate(const Vec3 &other, double factor) const {
-    return *this + (other - *this) * factor;
+    auto ret = *this + (other - *this) * factor;
+    return ret;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

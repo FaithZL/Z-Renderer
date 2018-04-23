@@ -18,11 +18,11 @@ color(color){
 }
 
 
-Vertex Vertex::interpolate(Vertex vertex, double factor){
+Vertex Vertex::interpolate(const Vertex &vertex, double factor) const {
     Vec3 p = pos.interpolate(vertex.pos , factor);
     Vec3 nor = normal.interpolate(vertex.normal, factor);
-    float tu = u + (vertex.u - u) * factor;
-    float tv = v + (vertex.v - v) * factor;
+    double tu = u + (vertex.u - u) * factor;
+    double tv = v + (vertex.v - v) * factor;
     Color c = vertex.color.interpolate(vertex.color, factor);
     return Vertex(p , c , nor , tu , tv);
 }

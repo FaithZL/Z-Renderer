@@ -36,9 +36,9 @@ public:
     }
     
     static Color randomColor() {
-        float r = (rand() % 255) / 255.0;
-        float g = (rand() % 255) / 255.0;
-        float b = (rand() % 255) / 255.0;
+        double r = (rand() % 255) / 255.0;
+        double g = (rand() % 255) / 255.0;
+        double b = (rand() % 255) / 255.0;
         return Color(r, g, b, 1);
     };
     
@@ -59,12 +59,17 @@ public:
         return Color(r - color.r, g - color.g, b - color.b, a - color.a);
     };
     
-    Color operator * (float factor) const {
+    Color operator * (double factor) const {
         return Color(r * factor, g * factor, b * factor, a * factor);
     };
     
-    Color interpolate(const Color &c, float factor) const {
-        return *this + (c - *this) * factor;
+    Color operator * (const Color &color) const {
+        return Color(r * color.r , g * color.g , b * color.b , a * color.a);
+    }
+    
+    Color interpolate(const Color &c, double factor) const {
+        auto ret = *this + (c - *this) * factor;
+        return ret;
     };
 };
 
