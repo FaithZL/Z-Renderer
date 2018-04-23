@@ -9,6 +9,7 @@
 #include "Canvas.hpp"
 #include <algorithm>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ _surface(nullptr),
 _width(width),
 _height(height),
 _bufferSize(height * width){
-    _depthBuffer = new double[_bufferSize]();
+    _depthBuffer = new Ldouble[_bufferSize]();
 }
 
 void Canvas::clear() {
@@ -38,14 +39,15 @@ void Canvas::update() {
 }
 
 void Canvas::render() {
-    Vertex v1(Vec3(-1 , 0 ,0) , Color(1 , 0 , 0 , 0));
+    Vertex v1(Vec3(-1 , -1 ,0) , Color(1 , 0 , 0 , 0));
     Vertex v2(Vec3(0 , 1  , 0) , Color(0 , 1 , 0 , 0));
-    Vertex v3(Vec3(1 , 0, 0) , Color(0 , 0 , 1 , 0));
+    Vertex v3(Vec3(1 , -1, 0) , Color(0 , 0 , 1 , 0));
     
-    //    drawLineRasterize(v2, v1);
-    //    drawLineRasterize(v2, v3);
-    //    drawLineRasterize(v3, v1);
     triangleRasterize(v1 , v2 , v3);
+//        drawLineRasterize(v2, v1);
+//        drawLineRasterize(v2, v3);
+//        drawLineRasterize(v3, v1);
+    
 }
 
 void Canvas::lock() {
@@ -68,7 +70,7 @@ void Canvas::triangleRasterize(const Vertex &v1, const Vertex &v2, const Vertex 
     sort(vector.begin(), vector.end() , [](const Vertex * p1 , const Vertex * p2)->bool {
         return p1->pos.y >= p2->pos.y;
     });
-    
+
     pVert1 = vector.at(0);
     pVert2 = vector.at(1);
     pVert3 = vector.at(2);
@@ -80,18 +82,19 @@ void Canvas::triangleRasterize(const Vertex &v1, const Vertex &v2, const Vertex 
         // 平底三角形
         _triangleTopRasterize(*pVert1 , *pVert2 , *pVert3);
     } else {
-        double ty = pVert2->pos.y;
+        Ldouble ty = pVert2->pos.y;
         // 求直线方程
         Line param = MathUtil::getLineParam(pVert1->pos.x,
                                           pVert1->pos.y,
                                           pVert3->pos.x,
                                           pVert3->pos.y);
-        double k = param.k;
-        double b = param.b;
+        Ldouble k = param.k;
+        Ldouble b = param.b;
+
         
-        double tx = (ty - b) / k;
+        Ldouble tx = (ty - b) / k;
         
-        double factor = (ty - pVert1->pos.y) / (pVert3->pos.y - pVert1->pos.y);
+        Ldouble factor = (ty - pVert1->pos.y) / (pVert3->pos.y - pVert1->pos.y);
         Vertex tVert = pVert1->interpolate(*pVert3 , factor);
         if (tx <= pVert2->pos.x) {
             // p2 在左边
@@ -126,14 +129,24 @@ void Canvas::_triangleTopRasterize(const Vertex &v1, const Vertex &v2, const Ver
     
     int sign = endPY > startPY ? 1 : -1;
     
-    for (int py = startPY ; py * sign <= sign * endPY ; py = py + sign) {
-        double factor = (py - startPY) * 1.0f / (endPY - startPY);
+    for (int py = startPY ; py * sign < sign * endPY ; py = py + sign) {
+        Ldouble ld = 1.0f;
+        Ldouble factor = (py - startPY) * ld / (endPY - startPY);
+        Color cs = pVert1->color.interpolate(pVert2->color , factor);
+        Color ce = pVert1->color.interpolate(pVert3->color , factor);
         Vertex vertStart = pVert1->interpolate(*pVert2, factor);
         Vertex vertEnd = pVert1->interpolate(*pVert3, factor);
-        
+//        vertStart.color = cs;
+//        vertEnd.color = ce;
+//        vertStart.pos.x = -1;
+//        vertEnd.pos.x = 1;
+        if (py == 2 || py == 3) {
+//            drawLineRasterize(vertStart, vertEnd);
+        }
         drawLineRasterize(vertStart, vertEnd);
     }
 }
+
 
 void Canvas::_triangleBottomRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     const Vertex * pVert1 = &v1;
@@ -187,20 +200,20 @@ void Canvas::drawLineRasterize(const Vertex &vert1, const Vertex &vert2) {
         
         int px1 = _getPX(pos1.x);
         int py1 = _getPY(pos1.y);
-        double z1 = pos1.z;
+        Ldouble z1 = pos1.z;
         Color color1 = pVert1->color;
         
         int px2 = _getPX(pos2.x);
         int py2 = _getPY(pos2.y);
-        double z2 = pos2.z;
+        Ldouble z2 = pos2.z;
         Color color2 = pVert2->color;
         
         int sign = py2 >= py1 ? 1 : -1;  //斜率[-1,1]
         int k = sign * dy * 2;
         int e = -dx * sign;
         for (int x = px1 , y = py1;x <= px2; ++x) {
-            double factor = static_cast<double>((x - px1) * 1.0 / (px2 - px1));
-            double z = MathUtil::interpolate(z1 , z2, factor);
+            Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
+            Ldouble z = MathUtil::interpolate(z1 , z2, factor);
             Color color = color1.interpolate(color2, factor);
             drawPixel(x , y , z, color);
             e += k;
@@ -220,20 +233,20 @@ void Canvas::drawLineRasterize(const Vertex &vert1, const Vertex &vert2) {
         
         int px1 = _getPX(pos1.x);
         int py1 = _getPY(pos1.y);
-        double z1 = pos1.z;
+        Ldouble z1 = pos1.z;
         Color color1 = pVert1->color;
         
         int px2 = _getPX(pos2.x);
         int py2 = _getPY(pos2.y);
-        double z2 = pos2.z;
+        Ldouble z2 = pos2.z;
         Color color2 = pVert2->color;
         
         int sign = px2 > px1 ? 1 : -1;
         int k = sign * dx * 2;
         int e = -dy * sign;
         for (int x = px1 , y = py1; y <= py2 ; ++y) {
-            double factor = static_cast<double>((x - px1) * 1.0 / (px2 - px1));
-            double z = MathUtil::interpolate(z1 , z2, factor);
+            Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
+            Ldouble z = MathUtil::interpolate(z1 , z2, factor);
             Color color = color1.interpolate(color2, factor);
             drawPixel(x , y , z, color);
             e += k;
@@ -249,7 +262,7 @@ void Canvas::drawPointRasterize(const Vertex &vert) {
     drawPointRasterize(vert.pos.x, vert.pos.y, vert.pos.z, vert.color);
 }
 
-void Canvas::drawPointRasterize(double x , double y , double z , const Color &color) {
+void Canvas::drawPointRasterize(Ldouble x , Ldouble y , Ldouble z , const Color &color) {
     bool outX = x > 1 || x < -1;
     bool outY = y > 1 || y < -1;
     bool outZ = z > 1 || z < -1;
@@ -258,8 +271,8 @@ void Canvas::drawPointRasterize(double x , double y , double z , const Color &co
         return;
     }
     
-    double px = _getPX(x);
-    double py = _getPY(y);
+    Ldouble px = _getPX(x);
+    Ldouble py = _getPY(y);
     
     drawPixel(px, py, z, color);
 }

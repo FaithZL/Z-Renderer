@@ -16,9 +16,9 @@
 class Mat4 {
     
 public:
-    double m[16];
+    Ldouble m[16];
     
-    Mat4(double * p) {
+    Mat4(Ldouble * p) {
         for (int i = 0 ; i < 16 ; ++ i) {
             m[i] = p[i];
         }
@@ -41,30 +41,30 @@ public:
     
     Mat4 operator * (const Mat4 &other) const ;
     
-    static Mat4 perspective(double radian , double ratio , double nearPlane , double farPlane);
+    static Mat4 perspective(Ldouble radian , Ldouble ratio , Ldouble nearPlane , Ldouble farPlane);
     
-    static Mat4 translate(double x , double y , double z);
+    static Mat4 translate(Ldouble x , Ldouble y , Ldouble z);
     
     static Mat4 translate(const Vec3 &vec);
     
-    static Mat4 rotateX(double x);
+    static Mat4 rotateX(Ldouble x);
     
-    static Mat4 rotateY(double y);
+    static Mat4 rotateY(Ldouble y);
     
-    static Mat4 rotateZ(double z);
+    static Mat4 rotateZ(Ldouble z);
     
     static Mat4 rotate(const Vec3 &vec);
     
-    static Mat4 rotate(double ax , double ay , double az);
+    static Mat4 rotate(Ldouble ax , Ldouble ay , Ldouble az);
     
     static Mat4 scale(const Vec3 &v);
     
-    static Mat4 scale(double x , double y , double z);
+    static Mat4 scale(Ldouble x , Ldouble y , Ldouble z);
     
     Vec3 transform(const Vec3 &vec) const;
     
     static Mat4 identity() {
-        double a[16] = {
+        Ldouble a[16] = {
             1, 0, 0, 0,
             0, 1, 0, 0,
             0, 0, 1, 0,

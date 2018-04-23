@@ -16,21 +16,21 @@
 class Vec3 {
     
 public:
-    double x;
-    double y;
-    double z;
+    Ldouble x;
+    Ldouble y;
+    Ldouble z;
     
-    Vec3(double x = 0.0f , double y = 0.0f , double z = 0.0f);
+    Vec3(Ldouble x = 0.0f , Ldouble y = 0.0f , Ldouble z = 0.0f);
     
-    double length() const;
+    Ldouble length() const;
     
-    double normalize() const;
+    Ldouble normalize() const;
     
-    double dot(const Vec3 &other) const;
+    Ldouble dot(const Vec3 &other) const;
     
     Vec3 cross(const Vec3 &other) const;
     
-    Vec3 interpolate(const Vec3 &other , double factor) const ;
+    Vec3 interpolate(const Vec3 &other , Ldouble factor) const ;
     
     Vec3 operator + (const Vec3 &other) const {
         return Vec3(x + other.x , y + other.y , z + other.z);
@@ -46,7 +46,7 @@ public:
         return ret;
     }
     
-    Vec3 operator * (double factor) const {
+    Vec3 operator * (Ldouble factor) const {
         auto ret = Vec3(x * factor , y * factor , z * factor);
         return ret;
     }

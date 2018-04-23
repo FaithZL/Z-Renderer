@@ -11,16 +11,17 @@
 
 #include <cstdlib>
 #include <cstdint>
+#include "MathUtil.hpp"
 
 class Color {
     
 public:
-    double r;
-    double g;
-    double b;
-    double a;
+    Ldouble r;
+    Ldouble g;
+    Ldouble b;
+    Ldouble a;
     
-    Color(double r = 1.0f , double g = 1.0f , double b = 1.0f , double a = 1.0f):
+    Color(Ldouble r = 1.0f , Ldouble g = 1.0f , Ldouble b = 1.0f , Ldouble a = 1.0f):
     r(r),
     g(g),
     b(b),
@@ -36,9 +37,9 @@ public:
     }
     
     static Color randomColor() {
-        double r = (rand() % 255) / 255.0;
-        double g = (rand() % 255) / 255.0;
-        double b = (rand() % 255) / 255.0;
+        Ldouble r = (rand() % 255) / 255.0;
+        Ldouble g = (rand() % 255) / 255.0;
+        Ldouble b = (rand() % 255) / 255.0;
         return Color(r, g, b, 1);
     };
     
@@ -52,22 +53,25 @@ public:
     }
     
     Color operator + (const Color &color) const {
-        return Color(r + color.r, g + color.g, b + color.b, a + color.a);
+        auto ret = Color(r + color.r, g + color.g, b + color.b, a + color.a);
+        return ret;
     };
     
     Color operator - (const Color &color) const {
-        return Color(r - color.r, g - color.g, b - color.b, a - color.a);
+        auto ret = Color(r - color.r, g - color.g, b - color.b, a - color.a);
+        return ret;
     };
     
-    Color operator * (double factor) const {
-        return Color(r * factor, g * factor, b * factor, a * factor);
+    Color operator * (Ldouble factor) const {
+        auto ret = Color(r * factor, g * factor, b * factor, a * factor);
+        return ret;
     };
     
     Color operator * (const Color &color) const {
         return Color(r * color.r , g * color.g , b * color.b , a * color.a);
     }
     
-    Color interpolate(const Color &c, double factor) const {
+    Color interpolate(const Color &c, Ldouble factor) const {
         auto ret = *this + (c - *this) * factor;
         return ret;
     };

@@ -13,31 +13,32 @@
 #include <cmath>
 
 #define Min 0.0000001
+typedef long double  Ldouble;
 
 struct Line {
-    double k = 1.0f;
-    double b = 0.0f;
+    Ldouble k = 1.0f;
+    Ldouble b = 0.0f;
 };
 
 class MathUtil {
     
 public:
-    static inline bool equal(double v1 , double v2) {
+    static inline bool equal(Ldouble v1 , Ldouble v2) {
         return fabs(v1 - v2) < Min;
     }
     
-    static inline int round(double num) {
+    static inline int round(Ldouble num) {
         return static_cast<int>(num + 0.5);
     }
     
-    static inline double interpolate(double v1 , double v2 , double factor) {
+    static inline Ldouble interpolate(Ldouble v1 , Ldouble v2 , Ldouble factor) {
         return v1 + (v2 - v1) * (factor);
     }
     
-    static inline Line getLineParam(double x1 , double y1 , double x2 , double y2){
+    static inline Line getLineParam(Ldouble x1 , Ldouble y1 , Ldouble x2 , Ldouble y2){
         Line ret;
-        double k = (y2 - y1) / (x2 - x1);
-        double b = y1 - k * x1;
+        Ldouble k = (y2 - y1) / (x2 - x1);
+        Ldouble b = y1 - k * x1;
         ret.k = k;
         ret.b = b;
         return ret;

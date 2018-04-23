@@ -19,12 +19,12 @@ public:
     Vec3 pos;
     Color color;
     Vec3 normal;
-    double u;
-    double v;
+    Ldouble u;
+    Ldouble v;
     
-    Vertex(Vec3 pos , Color color = Color(), Vec3 normal = Vec3() , double u = 0 , double v = 0);
+    Vertex(Vec3 pos , Color color = Color(), Vec3 normal = Vec3() , Ldouble u = 0 , Ldouble v = 0);
     
-    Vertex interpolate(const Vertex &vertex , double factor) const;
+    Vertex interpolate(const Vertex &vertex , Ldouble factor) const;
     
     void transform(const Mat4 &mat4);
 };

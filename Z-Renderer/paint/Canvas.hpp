@@ -40,11 +40,11 @@ public:
      * @param z     -1 <= z <= 1
      * @param color [description]
      */
-    void drawPointRasterize(double x , double y , double z , const Color &color);
+    void drawPointRasterize(Ldouble x , Ldouble y , Ldouble z , const Color &color);
     
     void drawPointRasterize(const Vertex &vert);
     
-    void drawPixel(int px , int py , double z , const Color &color) {
+    void drawPixel(int px , int py , Ldouble z , const Color &color) {
         if (!isPassDepth(px , py, z)) {
             return;
         }
@@ -58,11 +58,13 @@ public:
     
     void putPixel(int px , int py , const Color &color);
     
-    inline bool isPassDepth(int px , int py , double z) {
+    inline bool isPassDepth(int px , int py , Ldouble z) {
         unsigned index = getIndex(px , py);
         return z <= _depthBuffer[index]
                 && z >= - 1;
     }
+    
+    void scanLineFill(const Vertex &v1 , const Vertex &v2);
     
     void drawLineRasterize(const Vertex &vert1 , const Vertex &vert2);
     
@@ -80,7 +82,7 @@ public:
     
 protected:
     
-    inline void _setDepth(int px , int py , double z) {
+    inline void _setDepth(int px , int py , Ldouble z) {
         unsigned index = getIndex(px, py);
         _depthBuffer[index] = z;
     }
@@ -105,7 +107,7 @@ protected:
      */    
     void _triangleBottomRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
-    inline double _getDepth(int px , int py) {
+    inline Ldouble _getDepth(int px , int py) {
         return _depthBuffer[getIndex(px , py)];
     }
     
@@ -113,17 +115,17 @@ protected:
         return (unsigned)((_width) * py + px);
     }
     
-    inline unsigned _getPX(double x) const {
-        double startX = -1;
-        double hw = _width / 2;
-        double px = (x - startX) * hw;
+    inline unsigned _getPX(Ldouble x) const {
+        Ldouble startX = -1;
+        Ldouble hw = _width / 2;
+        unsigned px = (x - startX) * hw;
         return px;
     }
     
-    inline unsigned _getPY(double y) const {
-        double startY = 1;
-        double hh = -(_height / 2);
-        double py = (y - startY) * hh;
+    inline unsigned _getPY(Ldouble y) const {
+        Ldouble startY = 1;
+        Ldouble hh = -(_height / 2);
+        unsigned py = (y - startY) * hh;
         return py;
     }
     
@@ -136,7 +138,7 @@ protected:
     /**
      * -1 <= depth <= 1
      */
-    double * _depthBuffer;
+    Ldouble * _depthBuffer;
     
     SDL_Surface * _surface;
 };
