@@ -46,9 +46,9 @@ Mat4 Mat4::scale(Ldouble x, Ldouble y, Ldouble z) {
     return Mat4(values);
 }
 
-Mat4 Mat4::rotateX(Ldouble angle) {
-    Ldouble s = sinf(angle);
-    Ldouble c = cosf(angle);
+Mat4 Mat4::rotateX(Ldouble radian) {
+    Ldouble s = sinf(radian);
+    Ldouble c = cosf(radian);
     Ldouble values[16] = {
         1, 0,  0, 0,
         0, c,  s, 0,
@@ -58,9 +58,9 @@ Mat4 Mat4::rotateX(Ldouble angle) {
     return Mat4(values);
 }
 
-Mat4 Mat4::rotateY(Ldouble angle) {
-    Ldouble s = sinf(angle);
-    Ldouble c = cosf(angle);
+Mat4 Mat4::rotateY(Ldouble radian) {
+    Ldouble s = sinf(radian);
+    Ldouble c = cosf(radian);
     Ldouble values[16] = {
         c, 0, -s, 0,
         0, 1, 0,  0,
@@ -70,9 +70,9 @@ Mat4 Mat4::rotateY(Ldouble angle) {
     return Mat4(values);
 }
 
-Mat4 Mat4::rotateZ(Ldouble angle) {
-    Ldouble s = sinf(angle);
-    Ldouble c = cosf(angle);
+Mat4 Mat4::rotateZ(Ldouble radian) {
+    Ldouble s = sinf(radian);
+    Ldouble c = cosf(radian);
     Ldouble values[16] = {
         c,  s, 0, 0,
         -s, c, 0, 0,
@@ -86,10 +86,10 @@ Mat4 Mat4::rotate(const Vec3 &vec) {
     return rotate(vec.x , vec.y , vec.z);
 }
 
-Mat4 Mat4::rotate(Ldouble ax, Ldouble ay, Ldouble az) {
-    Mat4 xm = Mat4::rotateX(ax);
-    Mat4 ym = Mat4::rotateX(ay);
-    Mat4 zm = Mat4::rotateX(az);
+Mat4 Mat4::rotate(Ldouble radianX, Ldouble radianY, Ldouble radianZ) {
+    Mat4 xm = Mat4::rotateX(radianX);
+    Mat4 ym = Mat4::rotateY(radianY);
+    Mat4 zm = Mat4::rotateZ(radianZ);
     return xm * ym * zm;
 }
 

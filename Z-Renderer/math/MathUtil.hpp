@@ -13,6 +13,7 @@
 #include <cmath>
 
 #define Min 0.0000001
+#define PI 3.141592653
 typedef float Ldouble;
 
 struct Line {
@@ -33,6 +34,16 @@ public:
     
     static inline Ldouble interpolate(Ldouble v1 , Ldouble v2 , Ldouble factor) {
         return v1 + (v2 - v1) * (factor);
+    }
+    
+    static Ldouble inline angle2radian(Ldouble angle) {
+        Ldouble radian = angle / (180 / PI);
+        return radian;
+    }
+    
+    static Ldouble inline radian2angle(Ldouble radian) {
+        Ldouble angle = (180 / PI) * radian;
+        return angle;
     }
     
     static inline Line getLineParam(Ldouble x1 , Ldouble y1 , Ldouble x2 , Ldouble y2){

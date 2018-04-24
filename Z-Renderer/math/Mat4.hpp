@@ -47,15 +47,15 @@ public:
     
     static Mat4 translate(const Vec3 &vec);
     
-    static Mat4 rotateX(Ldouble x);
+    static Mat4 rotateX(Ldouble radianX);
     
-    static Mat4 rotateY(Ldouble y);
+    static Mat4 rotateY(Ldouble radianY);
     
-    static Mat4 rotateZ(Ldouble z);
+    static Mat4 rotateZ(Ldouble radianZ);
     
     static Mat4 rotate(const Vec3 &vec);
     
-    static Mat4 rotate(Ldouble ax , Ldouble ay , Ldouble az);
+    static Mat4 rotate(Ldouble radianX , Ldouble radianY , Ldouble radianZ);
     
     static Mat4 scale(const Vec3 &v);
     

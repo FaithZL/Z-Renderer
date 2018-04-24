@@ -16,6 +16,14 @@
 class Node : public Ref {
 
 public:
+    
+    Node() {
+        
+    }
+    
+    virtual ~Node() {
+        
+    }
 //    inline void setPosition(const Vec3 &pos) {
 //        _position = pos;
 //    }

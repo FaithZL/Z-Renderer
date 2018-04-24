@@ -44,7 +44,11 @@ void Canvas::render() {
     Vertex v2(Vec3(0 , 1  , 0) , Color(0 , 1 , 0 , 0));
     Vertex v3(Vec3(1 , 0, 0) , Color(0 , 0 , 1 , 0));
     
+    Vertex v4(Vec3(- 0.5 , 0.8, 0) , Color(0 , 0 , 1 , 0));
+    
     drawTriangle(v1 , v2 , v3);
+    
+    drawTriangle(v1 , v2 , v4);
 }
 
 void Canvas::lock() {
@@ -116,7 +120,7 @@ void Canvas::_triangleTopRasterize(const Vertex &v1, const Vertex &v2, const Ver
     
     int sign = endPY > startPY ? 1 : -1;
     
-    for (int py = startPY ; py * sign < sign * endPY ; py = py + sign) {
+    for (int py = startPY ; py * sign <= sign * endPY ; py = py + sign) {
         Ldouble ld = 1.0f;
         Ldouble factor = (py - startPY) * ld / (endPY - startPY);
         Vertex vertStart = pVert1->interpolate(*pVert2, factor);
@@ -148,9 +152,8 @@ void Canvas::_triangleBottomRasterize(const Vertex &v1, const Vertex &v2, const 
     for (int py = startPY ; py * sign < sign * endPY ; py = py + sign) {
         Ldouble ld = 1.0f;
         Ldouble factor = (py - startPY) * ld / (endPY - startPY);
-        Vertex vertStart = pVert1->interpolate(*pVert2, factor);
-        Vertex vertEnd = pVert1->interpolate(*pVert3, factor);
-        
+        Vertex vertStart = pVert3->interpolate(*pVert2, factor);
+        Vertex vertEnd = pVert3->interpolate(*pVert1, factor);
         drawLineRasterize(vertStart, vertEnd);
     }
 }
