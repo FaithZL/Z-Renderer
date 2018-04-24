@@ -17,7 +17,7 @@ Canvas::Canvas(unsigned width , unsigned height):
 _surface(nullptr),
 _width(width),
 _height(height),
-_drawMode(DrawMode::Frame),
+_drawMode(DrawMode::Fill),
 _bufferSize(height * width){
     _depthBuffer = new Ldouble[_bufferSize]();
 }
@@ -88,28 +88,10 @@ void Canvas::triangleRasterize(const Vertex &v1, const Vertex &v2, const Vertex 
         _triangleTopRasterize(*pVert1 , *pVert2 , *pVert3);
     } else {
         Ldouble ty = pVert2->pos.y;
-        // 求直线方程
-        Line param = MathUtil::getLineParam(pVert1->pos.x,
-                                          pVert1->pos.y,
-                                          pVert3->pos.x,
-                                          pVert3->pos.y);
-        Ldouble k = param.k;
-        Ldouble b = param.b;
-
-        
-        Ldouble tx = (ty - b) / k;
-        
         Ldouble factor = (ty - pVert1->pos.y) / (pVert3->pos.y - pVert1->pos.y);
         Vertex tVert = pVert1->interpolate(*pVert3 , factor);
-        if (tx <= pVert2->pos.x) {
-            // p2 在左边
-            _triangleTopRasterize(*pVert1, tVert , *pVert2);
-            _triangleBottomRasterize(*pVert2, tVert , *pVert3);
-        } else {
-            // p2 在右边
-            _triangleTopRasterize(*pVert1, tVert , *pVert2);
-            _triangleBottomRasterize(*pVert2, tVert , *pVert3);
-        }
+        _triangleTopRasterize(*pVert1, tVert , *pVert2);
+        _triangleBottomRasterize(*pVert2, tVert , *pVert3);
     }
     
     return;
