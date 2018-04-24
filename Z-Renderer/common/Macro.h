@@ -10,10 +10,13 @@
 #define ZMath_h
 
 #define Setter_and_getter_vec3(varName , funcName) \
-public : inline void set##FuncName(const Vec3 &val) { \
+public : inline void set##funcName(const Vec3 &val) { \
     this->varName = val; \
-}
-
+} \
+public : inline Vec3 get##funcName() const { \
+    return this->varName; \
+} \
+protected : Vec3 varName;
 
 
 #endif /* ZMath_h */
