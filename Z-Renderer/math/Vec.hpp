@@ -62,7 +62,52 @@ public:
     }
 };
 
+class Vec2 {
+    
+public:
+    Ldouble u;
+    Ldouble v;
+    
+    Vec2(Ldouble u , Ldouble v):
+    u(u),
+    v(v) {
+        
+    }
+    
+    Vec2 interpolate(const Vec2 &other , Ldouble factor) const {
+        auto ret = *this + (other - *this) * factor;
+        return ret;
+    }
+    
+    Vec2 operator * (Ldouble factor) const {
+        return Vec2(u * factor , v * factor);
+    }
+    
+    Vec2 operator + (const Vec2 &other) const {
+        return Vec2(u + other.u , v + other.v);
+    }
+    
+    Vec2 operator - (const Vec2 &other) const {
+        return Vec2(u - other.u , v - other.v);
+    }
+    
+    Vec2 operator - () const {
+        return Vec2(-u , -v);
+    }
+    
+    bool operator == (const Vec2 &other) const {
+        return MathUtil::equal(u, other.u)
+            && MathUtil::equal(v, other.v);
+    }
+};
+
 #endif /* Vec_hpp */
+
+
+
+
+
+
 
 
 

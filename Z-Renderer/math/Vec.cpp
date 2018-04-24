@@ -6,7 +6,7 @@
 //  Copyright © 2018年 SATAN_Z. All rights reserved.
 //
 
-#include "Vec3.hpp"
+#include "Vec.hpp"
 
 Vec3::Vec3(Ldouble x , Ldouble y ,Ldouble z):
 x(x),

@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "MathUtil.hpp"
-#include "Vec3.hpp"
+#include "Vec.hpp"
 
 class Mat4 {
     

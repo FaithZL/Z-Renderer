@@ -19,7 +19,7 @@
 		F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CD92088D6E00036A8E8 /* main.cpp */; };
 		F6758CDF2088D6E00036A8E8 /* CApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CDE2088D6E00036A8E8 /* CApp.cpp */; };
 		F6758CEC2089B9030036A8E8 /* Canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CEA2089B9030036A8E8 /* Canvas.cpp */; };
-		F6758CF02089BA570036A8E8 /* Vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CEE2089BA570036A8E8 /* Vec3.cpp */; };
+		F6758CF02089BA570036A8E8 /* Vec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CEE2089BA570036A8E8 /* Vec.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,8 +58,8 @@
 		F6758CDE2088D6E00036A8E8 /* CApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CApp.cpp; sourceTree = "<group>"; };
 		F6758CEA2089B9030036A8E8 /* Canvas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Canvas.cpp; sourceTree = "<group>"; };
 		F6758CEB2089B9030036A8E8 /* Canvas.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Canvas.hpp; sourceTree = "<group>"; };
-		F6758CEE2089BA570036A8E8 /* Vec3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec3.cpp; sourceTree = "<group>"; };
-		F6758CEF2089BA570036A8E8 /* Vec3.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vec3.hpp; sourceTree = "<group>"; };
+		F6758CEE2089BA570036A8E8 /* Vec.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec.cpp; sourceTree = "<group>"; };
+		F6758CEF2089BA570036A8E8 /* Vec.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vec.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +143,8 @@
 		F6758CE62088EF710036A8E8 /* math */ = {
 			isa = PBXGroup;
 			children = (
-				F6758CEE2089BA570036A8E8 /* Vec3.cpp */,
-				F6758CEF2089BA570036A8E8 /* Vec3.hpp */,
+				F6758CEE2089BA570036A8E8 /* Vec.cpp */,
+				F6758CEF2089BA570036A8E8 /* Vec.hpp */,
 				F6464CF5208B47530019A75F /* Mat4.cpp */,
 				F6464CF6208B47530019A75F /* Mat4.hpp */,
 				F6464CF8208C7E790019A75F /* MathUtil.cpp */,
@@ -240,7 +240,7 @@
 				F6464D01208E3DBC0019A75F /* Camera.cpp in Sources */,
 				F6758CDF2088D6E00036A8E8 /* CApp.cpp in Sources */,
 				F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */,
-				F6758CF02089BA570036A8E8 /* Vec3.cpp in Sources */,
+				F6758CF02089BA570036A8E8 /* Vec.cpp in Sources */,
 				F6758CEC2089B9030036A8E8 /* Canvas.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

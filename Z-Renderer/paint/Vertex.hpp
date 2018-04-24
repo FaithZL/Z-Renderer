@@ -9,7 +9,7 @@
 #ifndef Vertex_hpp
 #define Vertex_hpp
 
-#include "Vec3.hpp"
+#include "Vec.hpp"
 #include "Color.hpp"
 #include "Mat4.hpp"
 

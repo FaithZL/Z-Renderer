@@ -9,6 +9,11 @@
 #ifndef ZMath_h
 #define ZMath_h
 
+#define Setter_and_getter_vec3(varName , funcName) \
+public : inline void set##FuncName(const Vec3 &val) { \
+    this->varName = val; \
+}
+
 
 
 #endif /* ZMath_h */
