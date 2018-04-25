@@ -41,7 +41,7 @@ public:
     
     Mat4 operator * (const Mat4 &other) const ;
     
-    static Mat4 perspective(Ldouble radian , Ldouble ratio , Ldouble nearPlane , Ldouble farPlane);
+    static Mat4 perspective(Ldouble radian, Ldouble ratio, Ldouble znear, Ldouble zfar);
     
     static Mat4 translate(Ldouble x , Ldouble y , Ldouble z);
     

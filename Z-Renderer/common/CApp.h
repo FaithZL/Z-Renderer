@@ -6,6 +6,7 @@
 #else
 
 #include "Canvas.hpp"
+#include "Camera.hpp"
 
 #endif
 
@@ -41,6 +42,8 @@ private:
 	SDL_Renderer*	renderer;
     
     Canvas *        _canvas;
+    
+    Camera *        _camara;
 
 	// Initialize application
 	int 			OnInit();

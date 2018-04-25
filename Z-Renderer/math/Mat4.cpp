@@ -24,6 +24,19 @@ Mat4 Mat4::operator*(const Mat4 &other) const {
     
 }
 
+Mat4 Mat4::perspective(Ldouble radian, Ldouble ratio, Ldouble znear, Ldouble zfar) {
+    float height = 1 / tan(radian / 2);
+    float width = height / ratio;
+    float values[16] = {
+        width,  0,      0,                                  0,
+        0,      height, 0,                                  0,
+        0,      0,      zfar / (zfar - znear),              1,
+        0,      0,      (znear * zfar) / (znear - zfar),    0,
+    };
+    Mat4 ret(values);
+    return ret;
+}
+
 Vec3 Mat4::transform(const Vec3 &vec) const {
     Ldouble x = vec.x * m[0*4 + 0] + vec.y * m[1*4 + 0] + vec.z * m[2*4 + 0] + m[3*4 + 0];
     Ldouble y = vec.x * m[0*4 + 1] + vec.y * m[1*4 + 1] + vec.z * m[2*4 + 1] + m[3*4 + 1];

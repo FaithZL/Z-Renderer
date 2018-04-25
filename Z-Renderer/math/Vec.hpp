@@ -24,7 +24,16 @@ public:
     
     Ldouble length() const;
     
-    Ldouble normalize() const;
+    inline Vec3 getNormalize() const {
+        Ldouble length = getLength();
+        Vec3 ret = Vec3(x / length , y / length , z / length);
+        return ret;
+    }
+    
+    inline Ldouble getLength() const {
+        auto ret = sqrt((x * x + y * y + z * z));
+        return ret;
+    }
     
     Ldouble dot(const Vec3 &other) const;
     

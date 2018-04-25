@@ -40,15 +40,36 @@ void Canvas::update() {
 }
 
 void Canvas::render() {
-    Vertex v1(Vec3(-1 , -1 ,0) , Color(1 , 0 , 0 , 0));
-    Vertex v2(Vec3(0 , 1  , 0) , Color(0 , 1 , 0 , 0));
-    Vertex v3(Vec3(1 , 0, 0) , Color(0 , 0 , 1 , 0));
+    
+    auto camera = Camera::getInstance();
+    
+//    Mat4 tr = camera->getViewProjectionMat();
+    
+    Mat4 tr = Mat4::perspective(1, 0.75, -0.5 , 1);
+    
+    Vec3 p1 = Vec3(-1 , -1 ,0);
+    Vec3 p2 = Vec3(0 , 1 ,0);
+    Vec3 p3 = Vec3(1 , 0, 0);
+    
+   p1 = Mat4::translate(0.5, 0.5, 0.5).transform(p1);
+   p2 = Mat4::translate(0.5, 0.5, 0.5).transform(p2);
+   p3 = Mat4::translate(0.5, 0.5, 0.5).transform(p3);
+//    p1 = Mat4::rotateZ(MathUtil::angle2radian(90)).transform(p1);
+//    p2 = Mat4::rotateZ(MathUtil::angle2radian(90)).transform(p2);
+//    p3 = Mat4::rotateZ(MathUtil::angle2radian(90)).transform(p3);
+//    p1 = tr.transform(p1);
+//    p2 = tr.transform(p2);
+//    p3 = tr.transform(p3);
+    
+    Vertex v1(p1 , Color(1 , 0 , 0 , 0));
+    Vertex v2(p2 , Color(0 , 1 , 0 , 0));
+    Vertex v3(p3 , Color(0 , 0 , 1 , 0));
     
     Vertex v4(Vec3(- 0.5 , 0.8, 0) , Color(0 , 0 , 1 , 0));
     
     drawTriangle(v1 , v2 , v3);
     
-    drawTriangle(v1 , v2 , v4);
+//    drawTriangle(v1 , v2 , v4);
 }
 
 void Canvas::lock() {

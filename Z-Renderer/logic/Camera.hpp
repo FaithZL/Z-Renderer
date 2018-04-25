@@ -17,11 +17,11 @@ class Camera : public Node {
     
 public:
     
-    Camera();
-    
     virtual ~Camera();
     
     void init();
+    
+    static Camera * getInstance();
     
     Mat4 getViewMat() const;
     
@@ -43,7 +43,7 @@ public:
         setFarPlane(f);
     }
     
-    bool initLookAt(Vec3 lookAt);
+    void initLookAt(Vec3 lookAt);
     
     
     Mat4 getCurDirectionMat() const;
@@ -120,6 +120,10 @@ public:
     }
     
 protected:
+    
+    Camera();
+    
+    static Camera * s_pCamera;
     
     inline void _normalizeAngle(){
         _horizontalAngle = fmodf(_horizontalAngle, 360.0f);

@@ -35,6 +35,8 @@ int CApp::OnInit()
 	
     _canvas = new Canvas(SCREEN_WIDTH , SCREEN_HEIGHT);
     
+    _camara = Camera::getInstance();
+    
 	window = SDL_CreateWindow(APPTITLE,
 							  SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
 							  SCREEN_WIDTH, SCREEN_HEIGHT, 

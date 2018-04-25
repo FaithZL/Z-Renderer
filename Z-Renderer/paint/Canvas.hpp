@@ -13,6 +13,7 @@
 #include <SDL2/SDL.h>
 #include "Vertex.hpp"
 #include "Color.hpp"
+#include "Camera.hpp"
 
 enum DrawMode {
     Frame,
@@ -50,11 +51,22 @@ public:
     void drawPointRasterize(const Vertex &vert);
     
     void drawPixel(int px , int py , Ldouble z , const Color &color) {
+        if (!isPassClip(px , py)) {
+            return;
+        }
         if (!isPassDepth(px , py, z)) {
             return;
         }
         putPixel(px , py , color);
         _setDepth(px, py, z);
+    }
+    
+    inline bool isPassClip(int px , int py) {
+        bool ret = px >= 0
+            && px < _width
+            && py >= 0
+            && py < _height;
+        return ret;
     }
     
     inline void setDrawMode(DrawMode mode) {
