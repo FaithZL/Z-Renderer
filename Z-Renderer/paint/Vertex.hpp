@@ -16,13 +16,13 @@
 class Vertex {
    
 public:
-    Vec3 pos;
+    Vec4 pos;
     Color color;
-    Vec3 normal;
+    Vec4 normal;
     Ldouble u;
     Ldouble v;
     
-    Vertex(Vec3 pos , Color color = Color(), Vec3 normal = Vec3() , Ldouble u = 0 , Ldouble v = 0);
+    Vertex(Vec4 pos , Color color = Color(), Vec4 normal = Vec4() , Ldouble u = 0 , Ldouble v = 0);
     
     Vertex interpolate(const Vertex &vertex , Ldouble factor) const;
     

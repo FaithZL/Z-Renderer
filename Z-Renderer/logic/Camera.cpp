@@ -15,15 +15,15 @@ _horizontalAngle(0),
 _verticalAngle(0),
 _maxFov(130),
 _minFov(20),
-_farPlane(100),
+_farPlane(60),
 _nearPlane(1),
-_fieldOfView(50),
+_fieldOfView(60),
 _maxPitch(80),
 _viewportAspectRatio(4 / 3.0f),
 _moveVelo(0.07),
 _lookAt(0 , 0 , -1),
 _headVec(0 , 1 , 0){
-    _position = Vec3(0 ,0 , -2);
+//    _position = Vec4(0 ,0 , 0);
 }
 
 Camera * Camera::s_pCamera = nullptr;
@@ -38,7 +38,7 @@ Camera * Camera::getInstance() {
 
 Mat4 Camera::getViewMat() const {
     Mat4 ret;
-    ret = getCurDirectionMat() * Mat4::translate(_position);
+//    ret = Mat4::translate(-_position) * getCurDirectionMat();
     return ret;
 }
 
@@ -61,26 +61,26 @@ Mat4 Camera::getCurDirectionMat() const {
     return ret;
 }
 
-void Camera::initLookAt(Vec3 lookAt){
-    assert(!(lookAt == _position));
-    Vec3 dir = (lookAt - _position).getNormalize();
-    _verticalAngle = MathUtil::radian2angle(atan(dir.y / dir.z));
-    _horizontalAngle = MathUtil::radian2angle(atan2(dir.x , dir.z));
+void Camera::initLookAt(Vec4 lookAt){
+//    assert(!(lookAt == _position));
+//    Vec4 dir = (lookAt - _position).getNormalize();
+//    _verticalAngle = MathUtil::radian2angle(atan(dir.y / dir.z));
+//    _horizontalAngle = MathUtil::radian2angle(atan2(dir.x , dir.z));
     _normalizeAngle();
 }
 
-Vec3 Camera::forward() {
-    Vec3 ret;
+Vec4 Camera::forward() {
+    Vec4 ret;
     return ret;
 }
 
-Vec3 Camera::up() {
-    Vec3 ret;
+Vec4 Camera::up() {
+    Vec4 ret;
     return ret;
 }
 
-Vec3 Camera::right() {
-    Vec3 ret;
+Vec4 Camera::right() {
+    Vec4 ret;
     return ret;
 }
 

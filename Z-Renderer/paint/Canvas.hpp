@@ -9,7 +9,7 @@
 #ifndef Canvas_hpp
 #define Canvas_hpp
 
-#include <stdio.h>
+#include "Shader.hpp"
 #include <SDL2/SDL.h>
 #include "Vertex.hpp"
 #include "Color.hpp"
@@ -89,6 +89,10 @@ public:
                 && z >= - 1;
     }
     
+    inline void setShader(Shader * shader) {
+        _shader = shader;
+    }
+    
     void scanLineFill(const Vertex &v1 , const Vertex &v2 , int yIdx);
     
     void drawLineRasterize(const Vertex &vert1 , const Vertex &vert2);
@@ -157,6 +161,8 @@ protected:
     int _width;
     
     int _height;
+    
+    Shader * _shader;
     
     unsigned _bufferSize;
     

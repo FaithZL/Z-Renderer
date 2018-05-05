@@ -9,7 +9,8 @@
 #ifndef Shader_hpp
 #define Shader_hpp
 
-#include <stdio.h>
+#include "Mat4.hpp"
+
 
 class Shader {
 public:
@@ -20,6 +21,9 @@ public:
         
     }
     
+    Mat4 _model;
+    Mat4 _view;
+    Mat4 _projection;
     
 };
 

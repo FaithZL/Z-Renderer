@@ -8,7 +8,7 @@
 
 #include "Vertex.hpp"
 
-Vertex::Vertex(Vec3 pos , Color color, Vec3 normal , Ldouble u , Ldouble v):
+Vertex::Vertex(Vec4 pos , Color color, Vec4 normal , Ldouble u , Ldouble v):
 pos(pos),
 normal(normal),
 u(u),
@@ -19,8 +19,8 @@ color(color){
 
 
 Vertex Vertex::interpolate(const Vertex &vertex, Ldouble factor) const {
-    Vec3 p = pos.interpolate(vertex.pos , factor);
-    Vec3 nor = normal.interpolate(vertex.normal, factor);
+    Vec4 p = pos.interpolate(vertex.pos , factor);
+    Vec4 nor = normal.interpolate(vertex.normal, factor);
     Ldouble tu = u + (vertex.u - u) * factor;
     Ldouble tv = v + (vertex.v - v) * factor;
     Color c = color.interpolate(vertex.color, factor);

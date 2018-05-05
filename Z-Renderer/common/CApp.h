@@ -7,6 +7,7 @@
 
 #include "Canvas.hpp"
 #include "Camera.hpp"
+#include <sys/time.h>
 
 #endif
 
@@ -30,15 +31,24 @@ public:
 	CApp();
 	~CApp();
 	
+    void setInterval(double val) {
+        _interval = val;
+    }
+    
+    void onKeyPress(SDL_Keycode keyCode);
+    
 	// Run application, called by your code.
 	int 			OnExecute();
 
 private:
 	
+    double         _interval = 1 / 60.0f;
+    
 	// Whether the application is running.
 	bool 			running;
 
 	SDL_Window*		window;
+    
 	SDL_Renderer*	renderer;
     
     Canvas *        _canvas;

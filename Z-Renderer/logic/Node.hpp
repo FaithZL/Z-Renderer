@@ -24,28 +24,12 @@ public:
     virtual ~Node() {
         
     }
-//    inline void setPosition(const Vec3 &pos) {
-//        _position = pos;
-//    }
-//
-//    inline Vec3 getPosition() const {
-//        return _position;
-//    }
-//
-//    inline void setScale(const Vec3 &scale) {
-//        _scale = scale;
-//    }
-//
-//    inline Vec3 getScale() const {
-//        return _scale;
-//    }
     
 protected:
-//    Vec3 _position;
-    Setter_and_getter_vec3(_position , Position)
-    Setter_and_getter_vec3(_rotate , Rotation)
-    Setter_and_getter_vec3(_scale , Scale)
-//    Vec3 _scale;
+
+    Setter_and_getter_vec4(_position , Position)
+    Setter_and_getter_vec4(_rotate , Rotation)
+    Setter_and_getter_vec4(_scale , Scale)
 };
 
 #endif /* Node_hpp */

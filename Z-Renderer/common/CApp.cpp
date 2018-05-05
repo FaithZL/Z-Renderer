@@ -2,15 +2,28 @@
 // [Include Section]
 // ============================================================================
 #include "CApp.h"
-
+#include <unistd.h>
+#include <cstring>
+#include <sstream>
+#include <cstdlib>
 // ============================================================================
 // [Defines & Constants]
 // ============================================================================
 #define APPTITLE 		"Z-Renderer"
 
+
 const int SCREEN_WIDTH 	= 800;
 const int SCREEN_HEIGHT	= 600;
 
+static long getCurrentMillSecond()
+{
+    long lLastTime = 0;
+    struct timeval stCurrentTime;
+    
+    gettimeofday(&stCurrentTime,NULL);
+    lLastTime = stCurrentTime.tv_sec*1000+stCurrentTime.tv_usec*0.001; // milliseconds
+    return lLastTime;
+}
 
 CApp::CApp() :
     window(nullptr),
@@ -18,6 +31,7 @@ CApp::CApp() :
     _canvas(nullptr),
 	running(false)
 {
+    
 }
 
 CApp::~CApp()
@@ -48,7 +62,6 @@ int CApp::OnInit()
 
 	if (window != NULL) {
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-//        renderer = SDL_CreateSoftwareRenderer(surface);
 	}
 	
 	// Success
@@ -67,6 +80,45 @@ void CApp::OnCleanup()
 	SDL_Quit();
 }
 
+void CApp::onKeyPress(SDL_Keycode keyCode) {
+    
+    switch (keyCode) {
+        case SDLK_ESCAPE:
+            running = false;
+            break;
+        case SDLK_w:
+            // 前
+            cout<<"w"<<endl;
+            break;
+        case SDLK_s:
+            // 后
+            cout<<"s";
+            break;
+        case SDLK_a:
+            // 左
+            cout<<"a";
+            break;
+        case SDLK_d:
+            // 右
+            cout<<"d";
+            break;
+        case SDLK_UP:
+            
+            break;
+        case SDLK_DOWN:
+            
+            break;
+        case SDLK_LEFT:
+            
+            break;
+        case SDLK_RIGHT:
+            
+            break;
+        default:
+            break;
+    }
+}
+
 int CApp::OnExecute()
 {
 	// Initialize application.
@@ -79,15 +131,33 @@ int CApp::OnExecute()
 	SDL_Event event;
 
 	running = true;
+    
+    char * title = new char[100]();
 	
 	while (running)
 	{
-		while (SDL_PollEvent(&event)) {
+        long lastTime = getCurrentMillSecond();
+        while (SDL_PollEvent(&event)) {
         	OnEvent(&event);
         }
 		
 		OnUpdate();
-		OnRender();
+        OnRender();
+        long curTime = getCurrentMillSecond();
+        long dt = curTime - lastTime;
+        
+        // translate to millisecond
+        double interval = _interval * 1000;
+        if (dt < interval) {
+            // sleep
+            useconds_t time = static_cast<useconds_t>(interval - dt);
+            usleep(time);
+        }
+        long t3 = getCurrentMillSecond();
+        dt = (t3 - lastTime);
+//        sprintf(title , "Z-Renderer dt : %d ms" , dt);
+        
+//        SDL_SetWindowTitle(window , title);
 	}
 
 	return state;
@@ -102,9 +172,8 @@ void CApp::OnEvent(SDL_Event* event)
 			break;
 			
 		case SDL_KEYDOWN:
-			if (event->key.keysym.sym == SDLK_ESCAPE) {
-				running = false;
-			}
+            onKeyPress(event->key.keysym.sym);
+            break;
 		default:
 			break;
 	}
@@ -125,3 +194,16 @@ void CApp::OnRender()
 	
     SDL_RenderPresent(renderer);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

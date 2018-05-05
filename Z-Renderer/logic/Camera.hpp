@@ -43,7 +43,7 @@ public:
         setFarPlane(f);
     }
     
-    void initLookAt(Vec3 lookAt);
+    void initLookAt(Vec4 lookAt);
     
     
     Mat4 getCurDirectionMat() const;
@@ -82,20 +82,20 @@ public:
     /**
      A unit vector representing the direction the camera is facing in world coordinate system
      */
-    Vec3 forward();
+    Vec4 forward();
     
     /**
      A unit vector representing the direction out of the top of the camera in world coordinate system
      */
-    Vec3 up();
+    Vec4 up();
     
     /**
      A unit vector representing the direction to the right of the camera in world coordinate system
      */
-    Vec3 right();
+    Vec4 right();
     
-    inline void offsetPosition(Vec3 moveVec){
-        _position = _position + moveVec;
+    inline void offsetPosition(Vec4 moveVec){
+//        _position = _position + moveVec;
     }
     
     /**
@@ -140,9 +140,9 @@ protected:
         }
     }
     
-    Vec3 _lookAt;
+    Vec4 _lookAt;
     
-    Vec3 _headVec;
+    Vec4 _headVec;
     
     Ldouble _verticalAngle = 0;
     

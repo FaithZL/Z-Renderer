@@ -9,9 +9,11 @@
 #ifndef Mat4_hpp
 #define Mat4_hpp
 
-#include <stdio.h>
+#include <iostream>
 #include "MathUtil.hpp"
 #include "Vec.hpp"
+
+using namespace std;
 
 class Mat4 {
     
@@ -39,13 +41,20 @@ public:
         return true;
     }
     
+    void print() const {
+        cout << (decltype(this))this << endl;
+        for (int i = 0 ; i < 16 ; ++i) {
+            cout << "m[" << i << "] = " << m[i] << endl;
+        }
+    }
+    
     Mat4 operator * (const Mat4 &other) const ;
     
     static Mat4 perspective(Ldouble radian, Ldouble ratio, Ldouble znear, Ldouble zfar);
     
     static Mat4 translate(Ldouble x , Ldouble y , Ldouble z);
     
-    static Mat4 translate(const Vec3 &vec);
+    static Mat4 translate(const Vec4 &vec);
     
     static Mat4 rotateX(Ldouble radianX);
     
@@ -53,15 +62,15 @@ public:
     
     static Mat4 rotateZ(Ldouble radianZ);
     
-    static Mat4 rotate(const Vec3 &vec);
+    static Mat4 rotate(const Vec4 &vec);
     
     static Mat4 rotate(Ldouble radianX , Ldouble radianY , Ldouble radianZ);
     
-    static Mat4 scale(const Vec3 &v);
+    static Mat4 scale(const Vec4 &v);
     
     static Mat4 scale(Ldouble x , Ldouble y , Ldouble z);
     
-    Vec3 transform(const Vec3 &vec) const;
+    Vec4 transform(const Vec4 &vec) const;
     
     static Mat4 identity() {
         Ldouble a[16] = {

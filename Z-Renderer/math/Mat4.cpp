@@ -20,32 +20,34 @@ Mat4 Mat4::operator*(const Mat4 &other) const {
         + m[i*4 + 2] * other.m[2*4 + j]
         + m[i*4 + 3] * other.m[3*4 + j];
     }
-    return Mat4(values);
+    Mat4 ret = Mat4(values);
+    return ret;
     
 }
 
-Mat4 Mat4::perspective(Ldouble radian, Ldouble ratio, Ldouble znear, Ldouble zfar) {
-    float height = 1 / tan(radian / 2);
-    float width = height / ratio;
-    float values[16] = {
-        width,  0,      0,                                  0,
-        0,      height, 0,                                  0,
-        0,      0,      zfar / (zfar - znear),              1,
-        0,      0,      (znear * zfar) / (znear - zfar),    0,
+Mat4 Mat4::perspective(Ldouble fovy, Ldouble aspect, Ldouble zNear, Ldouble zFar) {
+
+    
+    auto tanHalfFovy = tan(fovy / static_cast<Ldouble>(2));
+    Ldouble value[16] = {
+        static_cast<Ldouble>(1) / (aspect * tanHalfFovy) , 0 , 0 , 0,
+        0 , static_cast<Ldouble>(1) / (tanHalfFovy) , 0 , 0,
+        0 , 0 , - (zFar + zNear) / (zFar - zNear) , -1 ,
+        0 , 0 , - (static_cast<Ldouble>(2) * zFar * zNear) / (zFar - zNear) , 0
     };
-    Mat4 ret(values);
-    return ret;
+    
+    return Mat4(value);
 }
 
-Vec3 Mat4::transform(const Vec3 &vec) const {
+Vec4 Mat4::transform(const Vec4 &vec) const {
     Ldouble x = vec.x * m[0*4 + 0] + vec.y * m[1*4 + 0] + vec.z * m[2*4 + 0] + m[3*4 + 0];
     Ldouble y = vec.x * m[0*4 + 1] + vec.y * m[1*4 + 1] + vec.z * m[2*4 + 1] + m[3*4 + 1];
     Ldouble z = vec.x * m[0*4 + 2] + vec.y * m[1*4 + 2] + vec.z * m[2*4 + 2] + m[3*4 + 2];
     Ldouble w = vec.x * m[0*4 + 3] + vec.y * m[1*4 + 3] + vec.z * m[2*4 + 3] + m[3*4 + 3];
-    return Vec3(x/w, y/w, z/w);
+    return Vec4(x , y, z , w);
 }
 
-Mat4 Mat4::scale(const Vec3 &v) {
+Mat4 Mat4::scale(const Vec4 &v) {
     return scale(v.x, v.y, v.z);
 }
 
@@ -95,7 +97,7 @@ Mat4 Mat4::rotateZ(Ldouble radian) {
     return Mat4(values);
 }
 
-Mat4 Mat4::rotate(const Vec3 &vec) {
+Mat4 Mat4::rotate(const Vec4 &vec) {
     return rotate(vec.x , vec.y , vec.z);
 }
 
@@ -106,7 +108,7 @@ Mat4 Mat4::rotate(Ldouble radianX, Ldouble radianY, Ldouble radianZ) {
     return xm * ym * zm;
 }
 
-Mat4 Mat4::translate(const Vec3 &vec) {
+Mat4 Mat4::translate(const Vec4 &vec) {
     return translate(vec.x , vec.y , vec.z);
 }
 
