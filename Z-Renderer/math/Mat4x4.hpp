@@ -47,6 +47,8 @@ public:
         }
     }
     
+    Vec4 transform(const Vec4 &vec);
+    
     static Mat4x4 perspective(Ldouble fov , Ldouble aspect , Ldouble zNear , Ldouble zFar);
 
     static Mat4x4 scale(Ldouble scale);

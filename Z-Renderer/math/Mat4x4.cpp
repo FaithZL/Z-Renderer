@@ -9,6 +9,14 @@
 #include "Mat4x4.hpp"
 
 
+Vec4 Mat4x4::transform(const Vec4 &vec) {
+    Ldouble x = vec.x * _11 + vec.y * _21 + vec.z * _31 + vec.w * _41;
+    Ldouble y = vec.x * _12 + vec.y * _22 + vec.z * _32 + vec.w * _42;
+    Ldouble z = vec.x * _13 + vec.y * _23 + vec.z * _33 + vec.w * _43;
+    Ldouble w = vec.x * _14 + vec.y * _24 + vec.z * _34 + vec.w * _44;
+    return Vec4(x , y , z , w);
+}
+
 Mat4x4 Mat4x4::identity() {
     Ldouble ret[16] = {
         1 , 0 , 0 , 0,

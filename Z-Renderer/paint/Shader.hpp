@@ -10,7 +10,7 @@
 #define Shader_hpp
 
 #include "Mat4.hpp"
-
+#include "Mat4x4.hpp"
 
 class Shader {
 public:
@@ -21,9 +21,9 @@ public:
         
     }
     
-    Mat4 _model;
-    Mat4 _view;
-    Mat4 _projection;
+    Mat4x4 _model;
+    Mat4x4 _view;
+    Mat4x4 _projection;
     
 };
 
