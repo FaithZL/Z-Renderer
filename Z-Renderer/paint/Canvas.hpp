@@ -86,7 +86,7 @@ public:
     inline bool isPassDepth(int px , int py , Ldouble z) {
         unsigned index = getIndex(px , py);
         return z <= _depthBuffer[index]
-                && z >= - 1;
+                && z >= 0;
     }
     
     inline void setShader(Shader * shader) {

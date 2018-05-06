@@ -58,21 +58,21 @@ public:
     }
     
     Vec3 operator + (const Vec3 &other) const {
-        return Vec3(u + other.u , v + other.v , w + other.w);
+        return Vec3(x + other.x , y + other.y , z + other.z);
     }
     
     Vec3 operator - (const Vec3 &other) const {
-        return Vec3(u - other.u , v - other.v , w - other.w);
+        return Vec3(x - other.x , y - other.y , z - other.z);
     }
     
     Vec3 operator - () const {
-        return Vec3(-u , -v , -w);
+        return Vec3(-x , -y , -z);
     }
     
     bool operator == (const Vec3 &other) const {
-        return MathUtil::equal(u, other.u)
-            && MathUtil::equal(v, other.v)
-            && MathUtil::equal(w, other.w);
+        return MathUtil::equal(x, other.x)
+            && MathUtil::equal(y, other.y)
+            && MathUtil::equal(z, other.z);
     }
 };
 

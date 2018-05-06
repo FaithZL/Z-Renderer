@@ -75,11 +75,18 @@ Mat4 Mat4::scale(Ldouble x, Ldouble y, Ldouble z) {
 
 Mat4 Mat4::perspective(Ldouble fovy, Ldouble aspect, Ldouble zNear, Ldouble zFar) {
     auto tanHalfFovy = tan(fovy / static_cast<Ldouble>(2));
+//    Ldouble value[16] = {
+//        static_cast<Ldouble>(1) / (aspect * tanHalfFovy) , 0 , 0 , 0,
+//        0 , static_cast<Ldouble>(1) / (tanHalfFovy) , 0 , 0,
+//        0 , 0 , - (zFar + zNear) / (zFar - zNear) , -1 ,
+//        0 , 0 , - (static_cast<Ldouble>(2) * zFar * zNear) / (zFar - zNear) , 0
+//    };
+    
     Ldouble value[16] = {
-        static_cast<Ldouble>(1) / (aspect * tanHalfFovy) , 0 , 0 , 0,
-        0 , static_cast<Ldouble>(1) / (tanHalfFovy) , 0 , 0,
-        0 , 0 , - (zFar + zNear) / (zFar - zNear) , -1 ,
-        0 , 0 , - (static_cast<Ldouble>(2) * zFar * zNear) / (zFar - zNear) , 0
+        1.0f / (aspect * tanHalfFovy) , 0 , 0 , 0,
+        0 , 1.0f / (tanHalfFovy) , 0 , 0,
+        0 , 0 , - zFar / (zFar - zNear) , -1 ,
+        0 , 0 , - (zFar * zNear) / (zFar - zNear) , 0
     };
     return Mat4(value);
 }

@@ -11,24 +11,107 @@
 
 #include "Vertex.hpp"
 #include "Mat4.hpp"
+#include "Ref.hpp"
 
-class Shader {
+class Shader : public Ref {
 public:
-    Shader() {
-        
+    Shader():
+    _model(Mat4::identity()),
+    _view(Mat4::identity()),
+    _projection(Mat4::identity()) {
+        updateMvp();
+        updateMv();
     }
+    
     virtual ~Shader() {
         
     }
     
-    virtual VertexOut vs(Vertex vin) = 0;
+    virtual VertexOut vs(const Vertex &vert) {
+        VertexOut vOut;
+        vOut.posTrans = _mv.transform(Vec4(vert.pos , 1.0f));
+        vOut.posPer = _mvp.transform(Vec4(vert.pos , 1.0f));
+        return vOut;
+    }
     
-    virtual VertexOut fs(VertexOut vin) = 0;
+    virtual VertexOut fs(const VertexOut &vert) {
+        VertexOut vOut = vert;
+        
+        return vOut;
+    }
+    
+    virtual void setMvp(const Mat4 &m , const Mat4 &v , const Mat4 &p) {
+        _model = m;
+        _view = v;
+        _projection = p;
+        updateMv();
+        updateMvp();
+    }
+    
+    virtual void setModelMat(const Mat4 &mat) {
+        _model = mat;
+        updateMv();
+        updateMvp();
+    }
+    
+    virtual Mat4 getModelMat() const {
+        return _model;
+    }
+    
+    virtual void setViewMat(const Mat4 &mat) {
+        _view = mat;
+        updateMv();
+        updateMvp();
+    }
+    
+    virtual Mat4 getViewMat() const {
+        return _view;
+    }
+    
+    virtual void setProjectionMat(const Mat4 &mat) {
+        _projection = mat;
+        updateMvp();
+    }
+    
+    virtual Mat4 getProjectionMat() const {
+        return _projection;
+    }
+    
+    virtual Mat4 getMv() const {
+        return _mv;
+    }
+    
+    virtual Mat4 getMvp() const {
+        return _mvp;
+    }
+    
+protected:
+    
+    virtual void updateMv() {
+        _mv = _model * _view;
+    }
+    
+    virtual void updateMvp() {
+        _mvp = _model * _view * _projection;
+    }
     
     Mat4 _model;
     Mat4 _view;
     Mat4 _projection;
     
+    Mat4 _mv;
+    
+    Mat4 _mvp;
+    
 };
 
 #endif /* Shader_hpp */
+
+
+
+
+
+
+
+
+
