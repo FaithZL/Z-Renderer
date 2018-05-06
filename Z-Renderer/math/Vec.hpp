@@ -125,29 +125,26 @@ public:
     }
     
     Vec4 operator + (const Vec4 &other) const {
-        return Vec4(x + other.x , y + other.y , z + other.z , 0);
+        return Vec4(x + other.x , y + other.y , z + other.z , w + other.w);
     }
     
     Vec4 operator - (const Vec4 &other) const {
-        auto ret = Vec4(x - other.x , y - other.y , z - other.z , 0);
+        auto ret = Vec4(x - other.x , y - other.y , z - other.z , w - other.w);
         return ret;
     }
     
-    // 用于颜色
     Vec4 operator * (const Vec4 &other) const {
         auto ret = Vec4(x * other.x , y * other.y , z * other.z , w * other.w);
         return ret;
     }
     
-    // 用于向量，点
     Vec4 operator * (Ldouble factor) const {
-        auto ret = Vec4(x * factor , y * factor , z * factor , w);
+        auto ret = Vec4(x * factor , y * factor , z * factor , w * factor);
         return ret;
     }
     
-    // 用于向量，点
     Vec4 operator - () const {
-        return Vec4(-x , -y , -z , w);
+        return Vec4(-x , -y , -z , -w);
     }
     
     bool operator == (const Vec4 &other) const {
