@@ -2,97 +2,84 @@
 //  Mat4.hpp
 //  Z-Renderer
 //
-//  Created by SATAN_Z on 2018/4/21.
+//  Created by SATAN_Z on 2018/5/5.
 //  Copyright © 2018年 SATAN_Z. All rights reserved.
 //
 
 #ifndef Mat4_hpp
 #define Mat4_hpp
 
-#include <iostream>
 #include "MathUtil.hpp"
 #include "Vec.hpp"
-
-using namespace std;
 
 class Mat4 {
     
 public:
-    Ldouble m[16];
-    
-    Mat4(Ldouble * p) {
-        for (int i = 0 ; i < 16 ; ++ i) {
-            m[i] = p[i];
-        }
-    }
+    union {
+        Ldouble m[4][4];
+        Ldouble a[16];
+        struct
+        {
+            Ldouble _11; Ldouble _12; Ldouble _13; Ldouble _14;
+            Ldouble _21; Ldouble _22; Ldouble _23; Ldouble _24;
+            Ldouble _31; Ldouble _32; Ldouble _33; Ldouble _34;
+            Ldouble _41; Ldouble _42; Ldouble _43; Ldouble _44;
+        };
+    };
     
     Mat4() {
-        for (int i = 0 ; i < 16 ; ++ i) {
-            m[i] = 0;
+        for (int i = 0 ;i< 16 ; ++ i) {
+            a[i] = 0;
         }
     }
     
-    bool operator == (const Mat4 &other) const {
-        for (int i = 0; i < 16 ; ++ i) {
-            if (!MathUtil::equal(other.m[1],this->m[1])) {
-                return false;
+    Mat4(Ldouble p[4][4]) {
+        for (int i = 0 ; i < 4; ++ i) {
+            for (int j = 0 ; j < 4; ++ j) {
+                m[i][j] = p[i][j];
             }
         }
-        return true;
     }
     
-    void print() const {
-        cout << (decltype(this))this << endl;
-        for (int i = 0 ; i < 16 ; ++i) {
-            cout << "m[" << i << "] = " << m[i] << endl;
+    Mat4(Ldouble * value) {
+        for (int i = 0 ;i< 16 ; ++ i) {
+            a[i] = value[i];
         }
     }
     
-    Mat4 operator * (const Mat4 &other) const ;
+    Vec4 transform(const Vec4 &vec);
     
-    static Mat4 perspective(Ldouble radian, Ldouble ratio, Ldouble znear, Ldouble zfar);
-    
-    static Mat4 translate(Ldouble x , Ldouble y , Ldouble z);
-    
-    static Mat4 translate(const Vec4 &vec);
-    
-    static Mat4 rotateX(Ldouble radianX);
-    
-    static Mat4 rotateY(Ldouble radianY);
-    
-    static Mat4 rotateZ(Ldouble radianZ);
-    
-    static Mat4 rotate(const Vec4 &vec);
-    
-    static Mat4 rotate(Ldouble radianX , Ldouble radianY , Ldouble radianZ);
-    
-    static Mat4 scale(const Vec4 &v);
+    static Mat4 perspective(Ldouble fov , Ldouble aspect , Ldouble zNear , Ldouble zFar);
+
+    static Mat4 scale(Ldouble scale);
     
     static Mat4 scale(Ldouble x , Ldouble y , Ldouble z);
     
-    Vec4 transform(const Vec4 &vec) const;
+    static Mat4 scale(const Vec3 &scale);
     
-    static Mat4 identity() {
-        Ldouble a[16] = {
-            1, 0, 0, 0,
-            0, 1, 0, 0,
-            0, 0, 1, 0,
-            0, 0, 0, 1
-        };
-        return Mat4(a);
-    }
+    static Mat4 translate(const Vec3 &vec);
+    
+    static Mat4 translate(Ldouble x , Ldouble y , Ldouble z);
+    
+    static Mat4 rotateX(Ldouble radian);
+    
+    static Mat4 rotateY(Ldouble radian);
+    
+    static Mat4 rotateZ(Ldouble radian);
+    
+//    static Mat4 rotate(const Vec3 &vec);
+    
+    bool operator == (const Mat4 &other);
+    
+    Mat4 operator + (const Mat4 &other);
+    
+    Mat4 operator * (const Mat4 &other);
+    
+    Mat4 operator - (const Mat4 &other);
+    
+    static Mat4 identity();
+    
 };
 
 
-
 #endif /* Mat4_hpp */
-
-
-
-
-
-
-
-
-
-

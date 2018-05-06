@@ -43,8 +43,8 @@ void Canvas::update() {
 void Canvas::render() {
     
     Vec4 p1 = Vec4(-0.99 , -0.99 ,0);
-    Vec4 p2 = Vec4(0 , 1 ,5);
-    Vec4 p3 = Vec4(1 , 0, 10);
+    Vec4 p2 = Vec4(0 , 1 ,1);
+    Vec4 p3 = Vec4(1 , 0, 1);
     
     Vertex v1(p1 , Color(1 , 0 , 0 , 0));
     Vertex v2(p2 , Color(0 , 1 , 0 , 0));

@@ -9,11 +9,11 @@
 #ifndef ZMath_h
 #define ZMath_h
 
-#define Setter_and_getter_vec4(varName , funcName) \
-public : inline void set##funcName(const Vec4 &val) { \
+#define Setter_and_getter_vec3(varName , funcName) \
+public : inline void set##funcName(const Vec3 &val) { \
     this->varName = val; \
 } \
-public : inline Vec4 get##funcName() const { \
+public : inline Vec3 get##funcName() const { \
     return this->varName; \
 } \
 public : inline void set##funcName##X(Ldouble val){\
@@ -34,7 +34,7 @@ public : inline void set##funcName##Z(Ldouble val){\
 public : inline Ldouble get##funcName##Z() { \
     return this->varName.z; \
 } \
-protected : Vec4 varName;
+protected : Vec3 varName;
 
 
 #endif /* ZMath_h */

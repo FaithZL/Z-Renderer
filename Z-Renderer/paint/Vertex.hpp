@@ -19,14 +19,30 @@ public:
     Vec4 pos;
     Color color;
     Vec4 normal;
-    Ldouble u;
-    Ldouble v;
+    Vec2 tex;
     
-    Vertex(Vec4 pos , Color color = Color(), Vec4 normal = Vec4() , Ldouble u = 0 , Ldouble v = 0);
+    Vertex(Vec4 pos , Color color = Color(), Vec4 normal = Vec4() , Vec2 tex = Vec2());
     
     Vertex interpolate(const Vertex &vertex , Ldouble factor) const;
     
     void transform(const Mat4 &mat4);
+};
+
+class VertexOut {
+    
+public:
+    Vec2 tex;
+    
+    Vec4 normal;
+    
+    Color color;
+    
+    //相机空间坐标
+    Vec4 posTrans;
+    //透视投影后的坐标
+    Vec4 posPer;
+    // z值的倒数用于深度测试，投影变换后的1/z与深度成线性关系
+    Ldouble oneDivZ;
 };
 
 #endif /* Vertex_hpp */

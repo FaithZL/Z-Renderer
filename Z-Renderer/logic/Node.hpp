@@ -27,9 +27,9 @@ public:
     
 protected:
 
-    Setter_and_getter_vec4(_position , Position)
-    Setter_and_getter_vec4(_rotate , Rotation)
-    Setter_and_getter_vec4(_scale , Scale)
+    Setter_and_getter_vec3(_position , Position)
+    Setter_and_getter_vec3(_rotate , Rotation)
+    Setter_and_getter_vec3(_scale , Scale)
 };
 
 #endif /* Node_hpp */

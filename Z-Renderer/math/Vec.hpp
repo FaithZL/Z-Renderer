@@ -99,6 +99,10 @@ public:
         Ldouble w;
     };
     
+    Vec4(const Vec3 &vec , Ldouble w = 1.0f){
+        Vec4(vec.x , vec.y , vec.z , w);
+    }
+    
     Vec4(Ldouble x = 0.0f , Ldouble y = 0.0f , Ldouble z = 0.0f , Ldouble w = 1.0f);
     
     Ldouble dot(const Vec4 &other) const;
@@ -168,7 +172,7 @@ public:
         Ldouble y;
     };
     
-    Vec2(Ldouble u , Ldouble v):
+    Vec2(Ldouble u = 0 , Ldouble v = 0):
     u(u),
     v(v) {
         

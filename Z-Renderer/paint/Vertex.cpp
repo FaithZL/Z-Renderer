@@ -8,11 +8,10 @@
 
 #include "Vertex.hpp"
 
-Vertex::Vertex(Vec4 pos , Color color, Vec4 normal , Ldouble u , Ldouble v):
+Vertex::Vertex(Vec4 pos , Color color, Vec4 normal , Vec2 tex):
 pos(pos),
 normal(normal),
-u(u),
-v(v),
+tex(tex),
 color(color){
 
 }
@@ -21,12 +20,12 @@ color(color){
 Vertex Vertex::interpolate(const Vertex &vertex, Ldouble factor) const {
     Vec4 p = pos.interpolate(vertex.pos , factor);
     Vec4 nor = normal.interpolate(vertex.normal, factor);
-    Ldouble tu = u + (vertex.u - u) * factor;
-    Ldouble tv = v + (vertex.v - v) * factor;
+    Vec2 t = tex.interpolate(vertex.tex , factor);
     Color c = color.interpolate(vertex.color, factor);
-    return Vertex(p , c , nor , tu , tv);
+    return Vertex(p , c , nor , t);
 }
 
 void Vertex::transform(const Mat4 &mat4) {
-    pos = mat4.transform(pos);
+//    pos = mat4.transform(pos);
 }
+

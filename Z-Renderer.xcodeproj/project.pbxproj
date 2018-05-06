@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
-		F6464CF7208B47530019A75F /* Mat4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF5208B47530019A75F /* Mat4.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
 		F6464D01208E3DBC0019A75F /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CFF208E3DBC0019A75F /* Camera.cpp */; };
 		F6464D04208E3E4D0019A75F /* Ref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464D02208E3E4D0019A75F /* Ref.cpp */; };
 		F6464D07208E3E600019A75F /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464D05208E3E600019A75F /* Node.cpp */; };
 		F6464D13209B5FBF0019A75F /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464D11209B5FBF0019A75F /* Box.cpp */; };
-		F6464D19209D66800019A75F /* Mat4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464D17209D66800019A75F /* Mat4x4.cpp */; };
+		F6464D19209D66800019A75F /* Mat4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464D17209D66800019A75F /* Mat4.cpp */; };
 		F6758CD52088D6E00036A8E8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6758CD42088D6E00036A8E8 /* Cocoa.framework */; };
 		F6758CD72088D6E00036A8E8 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6758CD62088D6E00036A8E8 /* SDL2.framework */; };
 		F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6758CD92088D6E00036A8E8 /* main.cpp */; };
@@ -41,8 +40,6 @@
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
 		F6464CEE208B363C0019A75F /* Color.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		F6464CEF208B363C0019A75F /* Color.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Color.hpp; sourceTree = "<group>"; };
-		F6464CF5208B47530019A75F /* Mat4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mat4.cpp; sourceTree = "<group>"; };
-		F6464CF6208B47530019A75F /* Mat4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mat4.hpp; sourceTree = "<group>"; };
 		F6464CF8208C7E790019A75F /* MathUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtil.cpp; sourceTree = "<group>"; };
 		F6464CF9208C7E790019A75F /* MathUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MathUtil.hpp; sourceTree = "<group>"; };
 		F6464CFC208E39680019A75F /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
@@ -54,8 +51,8 @@
 		F6464D06208E3E600019A75F /* Node.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 		F6464D11209B5FBF0019A75F /* Box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Box.cpp; sourceTree = "<group>"; };
 		F6464D12209B5FBF0019A75F /* Box.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Box.hpp; sourceTree = "<group>"; };
-		F6464D17209D66800019A75F /* Mat4x4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mat4x4.cpp; sourceTree = "<group>"; };
-		F6464D18209D66800019A75F /* Mat4x4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mat4x4.hpp; sourceTree = "<group>"; };
+		F6464D17209D66800019A75F /* Mat4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mat4.cpp; sourceTree = "<group>"; };
+		F6464D18209D66800019A75F /* Mat4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mat4.hpp; sourceTree = "<group>"; };
 		F6758CD12088D6E00036A8E8 /* Z-Renderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Z-Renderer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6758CD42088D6E00036A8E8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F6758CD62088D6E00036A8E8 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = Library/Frameworks/../../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = DEVELOPER_DIR; };
@@ -161,12 +158,10 @@
 			children = (
 				F6758CEE2089BA570036A8E8 /* Vec.cpp */,
 				F6758CEF2089BA570036A8E8 /* Vec.hpp */,
-				F6464CF5208B47530019A75F /* Mat4.cpp */,
-				F6464CF6208B47530019A75F /* Mat4.hpp */,
 				F6464CF8208C7E790019A75F /* MathUtil.cpp */,
 				F6464CF9208C7E790019A75F /* MathUtil.hpp */,
-				F6464D17209D66800019A75F /* Mat4x4.cpp */,
-				F6464D18209D66800019A75F /* Mat4x4.hpp */,
+				F6464D17209D66800019A75F /* Mat4.cpp */,
+				F6464D18209D66800019A75F /* Mat4.hpp */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -254,14 +249,13 @@
 				F6464CEA208B27330019A75F /* Vertex.cpp in Sources */,
 				F6464D04208E3E4D0019A75F /* Ref.cpp in Sources */,
 				F6464D07208E3E600019A75F /* Node.cpp in Sources */,
-				F6464CF7208B47530019A75F /* Mat4.cpp in Sources */,
 				F6464D01208E3DBC0019A75F /* Camera.cpp in Sources */,
 				F6758CDF2088D6E00036A8E8 /* CApp.cpp in Sources */,
 				F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */,
 				F6464D13209B5FBF0019A75F /* Box.cpp in Sources */,
 				F6758CF02089BA570036A8E8 /* Vec.cpp in Sources */,
 				F6758CEC2089B9030036A8E8 /* Canvas.cpp in Sources */,
-				F6464D19209D66800019A75F /* Mat4x4.cpp in Sources */,
+				F6464D19209D66800019A75F /* Mat4.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

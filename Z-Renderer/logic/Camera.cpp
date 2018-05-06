@@ -38,7 +38,7 @@ Camera * Camera::getInstance() {
 
 Mat4 Camera::getViewMat() const {
     Mat4 ret;
-//    ret = Mat4::translate(-_position) * getCurDirectionMat();
+    ret = Mat4::translate(-_position) * getCurDirectionMat();
     return ret;
 }
 
@@ -62,10 +62,10 @@ Mat4 Camera::getCurDirectionMat() const {
 }
 
 void Camera::initLookAt(Vec4 lookAt){
-//    assert(!(lookAt == _position));
-//    Vec4 dir = (lookAt - _position).getNormalize();
-//    _verticalAngle = MathUtil::radian2angle(atan(dir.y / dir.z));
-//    _horizontalAngle = MathUtil::radian2angle(atan2(dir.x , dir.z));
+    assert(!(lookAt == _position));
+    Vec3 dir = (lookAt - _position).getVec3().getNormalize();
+    _verticalAngle = MathUtil::radian2angle(atan(dir.y / dir.z));
+    _horizontalAngle = MathUtil::radian2angle(atan2(dir.x , dir.z));
     _normalizeAngle();
 }
 

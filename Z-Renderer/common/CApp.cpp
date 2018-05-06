@@ -6,6 +6,7 @@
 #include <cstring>
 #include <sstream>
 #include <cstdlib>
+#include <iostream>
 // ============================================================================
 // [Defines & Constants]
 // ============================================================================
@@ -14,6 +15,8 @@
 
 const int SCREEN_WIDTH 	= 800;
 const int SCREEN_HEIGHT	= 600;
+
+using namespace std;
 
 static long getCurrentMillSecond()
 {
@@ -131,8 +134,6 @@ int CApp::OnExecute()
 	SDL_Event event;
 
 	running = true;
-    
-    char * title = new char[100]();
 	
 	while (running)
 	{

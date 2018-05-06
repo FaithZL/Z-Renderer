@@ -9,8 +9,8 @@
 #ifndef Shader_hpp
 #define Shader_hpp
 
+#include "Vertex.hpp"
 #include "Mat4.hpp"
-#include "Mat4x4.hpp"
 
 class Shader {
 public:
@@ -21,9 +21,13 @@ public:
         
     }
     
-    Mat4x4 _model;
-    Mat4x4 _view;
-    Mat4x4 _projection;
+    virtual VertexOut vs(Vertex vin) = 0;
+    
+    virtual VertexOut fs(VertexOut vin) = 0;
+    
+    Mat4 _model;
+    Mat4 _view;
+    Mat4 _projection;
     
 };
 
