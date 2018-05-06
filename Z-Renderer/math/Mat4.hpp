@@ -28,7 +28,7 @@ public:
     };
     
     Mat4() {
-        for (int i = 0 ;i< 16 ; ++ i) {
+        for (int i = 0 ;i < 16 ; ++ i) {
             a[i] = 0;
         }
     }
@@ -47,7 +47,26 @@ public:
         }
     }
     
-    Vec4 transform(const Vec4 &vec);
+    inline void setZero() {
+        for (int i = 0 ; i < 16; ++ i) {
+            a[i] = 0;
+        }
+    }
+    
+    // 伴随矩阵除以行列式的绝对值
+    Mat4 getInverseMat() const;
+    
+    Mat4 getTransposeMat() const;
+    
+    Mat4 getAdjointMat() const;
+    
+    Ldouble getAdjointElement(float a1, float a2, float a3,
+                              float b1, float b2, float b3,
+                              float c1, float c2, float c3)const;
+    
+    Ldouble getDet() const;
+    
+    Vec4 transform(const Vec4 &vec) const;
     
     static Mat4 perspective(Ldouble fov , Ldouble aspect , Ldouble zNear , Ldouble zFar);
 
@@ -67,15 +86,17 @@ public:
     
     static Mat4 rotateZ(Ldouble radian);
     
-//    static Mat4 rotate(const Vec3 &vec);
+    bool operator == (const Mat4 &other) const;
     
-    bool operator == (const Mat4 &other);
+    Mat4 operator + (const Mat4 &other) const;
     
-    Mat4 operator + (const Mat4 &other);
+    Mat4 operator * (const Mat4 &other) const;
     
-    Mat4 operator * (const Mat4 &other);
+    Mat4 operator - (const Mat4 &other) const;
     
-    Mat4 operator - (const Mat4 &other);
+    Mat4 operator * (Ldouble num) const;
+    
+    Mat4 operator / (Ldouble num) const;
     
     static Mat4 identity();
     

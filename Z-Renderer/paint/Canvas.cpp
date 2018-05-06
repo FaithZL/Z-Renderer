@@ -21,6 +21,7 @@ _drawMode(DrawMode::Fill),
 _bufferSize(height * width),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
+    _shader = new Shader();
 }
 
 void Canvas::clear() {

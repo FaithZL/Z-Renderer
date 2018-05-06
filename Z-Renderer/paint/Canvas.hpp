@@ -50,6 +50,10 @@ public:
     
     void drawPointRasterize(const Vertex &vert);
     
+//    void lineBresenham(Vec3)
+    
+    void lineBresenham(int x1 , int y1 , int z1 , int x2 , int y2 , int z2 , const Color &color1 , const Color &color2);
+    
     void drawPixel(int px , int py , Ldouble z , const Color &color) {
         if (!isPassClip(px , py)) {
             return;
