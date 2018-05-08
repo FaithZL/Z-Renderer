@@ -52,7 +52,7 @@ public:
     
     void lineBresenham(const VertexOut &v1 , const VertexOut &v2);
     
-    void scanLineFill(const VertexOut &v1 , const VertexOut &v2);
+    void scanLineFill(const VertexOut &v1 , const VertexOut &v2 , int yIndex);
     
     void drawPixel(int px , int py , Ldouble z , const Color &color) {
         if (!isPassClip(px , py)) {
@@ -88,6 +88,28 @@ public:
     void drawTriangle(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
     void triangleRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    
+    void _triangleRasterize(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3);
+    
+    /**
+     *     1
+     *
+     *  3       2
+     * @param v1 [description]
+     * @param v2 [description]
+     * @param v3 [description]
+     */
+    void _triangleTopRasterize(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3);
+    
+    /**
+     * 1     2
+     *
+     *     3
+     * @param v1 [description]
+     * @param v2 [description]
+     * @param v3 [description]
+     */
+    void _triangleBottomRasterize(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3);
     
     void putPixel(int px , int py , const Color &color);
     
@@ -140,7 +162,7 @@ protected:
      * @param v2 [description]
      * @param v3 [description]
      */
-    void _triangleTopRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    void triangleTopRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
     /**
      * 1     2
@@ -150,7 +172,7 @@ protected:
      * @param v2 [description]
      * @param v3 [description]
      */    
-    void _triangleBottomRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    void triangleBottomRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
     inline Ldouble _getDepth(int px , int py) {
         return _depthBuffer[getIndex(px , py)];

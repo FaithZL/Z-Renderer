@@ -29,3 +29,27 @@ void Vertex::transform(const Mat4 &mat4) {
 //    pos = mat4.transform(pos);
 }
 
+VertexOut VertexOut::interpolate(const VertexOut &target, Ldouble factor) const {
+    VertexOut ret;
+    
+    ret.tex = tex.interpolate(target.tex , factor);
+    ret.normal = normal.interpolate(target.normal , factor);
+    ret.color = color.interpolate(target.color , factor);
+    
+    ret.posTrans = posTrans.interpolate(target.posTrans , factor);
+    ret.posClip = posClip.interpolate(target.posClip, factor);
+    ret.posScrn = posScrn.interpolate(target.posScrn , factor);
+    
+    if (linearDepth) {
+        ret.depth = MathUtil::interpolate(depth , target.depth, factor);
+    } else {
+        ret.depth = 1 / MathUtil::interpolate(1 / target.depth , 1 / depth, factor);
+    }
+    
+    return ret;
+}
+
+
+
+
+

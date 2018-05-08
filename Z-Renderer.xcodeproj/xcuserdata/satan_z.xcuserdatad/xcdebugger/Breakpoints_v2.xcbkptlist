@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Z-Renderer/paint/Canvas.cpp"
-            timestampString = "547451070.544998"
+            timestampString = "547484967.02353"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
+            startingLineNumber = "490"
+            endingLineNumber = "490"
             landmarkName = "Canvas::drawLineRasterize(const Vertex &amp;vert1, const Vertex &amp;vert2)"
             landmarkType = "7">
          </BreakpointContent>

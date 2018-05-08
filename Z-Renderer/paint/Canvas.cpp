@@ -22,7 +22,7 @@ Canvas::Canvas(unsigned width , unsigned height):
 _surface(nullptr),
 _width(width),
 _height(height),
-_drawMode(DrawMode::Frame),
+_drawMode(DrawMode::Fill),
 _bufferSize(height * width),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
@@ -55,13 +55,17 @@ void Canvas::update() {
 
 void Canvas::render() {
     
-    Vec3 p1 = Vec3(-0.99 , -0.99 ,0.5);
+    Vec3 p1 = Vec3(-1 , -1 ,0.5);
     Vec3 p2 = Vec3(0 , 1 ,0.5);
     Vec3 p3 = Vec3(1 , 0, 0.5);
     
     Vertex v1(p1 , Color(1 , 0 , 0 , 0));
     Vertex v2(p2 , Color(0 , 1 , 0 , 0));
     Vertex v3(p3 , Color(0 , 0 , 1 , 0));
+    
+//    Vertex v1(p1 , Color::randomColor());
+//    Vertex v2(p2 , Color::randomColor());
+//    Vertex v3(p3 , Color::randomColor());
     
     Vertex v4(Vec3(- 0.5 , 0.8, 0) , Color(0 , 0 , 1 , 0));
     
@@ -84,7 +88,7 @@ void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) 
     VertexOut vOut3 = handleVertex(v3);
     
     if (_drawMode == Fill) {
-        triangleRasterize(v1, v2, v3);
+        _triangleRasterize(vOut1, vOut2, vOut3);
     } else if (_drawMode == Frame) {
         lineBresenham(vOut1, vOut2);
         lineBresenham(vOut1, vOut3);
@@ -92,11 +96,116 @@ void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) 
     }
 }
 
+void Canvas::_triangleRasterize(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) {
+    VertexOut const * pVert1 = &v1;
+    VertexOut const * pVert2 = &v2;
+    VertexOut const * pVert3 = &v3;
+    
+    vector<VertexOut const *> vector = {pVert1 , pVert2 , pVert3};
+    
+    sort(vector.begin(), vector.end() , [](const VertexOut * p1 , const VertexOut * p2)->bool {
+        return p1->posScrn.y >= p2->posScrn.y;
+    });
+    
+    pVert1 = vector.at(0);
+    pVert2 = vector.at(1);
+    pVert3 = vector.at(2);
+    
+    if (MathUtil::equal(pVert1->posScrn.y , pVert2->posScrn.y)) {
+        // 平顶三角形
+        _triangleBottomRasterize(*pVert1, *pVert2, *pVert3);
+    } else if (MathUtil::equal(pVert2->posScrn.y , pVert3->posScrn.y)) {
+        // 平底三角形
+        _triangleTopRasterize(*pVert1, *pVert2, *pVert3);
+    } else {
+        Ldouble ty = pVert2->posScrn.y;
+        Ldouble factor = (ty - pVert1->posScrn.y) / (pVert3->posScrn.y - pVert1->posScrn.y);
+        VertexOut tVert = pVert1->interpolate(*pVert3 , factor);
+        _triangleTopRasterize(*pVert1, tVert , *pVert2);
+        _triangleBottomRasterize(*pVert2, tVert , *pVert3);
+    }
+}
+
+void Canvas::_triangleTopRasterize(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) {
+    const VertexOut * pVert1 = &v1;
+    const VertexOut * pVert2 = &v2;
+    const VertexOut * pVert3 = &v3;
+    vector<const VertexOut *> vector = {pVert1 , pVert2 , pVert3};
+    // 根据纵坐标排序
+    sort(vector.begin(), vector.end() , [](const VertexOut * p1 , const VertexOut * p2)->bool {
+        return p1->posScrn.y >= p2->posScrn.y;
+    });
+    // 上面的顶点
+    pVert1 = vector.at(0);
+    pVert2 = vector.at(1);
+    pVert3 = vector.at(2);
+    
+    int startPY = pVert1->posScrn.y;
+    int endPY = pVert3->posScrn.y;
+    
+    int sign = endPY > startPY ? 1 : -1;
+    
+    for (int py = startPY ; py * sign <= sign * endPY ; py = py + sign) {
+        Ldouble ld = 1.0f;
+        Ldouble factor = (py - startPY) * ld / (endPY - startPY);
+        VertexOut vertStart = pVert1->interpolate(*pVert2, factor);
+        VertexOut vertEnd = pVert1->interpolate(*pVert3, factor);
+        
+        scanLineFill(vertStart , vertEnd , py);
+    }
+}
+
+void Canvas::_triangleBottomRasterize(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) {
+    const VertexOut * pVert1 = &v1;
+    const VertexOut * pVert2 = &v2;
+    const VertexOut * pVert3 = &v3;
+    vector<const VertexOut *> vector = {pVert1 , pVert2 , pVert3};
+    // 根据纵坐标排序
+    sort(vector.begin(), vector.end() , [](const VertexOut * p1 , const VertexOut * p2)->bool {
+        return p1->posScrn.y >= p2->posScrn.y;
+    });
+    // 上面的顶点
+    pVert1 = vector.at(0);
+    pVert2 = vector.at(1);
+    pVert3 = vector.at(2);
+    
+    int startPY = pVert3->posScrn.y;
+    int endPY = pVert1->posScrn.y;
+    
+    int sign = endPY > startPY ? 1 : -1;
+    
+    for (int py = startPY ; py * sign < sign * endPY ; py = py + sign) {
+        Ldouble ld = 1.0f;
+        Ldouble factor = (py - startPY) * ld / (endPY - startPY);
+        VertexOut vertStart = pVert3->interpolate(*pVert2, factor);
+        VertexOut vertEnd = pVert3->interpolate(*pVert1, factor);
+        scanLineFill(vertStart, vertEnd , py);
+    };
+}
+
+void Canvas::scanLineFill(const VertexOut &v1, const VertexOut &v2 , int yIndex) {
+    
+    const VertexOut * pVert1 = &v1;
+    const VertexOut * pVert2 = &v2;
+    
+    pVert1 = v1.posScrn.x > v2.posScrn.x ? &v2 : &v1;
+    pVert2 = v1.posScrn.x < v2.posScrn.x ? &v2 : &v1;
+    
+    int startX = pVert1->posScrn.x;
+    int endX = pVert2->posScrn.x;
+    
+    for (int x = startX ; x <= endX ; ++ x) {
+        Ldouble factor = (x - startX) * 1.0f / (endX - startX);
+        VertexOut v = pVert1->interpolate(*pVert2, factor);
+        drawPixel(x , yIndex , v.depth , v.color);
+    }
+}
+
 void Canvas::triangleRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     
-    const Vertex * pVert1 = &v1;
-    const Vertex * pVert2 = &v2;
-    const Vertex * pVert3 = &v3;
+    Vertex const * pVert1 = &v1;
+    Vertex const * pVert2 = &v2;
+    Vertex const * pVert3 = &v3;
     vector<const Vertex *> vector = {pVert1 , pVert2 , pVert3};
     // 根据纵坐标排序
     sort(vector.begin(), vector.end() , [](const Vertex * p1 , const Vertex * p2)->bool {
@@ -109,22 +218,22 @@ void Canvas::triangleRasterize(const Vertex &v1, const Vertex &v2, const Vertex 
     
     if (MathUtil::equal(pVert1->pos.y , pVert2->pos.y)) {
         // 平顶三角形
-        _triangleBottomRasterize(*pVert1 , *pVert2 , *pVert3);
+        triangleBottomRasterize(*pVert1 , *pVert2 , *pVert3);
     } else if (MathUtil::equal(pVert2->pos.y , pVert3->pos.y)) {
         // 平底三角形
-        _triangleTopRasterize(*pVert1 , *pVert2 , *pVert3);
+        triangleTopRasterize(*pVert1 , *pVert2 , *pVert3);
     } else {
         Ldouble ty = pVert2->pos.y;
         Ldouble factor = (ty - pVert1->pos.y) / (pVert3->pos.y - pVert1->pos.y);
         Vertex tVert = pVert1->interpolate(*pVert3 , factor);
-        _triangleTopRasterize(*pVert1, tVert , *pVert2);
-        _triangleBottomRasterize(*pVert2, tVert , *pVert3);
+        triangleTopRasterize(*pVert1, tVert , *pVert2);
+        triangleBottomRasterize(*pVert2, tVert , *pVert3);
     }
     
     return;
 }
 
-void Canvas::_triangleTopRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
+void Canvas::triangleTopRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     const Vertex * pVert1 = &v1;
     const Vertex * pVert2 = &v2;
     const Vertex * pVert3 = &v3;
@@ -153,7 +262,7 @@ void Canvas::_triangleTopRasterize(const Vertex &v1, const Vertex &v2, const Ver
     }
 }
 
-void Canvas::_triangleBottomRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
+void Canvas::triangleBottomRasterize(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     const Vertex * pVert1 = &v1;
     const Vertex * pVert2 = &v2;
     const Vertex * pVert3 = &v3;
@@ -281,7 +390,7 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
             if (linearDepth) {
                 z = MathUtil::interpolate(depth1, depth2, factor);
             } else {
-                z = 1 / MathUtil::interpolate(1 / depth1 , 1 / depth2, factor);
+                z = 1 / MathUtil::interpolate(1 / depth2 , 1 / depth1, factor);
             }
             Color color = color1.interpolate(color2, factor);
             drawPixel(x , y , z, color);
@@ -292,10 +401,6 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
             }
         }
     }
-    
-}
-
-void Canvas::scanLineFill(const VertexOut &vert1, const VertexOut &vert2) {
     
 }
 

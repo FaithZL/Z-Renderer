@@ -31,6 +31,8 @@ public:
 class VertexOut {
     
 public:
+    VertexOut interpolate(const VertexOut &target , Ldouble factor) const;
+    
     Vec2 tex;
     Vec3 normal;
     Color color;
