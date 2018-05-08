@@ -22,7 +22,7 @@ Canvas::Canvas(unsigned width , unsigned height):
 _surface(nullptr),
 _width(width),
 _height(height),
-_drawMode(DrawMode::Fill),
+_drawMode(DrawMode::Frame),
 _bufferSize(height * width),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
@@ -55,9 +55,9 @@ void Canvas::update() {
 
 void Canvas::render() {
     
-    Vec3 p1 = Vec3(-0.99 , -0.99 ,0);
-    Vec3 p2 = Vec3(0 , 1 ,1);
-    Vec3 p3 = Vec3(1 , 0, 1);
+    Vec3 p1 = Vec3(-0.99 , -0.99 ,0.5);
+    Vec3 p2 = Vec3(0 , 1 ,0.5);
+    Vec3 p3 = Vec3(1 , 0, 0.5);
     
     Vertex v1(p1 , Color(1 , 0 , 0 , 0));
     Vertex v2(p2 , Color(0 , 1 , 0 , 0));
@@ -79,12 +79,16 @@ void Canvas::unlock() {
 }
 
 void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
+    VertexOut vOut1 = handleVertex(v1);
+    VertexOut vOut2 = handleVertex(v2);
+    VertexOut vOut3 = handleVertex(v3);
+    
     if (_drawMode == Fill) {
         triangleRasterize(v1, v2, v3);
     } else if (_drawMode == Frame) {
-        drawLineRasterize(v2, v1);
-        drawLineRasterize(v2, v3);
-        drawLineRasterize(v3, v1);
+        lineBresenham(vOut1, vOut2);
+        lineBresenham(vOut1, vOut3);
+        lineBresenham(vOut3, vOut2);
     }
 }
 
@@ -174,7 +178,21 @@ void Canvas::_triangleBottomRasterize(const Vertex &v1, const Vertex &v2, const 
         Vertex vertStart = pVert3->interpolate(*pVert2, factor);
         Vertex vertEnd = pVert3->interpolate(*pVert1, factor);
         drawLineRasterize(vertStart, vertEnd);
-    }
+    };
+}
+
+VertexOut Canvas::handleVertex(const Vertex &vert) const {
+    VertexOut vertOut = _shader->vs(vert);
+    transformToScrn(vertOut);
+    return vertOut;
+}
+
+void Canvas::transformToScrn(VertexOut &vert) const {
+    // 透视除法将cvv坐标转化成Ndc坐标
+    Vec3 posNdc = vert.posClip.get3DNormal();
+    vert.depth = posNdc.z;
+    vert.posScrn.x = _getPX(posNdc.x);
+    vert.posScrn.y = _getPY(posNdc.y);
 }
 
 void Canvas::putPixel(int px , int py , const Color &color) {
@@ -252,9 +270,9 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
         Color color1 = pVert1->color;
         Color color2 = pVert2->color;
         
-        int sign = py2 >= py1 ? 1 : -1;  //斜率[-1,1]
-        int k = sign * dy * 2;
-        int e = -dx * sign;
+        int sign = px2 > px1 ? 1 : -1;  //斜率[-1,1]
+        int k = sign * dx * 2;
+        int e = -dy * sign;
         bool linearDepth = pVert1->linearDepth;
         
         for (int x = px1 , y = py1; y <= py2 ; ++y) {

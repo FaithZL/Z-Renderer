@@ -81,6 +81,10 @@ public:
         return _drawMode;
     }
     
+    VertexOut handleVertex(const Vertex &vert) const;
+    
+    void transformToScrn(VertexOut &vert) const;
+    
     void drawTriangle(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
     void triangleRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);

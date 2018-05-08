@@ -11,7 +11,10 @@
 
 #include "Macro.h"
 #include <cmath>
+#include <iostream>
 #include "MathUtil.hpp"
+
+using namespace std;
 
 class Vec3 {
 
@@ -34,6 +37,13 @@ public:
     Ldouble dot(const Vec3 &other) const;
     
     Vec3 cross(const Vec3 &other) const;
+    
+    inline void print() const {
+        cout << this << endl;
+        cout << "x = " << x << endl;
+        cout << "y = " << y << endl;
+        cout << "z = " << z << endl;
+    }
     
     Vec3(Ldouble x = 0 , Ldouble y = 0 , Ldouble z = 0);
     
@@ -100,10 +110,25 @@ public:
     };
     
     Vec4(const Vec3 &vec , Ldouble w = 1.0f){
-        Vec4(vec.x , vec.y , vec.z , w);
+        init(vec.x , vec.y , vec.z , w);
+    }
+    
+    inline void print() const {
+        cout << this << endl;
+        cout << "x = " << x << endl;
+        cout << "y = " << y << endl;
+        cout << "z = " << z << endl;
+        cout << "w = " << w << endl;
     }
     
     Vec4(Ldouble x = 0.0f , Ldouble y = 0.0f , Ldouble z = 0.0f , Ldouble w = 1.0f);
+    
+    void init(Ldouble x = 0.0f , Ldouble y = 0.0f , Ldouble z = 0.0f , Ldouble w = 1.0f) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+        this->w = w;
+    }
     
     Ldouble dot(const Vec4 &other) const;
     

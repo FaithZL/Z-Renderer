@@ -27,21 +27,9 @@ public:
         
     }
     
-    virtual VertexOut vs(const Vertex &vert) {
-        VertexOut vOut;
-        vOut.posTrans = _mv.transform(Vec4(vert.pos , 1.0f));
-        vOut.posClip = _mvp.transform(Vec4(vert.pos , 1.0f));
-        
-        
-        
-        return vOut;
-    }
+    virtual VertexOut vs(const Vertex &vert) const;
     
-    virtual VertexOut fs(const VertexOut &vert) {
-        VertexOut vOut = vert;
-        
-        return vOut;
-    }
+    virtual VertexOut fs(const VertexOut &vert) const;
     
     virtual void setMvp(const Mat4 &m , const Mat4 &v , const Mat4 &p) {
         _model = m;

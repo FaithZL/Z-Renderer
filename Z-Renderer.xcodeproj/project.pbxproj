@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F616D56220A160790005B1B5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F616D56120A160790005B1B5 /* Shader.cpp */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -35,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F616D56120A160790005B1B5 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				F6464CEE208B363C0019A75F /* Color.cpp */,
 				F6464CEF208B363C0019A75F /* Color.hpp */,
 				F6464CFC208E39680019A75F /* Shader.hpp */,
+				F616D56120A160790005B1B5 /* Shader.cpp */,
 			);
 			path = paint;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F616D56220A160790005B1B5 /* Shader.cpp in Sources */,
 				F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */,
 				F6464CF0208B363C0019A75F /* Color.cpp in Sources */,
 				F6464CEA208B27330019A75F /* Vertex.cpp in Sources */,
