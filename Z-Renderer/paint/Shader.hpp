@@ -30,7 +30,10 @@ public:
     virtual VertexOut vs(const Vertex &vert) {
         VertexOut vOut;
         vOut.posTrans = _mv.transform(Vec4(vert.pos , 1.0f));
-        vOut.posPer = _mvp.transform(Vec4(vert.pos , 1.0f));
+        vOut.posClip = _mvp.transform(Vec4(vert.pos , 1.0f));
+        
+        
+        
         return vOut;
     }
     

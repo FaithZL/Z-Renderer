@@ -23,9 +23,9 @@ enum DrawMode {
 class Canvas {
 public:
     
-    Canvas(unsigned width = 800 , unsigned height = 600);
-    
     void clear();
+    
+    static Canvas * getInstance();
     
     void render();
     
@@ -43,16 +43,16 @@ public:
      * draw a point to NDC
      * @param x     -1 <= x <= 1
      * @param y     -1 <= y <= 1
-     * @param z     -1 <= z <= 1
+     * @param z     0 <= z <= 1
      * @param color [description]
      */
     void drawPointRasterize(Ldouble x , Ldouble y , Ldouble z , const Color &color);
     
     void drawPointRasterize(const Vertex &vert);
     
-//    void lineBresenham(Vec3)
+    void lineBresenham(const VertexOut &v1 , const VertexOut &v2);
     
-    void lineBresenham(int x1 , int y1 , int z1 , int x2 , int y2 , int z2 , const Color &color1 , const Color &color2);
+    void scanLineFill(const VertexOut &v1 , const VertexOut &v2);
     
     void drawPixel(int px , int py , Ldouble z , const Color &color) {
         if (!isPassClip(px , py)) {
@@ -97,12 +97,18 @@ public:
         _shader = shader;
     }
     
-    void scanLineFill(const Vertex &v1 , const Vertex &v2 , int yIdx);
-    
     void drawLineRasterize(const Vertex &vert1 , const Vertex &vert2);
     
     SDL_Surface * getSurface() const {
         return _surface;
+    }
+    
+    inline int getWidth() const {
+        return _width;
+    }
+    
+    inline int getHeight() const {
+        return _height;
     }
     
     void setSurface(SDL_Surface * p) {
@@ -114,6 +120,8 @@ public:
     }
     
 protected:
+    
+    Canvas(unsigned width = 800 , unsigned height = 600);
     
     inline void _setDepth(int px , int py , Ldouble z) {
         unsigned index = getIndex(px, py);
@@ -165,6 +173,8 @@ protected:
     int _width;
     
     int _height;
+    
+    static Canvas * s_pCanvas;
     
     Shader * _shader;
     

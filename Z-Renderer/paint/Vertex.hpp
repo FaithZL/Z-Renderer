@@ -32,17 +32,32 @@ class VertexOut {
     
 public:
     Vec2 tex;
-    
-    Vec4 normal;
-    
+    Vec3 normal;
     Color color;
     
     //相机空间坐标
     Vec4 posTrans;
-    //透视投影后的坐标
-    Vec4 posPer;
-    // z值的倒数用于深度测试，投影变换后的1/z与深度成线性关系
-    Ldouble oneDivZ;
+    //裁剪空间中的齐次坐标
+    Vec4 posClip;
+    //屏幕像素坐标
+    Vec2 posScrn;
+    
+    //深度值是否为线性，如果是投影变换，深度值的倒数为线性
+    bool linearDepth = true;
+    
+    //[0,1] -1为初始值
+    Ldouble depth = -1;
 };
 
 #endif /* Vertex_hpp */
+
+
+
+
+
+
+
+
+
+
+

@@ -13,6 +13,11 @@
 
 using namespace std;
 
+const int SCREEN_WIDTH     = 800;
+const int SCREEN_HEIGHT    = 600;
+
+Canvas * Canvas::s_pCanvas = nullptr;
+
 Canvas::Canvas(unsigned width , unsigned height):
 _surface(nullptr),
 _width(width),
@@ -22,6 +27,13 @@ _bufferSize(height * width),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
+}
+
+Canvas * Canvas::getInstance() {
+    if (s_pCanvas == nullptr) {
+        s_pCanvas = new Canvas(SCREEN_WIDTH , SCREEN_HEIGHT);
+    }
+    return s_pCanvas;
 }
 
 void Canvas::clear() {
@@ -174,6 +186,99 @@ void Canvas::putPixel(int px , int py , const Color &color) {
     unsigned index = getIndex(px, py);
     auto pixels = getPixels();
     pixels[index] = color.uint32();
+}
+
+void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
+    const VertexOut * pVert1 = &vert1;
+    const VertexOut * pVert2 = &vert2;
+    
+    int px1 = pVert1->posScrn.x;
+    int py1 = pVert1->posScrn.y;
+    
+    int px2 = pVert2->posScrn.x;
+    int py2 = pVert2->posScrn.y;
+    
+    int dx = abs(px2 - px1);
+    int dy = abs(py2 - py1);
+    
+    if (dx >= dy) {
+        if (px1 > px2) {
+            swap(pVert1, pVert2);
+        }
+        int px1 = pVert1->posScrn.x;
+        int py1 = pVert1->posScrn.y;
+        Ldouble depth1 = pVert1->depth;
+        
+        int px2 = pVert2->posScrn.x;
+        int py2 = pVert2->posScrn.y;
+        Ldouble depth2 = pVert2->depth;
+        
+        Color color1 = pVert1->color;
+        Color color2 = pVert2->color;
+        
+        int sign = py2 >= py1 ? 1 : -1;  //斜率[-1,1]
+        int k = sign * dy * 2;
+        int e = -dx * sign;
+        bool linearDepth = pVert1->linearDepth;
+        
+        for (int x = px1 , y = py1;x <= px2; ++x) {
+            Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
+            Ldouble z;
+            if (linearDepth) {
+                z = MathUtil::interpolate(depth1, depth2, factor);
+            } else {
+                z = 1 / MathUtil::interpolate(1 / depth1 , 1 / depth2, factor);
+            }
+            Color color = color1.interpolate(color2, factor);
+            drawPixel(x , y , z, color);
+            e += k;
+            if (sign * e > 0) {
+                y += sign;
+                e -= 2 * dx * sign;
+            }
+        }
+    } else {
+        if (py1 > py2) {
+            swap(pVert1, pVert2);
+        }
+        int px1 = pVert1->posScrn.x;
+        int py1 = pVert1->posScrn.y;
+        Ldouble depth1 = pVert1->depth;
+        
+        int px2 = pVert2->posScrn.x;
+        int py2 = pVert2->posScrn.y;
+        Ldouble depth2 = pVert2->depth;
+        
+        Color color1 = pVert1->color;
+        Color color2 = pVert2->color;
+        
+        int sign = py2 >= py1 ? 1 : -1;  //斜率[-1,1]
+        int k = sign * dy * 2;
+        int e = -dx * sign;
+        bool linearDepth = pVert1->linearDepth;
+        
+        for (int x = px1 , y = py1; y <= py2 ; ++y) {
+            Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
+            Ldouble z;
+            if (linearDepth) {
+                z = MathUtil::interpolate(depth1, depth2, factor);
+            } else {
+                z = 1 / MathUtil::interpolate(1 / depth1 , 1 / depth2, factor);
+            }
+            Color color = color1.interpolate(color2, factor);
+            drawPixel(x , y , z, color);
+            e += k;
+            if (sign * e > 0) {
+                x += sign;
+                e -= 2 * dy * sign;
+            }
+        }
+    }
+    
+}
+
+void Canvas::scanLineFill(const VertexOut &vert1, const VertexOut &vert2) {
+    
 }
 
 void Canvas::drawLineRasterize(const Vertex &vert1, const Vertex &vert2) {

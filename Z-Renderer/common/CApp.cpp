@@ -12,10 +12,6 @@
 // ============================================================================
 #define APPTITLE 		"Z-Renderer"
 
-
-const int SCREEN_WIDTH 	= 800;
-const int SCREEN_HEIGHT	= 600;
-
 using namespace std;
 
 static long getCurrentMillSecond()
@@ -50,13 +46,13 @@ int CApp::OnInit()
 		return APP_FAILED;
 	}
 	
-    _canvas = new Canvas(SCREEN_WIDTH , SCREEN_HEIGHT);
+    _canvas = Canvas::getInstance();
     
     _camara = Camera::getInstance();
     
 	window = SDL_CreateWindow(APPTITLE,
 							  SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
-							  SCREEN_WIDTH, SCREEN_HEIGHT, 
+							  _canvas->getWidth(), _canvas->getHeight(), 
 							  SDL_WINDOW_SHOWN);
     
     SDL_Surface * surface = SDL_GetWindowSurface(window);

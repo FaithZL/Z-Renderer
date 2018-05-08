@@ -43,14 +43,13 @@ public:
         setFarPlane(f);
     }
     
-    void initLookAt(Vec4 lookAt);
-    
+    void initLookAt(Vec3 lookAt);
     
     Mat4 getCurDirectionMat() const;
     
     inline void offsetDirection(Ldouble verticalAngle , Ldouble horizontalAngle){
-        _verticalAngle += verticalAngle;
-        _horizontalAngle += horizontalAngle;
+        _pitch += verticalAngle;
+        _yaw += horizontalAngle;
         _normalizeAngle();
     }
     
@@ -82,17 +81,17 @@ public:
     /**
      A unit vector representing the direction the camera is facing in world coordinate system
      */
-    Vec4 forward();
+    Vec3 forward();
     
     /**
      A unit vector representing the direction out of the top of the camera in world coordinate system
      */
-    Vec4 up();
+    Vec3 up();
     
     /**
      A unit vector representing the direction to the right of the camera in world coordinate system
      */
-    Vec4 right();
+    Vec3 right();
     
     inline void offsetPosition(Vec4 moveVec){
 //        _position = _position + moveVec;
@@ -108,14 +107,14 @@ public:
      The value must be between 0 and 180.
      */
     inline Ldouble getFieldOfView(){
-        return _fieldOfView;
+        return _fovy;
     }
     
     inline void setFieldOfView(Ldouble fov){
         if (fov > _maxFov) {
-            _fieldOfView = _maxFov;
+            _fovy = _maxFov;
         }else if(fov < _minFov){
-            _fieldOfView = _minFov;
+            _fovy = _minFov;
         }
     }
     
@@ -126,17 +125,17 @@ protected:
     static Camera * s_pCamera;
     
     inline void _normalizeAngle(){
-        _horizontalAngle = fmodf(_horizontalAngle, 360.0f);
+        _yaw = fmodf(_yaw, 360.0f);
         //fmodf can return negative values, but this will make them all positive
-        if(_horizontalAngle < 0.0f){
-            _horizontalAngle += 360.0f;
+        if(_yaw < 0.0f){
+            _yaw += 360.0f;
         }
         
-        if(_verticalAngle > _maxPitch){
-            _verticalAngle = _maxPitch;
+        if(_pitch > _maxPitch){
+            _pitch = _maxPitch;
         }
-        else if(_verticalAngle < -_maxPitch){
-            _verticalAngle = -_maxPitch;
+        else if(_pitch < -_maxPitch){
+            _pitch = -_maxPitch;
         }
     }
     
@@ -144,9 +143,9 @@ protected:
     
     Vec4 _headVec;
     
-    Ldouble _verticalAngle = 0;
+    Ldouble _pitch = 0;
     
-    Ldouble _horizontalAngle = 0;
+    Ldouble _yaw = 0;
     
     Ldouble _maxPitch = 150;
     
@@ -160,8 +159,7 @@ protected:
     
     Ldouble _viewportAspectRatio;
     
-    // base of angle (horizontal)
-    Ldouble _fieldOfView;
+    Ldouble _fovy;
     
     Ldouble _maxFov;
 };
