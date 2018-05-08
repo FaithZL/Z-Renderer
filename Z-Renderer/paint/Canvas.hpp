@@ -39,17 +39,6 @@ public:
     
     void unlock();
     
-    /**
-     * draw a point to NDC
-     * @param x     -1 <= x <= 1
-     * @param y     -1 <= y <= 1
-     * @param z     0 <= z <= 1
-     * @param color [description]
-     */
-    void drawPointRasterize(Ldouble x , Ldouble y , Ldouble z , const Color &color);
-    
-    void drawPointRasterize(const Vertex &vert);
-    
     void lineBresenham(const VertexOut &v1 , const VertexOut &v2);
     
     void scanLineFill(const VertexOut &v1 , const VertexOut &v2 , int yIndex);
@@ -87,8 +76,6 @@ public:
     
     void drawTriangle(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
-    void triangleRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
-    
     void _triangleRasterize(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3);
     
     /**
@@ -123,8 +110,6 @@ public:
         _shader = shader;
     }
     
-    void drawLineRasterize(const Vertex &vert1 , const Vertex &vert2);
-    
     SDL_Surface * getSurface() const {
         return _surface;
     }
@@ -153,26 +138,6 @@ protected:
         unsigned index = getIndex(px, py);
         _depthBuffer[index] = z;
     }
-    
-    /**
-     *     1
-     *
-     *  3       2
-     * @param v1 [description]
-     * @param v2 [description]
-     * @param v3 [description]
-     */
-    void triangleTopRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
-    
-    /**
-     * 1     2
-     *
-     *     3
-     * @param v1 [description]
-     * @param v2 [description]
-     * @param v3 [description]
-     */    
-    void triangleBottomRasterize(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
     
     inline Ldouble _getDepth(int px , int py) {
         return _depthBuffer[getIndex(px , py)];
