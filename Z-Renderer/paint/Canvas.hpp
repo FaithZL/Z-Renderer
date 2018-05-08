@@ -101,7 +101,7 @@ public:
     void putPixel(int px , int py , const Color &color);
     
     inline bool isPassDepth(int px , int py , Ldouble z) {
-        unsigned index = getIndex(px , py);
+        int index = getIndex(px , py);
         return z <= _depthBuffer[index]
                 && z >= 0;
     }
@@ -132,10 +132,10 @@ public:
     
 protected:
     
-    Canvas(unsigned width = 800 , unsigned height = 600);
+    Canvas(int width = 800 , int height = 600);
     
     inline void _setDepth(int px , int py , Ldouble z) {
-        unsigned index = getIndex(px, py);
+        int index = getIndex(px, py);
         _depthBuffer[index] = z;
     }
     
@@ -143,21 +143,21 @@ protected:
         return _depthBuffer[getIndex(px , py)];
     }
     
-    inline unsigned getIndex(int px , int py) const {
-        return (unsigned)((_width) * py + px);
+    inline int getIndex(int px , int py) const {
+        return (int)((_width) * py + px);
     }
     
-    inline unsigned _getPX(Ldouble x) const {
+    inline int _getPX(Ldouble x) const {
         Ldouble startX = -1;
         Ldouble hw = _width / 2;
-        unsigned px = MathUtil::round((x - startX) * hw);
+        int px = MathUtil::round((x - startX) * hw);
         return px;
     }
     
-    inline unsigned _getPY(Ldouble y) const {
+    inline int _getPY(Ldouble y) const {
         Ldouble startY = 1;
         Ldouble hh = -(_height / 2);
-        unsigned py = MathUtil::round((y - startY) * hh);
+        int py = MathUtil::round((y - startY) * hh);
         return py;
     }
     
@@ -169,7 +169,7 @@ protected:
     
     Shader * _shader;
     
-    unsigned _bufferSize;
+    int _bufferSize;
     
     DrawMode _drawMode;
     

@@ -136,16 +136,6 @@ Mat4 Mat4::rotateZ(Ldouble radian) {
     return Mat4(values);
 }
 
-Mat4 Mat4::scale(Ldouble x, Ldouble y, Ldouble z) {
-    Ldouble a[16] = {
-        x , 0 , 0 , 0,
-        0 , y , 0 , 0,
-        0 , 0 , z , 0,
-        0 , 0 , 0 , 1
-    };
-    return Mat4(a);
-}
-
 Mat4 Mat4::perspective(Ldouble fovy, Ldouble aspect, Ldouble zNear, Ldouble zFar) {
     auto tanHalfFovy = tan(fovy / static_cast<Ldouble>(2));
 //    Ldouble value[16] = {
@@ -165,11 +155,21 @@ Mat4 Mat4::perspective(Ldouble fovy, Ldouble aspect, Ldouble zNear, Ldouble zFar
 }
 
 Mat4 Mat4::scale(Ldouble scale) {
-    return translate(scale , scale , scale);
+    return Mat4::scale(scale , scale , scale);
 }
 
 Mat4 Mat4::scale(const Vec3 &scale) {
-    return translate(scale.x , scale.y , scale.z);
+    return Mat4::scale(scale.x , scale.y , scale.z);
+}
+
+Mat4 Mat4::scale(Ldouble x, Ldouble y, Ldouble z) {
+    Ldouble a[16] = {
+        x , 0 , 0 , 0,
+        0 , y , 0 , 0,
+        0 , 0 , z , 0,
+        0 , 0 , 0 , 1
+    };
+    return Mat4(a);
 }
 
 Mat4 Mat4::translate(Ldouble x , Ldouble y , Ldouble z) {

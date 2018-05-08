@@ -18,7 +18,7 @@ const int SCREEN_HEIGHT    = 600;
 
 Canvas * Canvas::s_pCanvas = nullptr;
 
-Canvas::Canvas(unsigned width , unsigned height):
+Canvas::Canvas(int width , int height):
 _surface(nullptr),
 _width(width),
 _height(height),
@@ -27,6 +27,10 @@ _bufferSize(height * width),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
+    Mat4 s = Mat4::scale(0.5);
+    Mat4 r = Mat4::rotateX(0.5);
+    
+    _shader->setModelMat(s * r);
 }
 
 Canvas * Canvas::getInstance() {
@@ -63,15 +67,9 @@ void Canvas::render() {
     Vertex v2(p2 , Color(0 , 1 , 0 , 0));
     Vertex v3(p3 , Color(0 , 0 , 1 , 0));
     
-//    Vertex v1(p1 , Color::randomColor());
-//    Vertex v2(p2 , Color::randomColor());
-//    Vertex v3(p3 , Color::randomColor());
-    
     Vertex v4(Vec3(- 0.5 , 0.8, 0) , Color(0 , 0 , 1 , 0));
     
     drawTriangle(v1 , v2 , v3);
-    
-//    drawTriangle(v1 , v2 , v4);
 }
 
 void Canvas::lock() {
