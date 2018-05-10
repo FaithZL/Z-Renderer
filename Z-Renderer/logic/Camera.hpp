@@ -139,9 +139,9 @@ protected:
         }
     }
     
-    Vec4 _lookAt;
+    Vec3 _lookAt;
     
-    Vec4 _headVec;
+    Vec3 _headVec;
     
     Ldouble _pitch = 0;
     

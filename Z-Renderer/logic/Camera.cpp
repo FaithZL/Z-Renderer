@@ -15,15 +15,15 @@ _yaw(0),
 _pitch(0),
 _maxFov(130),
 _minFov(20),
-_farPlane(60),
+_farPlane(10),
 _nearPlane(1),
-_fovy(60),
+_fovy(90),
 _maxPitch(80),
-_viewportAspectRatio(4 / 3.0f),
+_viewportAspectRatio(3 / 3.0f),
 _moveVelo(0.07),
 _lookAt(0 , 0 , -1),
-_headVec(0 , 1 , 0){
-//    _position = Vec4(0 ,0 , 0);
+_headVec(0 , 0 , 0){
+    _position = Vec3(0 ,0 , 0.7);
 }
 
 Camera * Camera::s_pCamera = nullptr;
@@ -50,7 +50,7 @@ Mat4 Camera::getProjectionMat() const {
 Mat4 Camera::getViewProjectionMat() const {
     // todo
     Mat4 ret;
-    ret = getProjectionMat() * getViewMat();
+    ret = getViewMat() * getProjectionMat();
     return ret;
 }
 
@@ -90,7 +90,7 @@ Camera::~Camera() {
 }
 
 void Camera::init() {
-    
+//    initLookAt(_lookAt);
 }
 
 
