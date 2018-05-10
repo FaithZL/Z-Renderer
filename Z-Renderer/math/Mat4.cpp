@@ -73,11 +73,11 @@ Mat4 Mat4::getAdjointMat() const {
     return Mat4(arr).getTransposeMat();
 }
 
-// 伴随矩阵除以行列式的绝对值
+// 伴随矩阵除以行列式
 Mat4 Mat4::getInverseMat() const {
     Mat4 adj = getAdjointMat();
     Ldouble det = getDet();
-    return adj / fabs(det);
+    return adj / (det);
 }
 
 Mat4 Mat4::getTransposeMat() const {

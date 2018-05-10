@@ -53,18 +53,31 @@ public:
         }
     }
     
-    // 伴随矩阵除以行列式的绝对值
+    // 伴随矩阵除以行列式
     Mat4 getInverseMat() const;
     
     Mat4 getTransposeMat() const;
     
     Mat4 getAdjointMat() const;
     
-    Ldouble getAdjointElement(float a1, float a2, float a3,
-                              float b1, float b2, float b3,
-                              float c1, float c2, float c3)const;
+    Ldouble getAdjointElement(Ldouble a1, Ldouble a2, Ldouble a3,
+                              Ldouble b1, Ldouble b2, Ldouble b3,
+                              Ldouble c1, Ldouble c2, Ldouble c3)const;
     
     Ldouble getDet() const;
+    
+    inline void print() const {
+        cout << this << endl;
+        for (int i = 0 ; i < 4 ; ++ i) {
+            for (int j = 0 ; j < 4; ++ j) {
+                char * str = new char[50]();
+                sprintf(str , "m[%d][%d] = %f  " , i , j , m[i][j]);
+                cout << str ;
+                delete [] str;
+            }
+            cout << endl;
+        }
+    }
     
     Vec4 transform(const Vec4 &vec) const;
     

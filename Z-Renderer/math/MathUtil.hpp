@@ -14,7 +14,7 @@
 
 #define Min 0.0000001
 #define PI 3.141592653
-typedef float Ldouble;
+typedef double Ldouble;
 
 struct Line {
     Ldouble k = 1.0f;
