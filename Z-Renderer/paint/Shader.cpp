@@ -15,6 +15,7 @@ VertexOut Shader::vs(const Vertex &vert) const {
     vOut.posTrans = _mv.transform(temp);
     vOut.posClip = _mvp.transform(Vec4(vert.pos , 1.0f));
     vOut.color = vert.color;
+    vOut.linearDepth = false;
     
     return vOut;
 }
