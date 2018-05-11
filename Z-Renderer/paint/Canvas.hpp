@@ -165,6 +165,9 @@ protected:
     
     int _height;
     
+    //perspective correction 透视校正
+    bool _PC;
+    
     static Canvas * s_pCanvas;
     
     Shader * _shader;

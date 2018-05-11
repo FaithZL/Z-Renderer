@@ -23,7 +23,7 @@ _maxPitch(80),
 _moveVelo(0.07),
 _lookAt(0 , 0 , -1),
 _headVec(0 , 0 , 0){
-    _position = Vec3(0 ,0 , 0.7);
+    _position = Vec3(0 ,0 , 1);
 }
 
 Camera * Camera::s_pCamera = nullptr;

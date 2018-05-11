@@ -22,8 +22,9 @@ Canvas::Canvas(int width , int height):
 _surface(nullptr),
 _width(width),
 _height(height),
-_drawMode(DrawMode::Fill),
+_drawMode(DrawMode::Frame),
 _bufferSize(height * width),
+_PC(true),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
@@ -54,12 +55,18 @@ void Canvas::update() {
 }
 
 void Canvas::render() {
-    Ldouble z = 1;
-    Vec3 p1 = Vec3(-1 , -1 ,z);
+    Ldouble z = -1;
+    auto d =0.9;
+    Vec3 p1 = Vec3(-1 ,0 ,z - d);
     Vec3 p2 = Vec3(0 , 1 ,z);
-    Vec3 p3 = Vec3(1 , 0, z);
+    Vec3 p3 = Vec3(1 , 0, z + d);
+
+    auto camera = Camera::getInstance();
     
+    auto p = camera->getProjectionMat();
     
+    _shader->setProjectionMat(p);
+    _shader->setViewMat(camera->getViewMat());
     
     Vertex v1(p1 , Color(1 , 0 , 0 , 0));
     Vertex v2(p2 , Color(0 , 1 , 0 , 0));
