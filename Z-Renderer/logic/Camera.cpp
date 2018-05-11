@@ -8,6 +8,7 @@
 
 #include "Camera.hpp"
 #include "assert.h"
+#include "Canvas.hpp"
 
 
 Camera::Camera():
@@ -43,7 +44,9 @@ Mat4 Camera::getViewMat() const {
 }
 
 Mat4 Camera::getProjectionMat() const {
-    Mat4 ret = Mat4::perspective(MathUtil::angle2radian(_fovy), _viewportAspectRatio, _nearPlane , _farPlane);
+    Ldouble width = Canvas::getInstance()->getWidth();
+    Ldouble height = Canvas::getInstance()->getHeight();
+    Mat4 ret = Mat4::perspective(MathUtil::angle2radian(_fovy), width / height, _nearPlane , _farPlane);
     return ret;
 }
 
