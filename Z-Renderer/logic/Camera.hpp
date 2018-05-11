@@ -34,10 +34,6 @@ public:
      */
     Mat4 getViewProjectionMat() const;
     
-    inline void setAspectRatio(Ldouble r){
-        _viewportAspectRatio = r;
-    }
-    
     inline void setNearAndFarPlane(Ldouble n , Ldouble f){
         setNearPlane(n);
         setFarPlane(f);
@@ -156,8 +152,6 @@ protected:
     Ldouble _moveVelo = 10;
     
     Ldouble _minFov;
-    
-    Ldouble _viewportAspectRatio;
     
     Ldouble _fovy;
     

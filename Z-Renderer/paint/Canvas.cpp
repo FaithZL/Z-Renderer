@@ -27,10 +27,6 @@ _bufferSize(height * width),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
-    Mat4 s = Mat4::scale(0.5);
-    Mat4 r = Mat4::rotateX(0.5);
-    
-    _shader->setModelMat(s * r);
 }
 
 Canvas * Canvas::getInstance() {
@@ -58,10 +54,12 @@ void Canvas::update() {
 }
 
 void Canvas::render() {
+    Ldouble z = 1;
+    Vec3 p1 = Vec3(-1 , -1 ,z);
+    Vec3 p2 = Vec3(0 , 1 ,z);
+    Vec3 p3 = Vec3(1 , 0, z);
     
-    Vec3 p1 = Vec3(-1 , -1 ,0.5);
-    Vec3 p2 = Vec3(0 , 1 ,0.5);
-    Vec3 p3 = Vec3(1 , 0, 0.5);
+    
     
     Vertex v1(p1 , Color(1 , 0 , 0 , 0));
     Vertex v2(p2 , Color(0 , 1 , 0 , 0));

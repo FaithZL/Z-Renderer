@@ -20,7 +20,6 @@ _farPlane(10),
 _nearPlane(1),
 _fovy(90),
 _maxPitch(80),
-_viewportAspectRatio(3 / 3.0f),
 _moveVelo(0.07),
 _lookAt(0 , 0 , -1),
 _headVec(0 , 0 , 0){
