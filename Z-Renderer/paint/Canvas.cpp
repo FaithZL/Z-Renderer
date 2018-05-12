@@ -22,7 +22,7 @@ Canvas::Canvas(int width , int height):
 _surface(nullptr),
 _width(width),
 _height(height),
-_drawMode(DrawMode::Frame),
+_drawMode(DrawMode::Fill),
 _bufferSize(height * width),
 _PC(true),
 _shader(nullptr) {
@@ -177,11 +177,28 @@ void Canvas::_triangleBottomRasterize(const VertexOut &v1, const VertexOut &v2, 
     
     int sign = endPY > startPY ? 1 : -1;
     
+    Ldouble z1 = pVert1->getZ();
+    Ldouble z2 = pVert2->getZ();
+    Ldouble z3 = pVert3->getZ();
+    
     for (int py = startPY ; py * sign < sign * endPY ; py = py + sign) {
         Ldouble ld = 1.0f;
-        Ldouble factor = (py - startPY) * ld / (endPY - startPY);
-        VertexOut vertStart = pVert3->interpolate(*pVert2, factor);
-        VertexOut vertEnd = pVert3->interpolate(*pVert1, factor);
+        Ldouble sfactor = (py - startPY) * ld / (endPY - startPY);
+        if (!MathUtil::equal(z3, z2)) {
+//            Ldouble zs = 1 / MathUtil::interpolate(1/z3, 1/z2, sfactor);
+//            sfactor = (zs - z2) / (z3 - z2);
+        }
+        VertexOut vertStart = pVert3->interpolate(*pVert2, sfactor);
+        
+        Ldouble efactor = (py - startPY) * ld / (endPY - startPY);
+        if (!MathUtil::equal(z3, z1)) {
+//            Ldouble ze = 1 / MathUtil::interpolate(1/z3, 1, sfactor);
+//            efactor = (ze - z1) / (z3 - z1);
+        }
+        VertexOut vertEnd = pVert3->interpolate(*pVert1, sfactor);
+        
+//        VertexOut vertStart = pVert3->interpolate(*pVert2, factor);
+//        VertexOut vertEnd = pVert3->interpolate(*pVert1, factor);
         scanLineFill(vertStart, vertEnd , py);
     };
 }
@@ -200,11 +217,19 @@ void Canvas::scanLineFill(const VertexOut &v1, const VertexOut &v2 , int yIndex)
     if (startX == endX) {
         drawPixel(startX , yIndex, pVert1->depth, pVert1->color);
     }
-    
+    Ldouble z1 = pVert1->getZ();
+    Ldouble z2 = pVert2->getZ();
     for (int x = startX ; x <= endX ; ++ x) {
         Ldouble factor = (x - startX) * 1.0f / (endX - startX);
+        Ldouble z;
+        if (!MathUtil::equal(z1 , z2)) {
+            z = 1 / MathUtil::interpolate(1/z1, 1/z2, factor);
+            factor = (z - z1) / (z2 - z1);
+        } else {
+            z = z1;
+        }
         VertexOut v = pVert1->interpolate(*pVert2, factor);
-        drawPixel(x , yIndex , v.depth , v.color);
+        drawPixel(x , yIndex , z , v.color);
     }
 }
 
