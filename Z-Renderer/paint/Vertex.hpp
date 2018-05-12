@@ -44,11 +44,17 @@ public:
     //屏幕像素坐标
     Vec2 posScrn;
     
-    //深度值是否为线性，如果是投影变换，深度值的倒数为线性
-    bool linearDepth = true;
+    inline Ldouble getZ() const {
+        return posClip.w;
+    }
     
-    //[0,1] -1为初始值
-    Ldouble depth = -1;
+    inline Ldouble getDepth() const {
+        return posClip.z / posClip.w;
+    }
+    
+    Ldouble depth;
+    
+    Ldouble oneDivZ;
 };
 
 #endif /* Vertex_hpp */

@@ -40,12 +40,6 @@ VertexOut VertexOut::interpolate(const VertexOut &target, Ldouble factor) const 
     ret.posClip = posClip.interpolate(target.posClip, factor);
     ret.posScrn = posScrn.interpolate(target.posScrn , factor);
     
-    if (linearDepth) {
-        ret.depth = MathUtil::interpolate(depth , target.depth, factor);
-    } else {
-        ret.depth = 1 / MathUtil::interpolate(1 / target.depth , 1 / depth, factor);
-    }
-    
     return ret;
 }
 

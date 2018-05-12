@@ -102,8 +102,7 @@ public:
     
     inline bool isPassDepth(int px , int py , Ldouble z) {
         int index = getIndex(px , py);
-        return z <= _depthBuffer[index]
-                && z >= 0;
+        return z <= _depthBuffer[index];
     }
     
     inline void setShader(Shader * shader) {
@@ -177,7 +176,7 @@ protected:
     DrawMode _drawMode;
     
     /**
-     * -1 <= depth <= 1
+     * 深度缓冲，储存Z坐标的倒数，用于深度测试
      */
     Ldouble * _depthBuffer;
     

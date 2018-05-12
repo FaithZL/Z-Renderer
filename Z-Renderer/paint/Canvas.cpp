@@ -39,7 +39,7 @@ Canvas * Canvas::getInstance() {
 
 void Canvas::clear() {
     memset(getPixels(), 0, sizeof(uint32_t) * _width * _height);
-    std::fill(_depthBuffer, _depthBuffer + _bufferSize, 1);
+    std::fill(_depthBuffer, _depthBuffer + _bufferSize, MAXFLOAT);
 }
 
 void Canvas::update() {
@@ -56,7 +56,7 @@ void Canvas::update() {
 
 void Canvas::render() {
     Ldouble z = -1;
-    auto d =0.9;
+    auto d =1;
     Vec3 p1 = Vec3(-1 ,0 ,z - d);
     Vec3 p2 = Vec3(0 , 1 ,z);
     Vec3 p3 = Vec3(1 , 0, z + d);
@@ -252,11 +252,9 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
         }
         int px1 = pVert1->posScrn.x;
         int py1 = pVert1->posScrn.y;
-        Ldouble depth1 = pVert1->depth;
         
         int px2 = pVert2->posScrn.x;
         int py2 = pVert2->posScrn.y;
-        Ldouble depth2 = pVert2->depth;
         
         Color color1 = pVert1->color;
         Color color2 = pVert2->color;
@@ -264,15 +262,18 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
         int sign = py2 >= py1 ? 1 : -1;  //斜率[-1,1]
         int k = sign * dy * 2;
         int e = -dx * sign;
-        bool linearDepth = pVert1->linearDepth;
+        
+        Ldouble z1 = pVert1->getZ();
+        Ldouble z2 = pVert2->getZ();
         
         for (int x = px1 , y = py1;x <= px2; ++x) {
             Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
             Ldouble z;
-            if (linearDepth) {
-                z = MathUtil::interpolate(depth1, depth2, factor);
+            if (!MathUtil::equal(z1, z2)) {
+                z = 1 / MathUtil::interpolate(1 / z1 , 1 / z2, factor);
+                factor = (z - z1) / (z2 - z1);
             } else {
-                z = 1 / MathUtil::interpolate(1 / depth1 , 1 / depth2, factor);
+                z = z1;
             }
             Color color = color1.interpolate(color2, factor);
             drawPixel(x , y , z, color);
@@ -288,27 +289,28 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
         }
         int px1 = pVert1->posScrn.x;
         int py1 = pVert1->posScrn.y;
-        Ldouble depth1 = pVert1->depth;
         
         int px2 = pVert2->posScrn.x;
         int py2 = pVert2->posScrn.y;
-        Ldouble depth2 = pVert2->depth;
         
         Color color1 = pVert1->color;
         Color color2 = pVert2->color;
         
+        Ldouble z1 = pVert1->getZ();
+        Ldouble z2 = pVert2->getZ();
+        
         int sign = px2 > px1 ? 1 : -1;  //斜率[-1,1]
         int k = sign * dx * 2;
         int e = -dy * sign;
-        bool linearDepth = pVert1->linearDepth;
         
         for (int x = px1 , y = py1; y <= py2 ; ++y) {
             Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
             Ldouble z;
-            if (linearDepth) {
-                z = MathUtil::interpolate(depth1, depth2, factor);
+            if (!MathUtil::equal(z1, z2)) {
+                z = 1 / MathUtil::interpolate(1 / z1 , 1 / z2, factor);
+                factor = (z - z1) / (z2 - z1);
             } else {
-                z = 1 / MathUtil::interpolate(1 / depth2 , 1 / depth1, factor);
+                z = z1;
             }
             Color color = color1.interpolate(color2, factor);
             drawPixel(x , y , z, color);
@@ -319,7 +321,6 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
             }
         }
     }
-    
 }
 
 
