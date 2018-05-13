@@ -32,27 +32,17 @@ class VertexOut {
     
 public:
     VertexOut interpolate(const VertexOut &target , Ldouble factor) const;
-    
-    Vec2 tex;
-    Vec3 normal;
+
     Color color;
     
     //相机空间坐标
     Vec4 posTrans;
     //裁剪空间中的齐次坐标
-    Vec4 posClip;
-    //屏幕像素坐标
-    Vec2 posScrn;
+    Vec4 pos;
     
     inline Ldouble getZ() const {
-        return posClip.w;
+        return 1 / oneDivZ;
     }
-    
-    inline Ldouble getDepth() const {
-        return posClip.z / posClip.w;
-    }
-    
-    Ldouble depth;
     
     Ldouble oneDivZ;
 };

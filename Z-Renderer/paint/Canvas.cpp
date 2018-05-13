@@ -56,10 +56,12 @@ void Canvas::update() {
 
 void Canvas::render() {
     Ldouble z = -1;
-    auto d =1;
-    Vec3 p1 = Vec3(-1 ,0 ,z - d);
-    Vec3 p2 = Vec3(0 , 1 ,z);
-    Vec3 p3 = Vec3(1 , 0, z + d);
+    auto d =2;
+    Vec3 p1 = Vec3(-1 ,0 ,z);
+    Vec3 p2 = Vec3(1 , 2 ,z - d);
+    Vec3 p3 = Vec3(1 , 0, z);
+    
+    Vec3 p4 = Vec3(-1 , 2 , z- d);
 
     auto camera = Camera::getInstance();
     
@@ -70,11 +72,12 @@ void Canvas::render() {
     
     Vertex v1(p1 , Color(1 , 0 , 0 , 0));
     Vertex v2(p2 , Color(0 , 1 , 0 , 0));
-    Vertex v3(p3 , Color(0 , 0 , 1 , 0));
-    
-    Vertex v4(Vec3(- 0.5 , 0.8, 0) , Color(0 , 0 , 1 , 0));
+    Vertex v3(p3 , Color(0 , 1 , 0 , 0));
+    Vertex v4(p4 , Color(1 , 0 , 0 , 0));
+
     
     drawTriangle(v1 , v2 , v3);
+    drawTriangle(v1 , v2 , v4);
 }
 
 void Canvas::lock() {
@@ -107,22 +110,22 @@ void Canvas::_triangleRasterize(const VertexOut &v1, const VertexOut &v2, const 
     vector<VertexOut const *> vector = {pVert1 , pVert2 , pVert3};
     
     sort(vector.begin(), vector.end() , [](const VertexOut * p1 , const VertexOut * p2)->bool {
-        return p1->posScrn.y >= p2->posScrn.y;
+        return p1->pos.y >= p2->pos.y;
     });
     
     pVert1 = vector.at(0);
     pVert2 = vector.at(1);
     pVert3 = vector.at(2);
     
-    if (MathUtil::equal(pVert1->posScrn.y , pVert2->posScrn.y)) {
+    if (MathUtil::equal(pVert1->pos.y , pVert2->pos.y)) {
         // 平顶三角形
         _triangleBottomRasterize(*pVert1, *pVert2, *pVert3);
-    } else if (MathUtil::equal(pVert2->posScrn.y , pVert3->posScrn.y)) {
+    } else if (MathUtil::equal(pVert2->pos.y , pVert3->pos.y)) {
         // 平底三角形
         _triangleTopRasterize(*pVert1, *pVert2, *pVert3);
     } else {
-        Ldouble ty = pVert2->posScrn.y;
-        Ldouble factor = (ty - pVert1->posScrn.y) / (pVert3->posScrn.y - pVert1->posScrn.y);
+        Ldouble ty = pVert2->pos.y;
+        Ldouble factor = (ty - pVert1->pos.y) / (pVert3->pos.y - pVert1->pos.y);
         VertexOut tVert = pVert1->interpolate(*pVert3 , factor);
         _triangleTopRasterize(*pVert1, tVert , *pVert2);
         _triangleBottomRasterize(*pVert2, tVert , *pVert3);
@@ -136,15 +139,15 @@ void Canvas::_triangleTopRasterize(const VertexOut &v1, const VertexOut &v2, con
     vector<const VertexOut *> vector = {pVert1 , pVert2 , pVert3};
     // 根据纵坐标排序
     sort(vector.begin(), vector.end() , [](const VertexOut * p1 , const VertexOut * p2)->bool {
-        return p1->posScrn.y >= p2->posScrn.y;
+        return p1->pos.y >= p2->pos.y;
     });
     // 上面的顶点
     pVert1 = vector.at(0);
     pVert2 = vector.at(1);
     pVert3 = vector.at(2);
     
-    int startPY = pVert1->posScrn.y;
-    int endPY = pVert3->posScrn.y;
+    int startPY = pVert1->pos.y;
+    int endPY = pVert3->pos.y;
     
     int sign = endPY > startPY ? 1 : -1;
     
@@ -165,15 +168,15 @@ void Canvas::_triangleBottomRasterize(const VertexOut &v1, const VertexOut &v2, 
     vector<const VertexOut *> vector = {pVert1 , pVert2 , pVert3};
     // 根据纵坐标排序
     sort(vector.begin(), vector.end() , [](const VertexOut * p1 , const VertexOut * p2)->bool {
-        return p1->posScrn.y >= p2->posScrn.y;
+        return p1->pos.y >= p2->pos.y;
     });
     // 上面的顶点
     pVert1 = vector.at(0);
     pVert2 = vector.at(1);
     pVert3 = vector.at(2);
     
-    int startPY = pVert3->posScrn.y;
-    int endPY = pVert1->posScrn.y;
+    int startPY = pVert3->pos.y;
+    int endPY = pVert1->pos.y;
     
     int sign = endPY > startPY ? 1 : -1;
     
@@ -208,26 +211,26 @@ void Canvas::scanLineFill(const VertexOut &v1, const VertexOut &v2 , int yIndex)
     const VertexOut * pVert1 = &v1;
     const VertexOut * pVert2 = &v2;
     
-    pVert1 = v1.posScrn.x > v2.posScrn.x ? &v2 : &v1;
-    pVert2 = v1.posScrn.x < v2.posScrn.x ? &v2 : &v1;
+    pVert1 = v1.pos.x > v2.pos.x ? &v2 : &v1;
+    pVert2 = v1.pos.x < v2.pos.x ? &v2 : &v1;
     
-    int startX = pVert1->posScrn.x;
-    int endX = pVert2->posScrn.x;
+    int startX = pVert1->pos.x;
+    int endX = pVert2->pos.x;
     
     if (startX == endX) {
-        drawPixel(startX , yIndex, pVert1->depth, pVert1->color);
+        drawPixel(startX , yIndex, pVert1->getZ(), pVert1->color);
     }
     Ldouble z1 = pVert1->getZ();
     Ldouble z2 = pVert2->getZ();
     for (int x = startX ; x <= endX ; ++ x) {
         Ldouble factor = (x - startX) * 1.0f / (endX - startX);
         Ldouble z;
-        if (!MathUtil::equal(z1 , z2)) {
-            z = 1 / MathUtil::interpolate(1/z1, 1/z2, factor);
-            factor = (z - z1) / (z2 - z1);
-        } else {
-            z = z1;
-        }
+//        if (!MathUtil::equal(z1 , z2)) {
+//            z = 1 / MathUtil::interpolate(1/z1, 1/z2, factor);
+//            factor = (z - z1) / (z2 - z1);
+//        } else {
+//            z = z1;
+//        }
         VertexOut v = pVert1->interpolate(*pVert2, factor);
         drawPixel(x , yIndex , z , v.color);
     }
@@ -241,10 +244,11 @@ VertexOut Canvas::handleVertex(const Vertex &vert) const {
 
 void Canvas::transformToScrn(VertexOut &vert) const {
     // 透视除法将cvv坐标转化成Ndc坐标
-    Vec3 posNdc = vert.posClip.get3DNormal();
-    vert.depth = posNdc.z;
-    vert.posScrn.x = _getPX(posNdc.x);
-    vert.posScrn.y = _getPY(posNdc.y);
+    vert.oneDivZ = 1 / vert.pos.w;
+    vert.pos = vert.pos.get3DNormal();
+    vert.pos.w = 1;
+    vert.pos.x = _getPX(vert.pos.x);
+    vert.pos.y = _getPY(vert.pos.y);
 }
 
 void Canvas::putPixel(int px , int py , const Color &color) {
@@ -262,11 +266,11 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
     const VertexOut * pVert1 = &vert1;
     const VertexOut * pVert2 = &vert2;
     
-    int px1 = pVert1->posScrn.x;
-    int py1 = pVert1->posScrn.y;
+    int px1 = pVert1->pos.x;
+    int py1 = pVert1->pos.y;
     
-    int px2 = pVert2->posScrn.x;
-    int py2 = pVert2->posScrn.y;
+    int px2 = pVert2->pos.x;
+    int py2 = pVert2->pos.y;
     
     int dx = abs(px2 - px1);
     int dy = abs(py2 - py1);
@@ -275,11 +279,11 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
         if (px1 > px2) {
             swap(pVert1, pVert2);
         }
-        int px1 = pVert1->posScrn.x;
-        int py1 = pVert1->posScrn.y;
+        int px1 = pVert1->pos.x;
+        int py1 = pVert1->pos.y;
         
-        int px2 = pVert2->posScrn.x;
-        int py2 = pVert2->posScrn.y;
+        int px2 = pVert2->pos.x;
+        int py2 = pVert2->pos.y;
         
         Color color1 = pVert1->color;
         Color color2 = pVert2->color;
@@ -312,11 +316,11 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
         if (py1 > py2) {
             swap(pVert1, pVert2);
         }
-        int px1 = pVert1->posScrn.x;
-        int py1 = pVert1->posScrn.y;
+        int px1 = pVert1->pos.x;
+        int py1 = pVert1->pos.y;
         
-        int px2 = pVert2->posScrn.x;
-        int py2 = pVert2->posScrn.y;
+        int px2 = pVert2->pos.x;
+        int py2 = pVert2->pos.y;
         
         Color color1 = pVert1->color;
         Color color2 = pVert2->color;

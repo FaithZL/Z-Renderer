@@ -13,7 +13,7 @@ VertexOut Shader::vs(const Vertex &vert) const {
     VertexOut vOut;
     auto temp = Vec4(vert.pos , 1.0f);
     vOut.posTrans = _mv.transform(temp);
-    vOut.posClip = _mvp.transform(Vec4(vert.pos , 1.0f));
+    vOut.pos = _mvp.transform(Vec4(vert.pos , 1.0f));
     vOut.color = vert.color;
     
     return vOut;

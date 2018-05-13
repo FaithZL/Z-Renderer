@@ -32,13 +32,21 @@ void Vertex::transform(const Mat4 &mat4) {
 VertexOut VertexOut::interpolate(const VertexOut &target, Ldouble factor) const {
     VertexOut ret;
     
-    ret.tex = tex.interpolate(target.tex , factor);
-    ret.normal = normal.interpolate(target.normal , factor);
-    ret.color = color.interpolate(target.color , factor);
-    
     ret.posTrans = posTrans.interpolate(target.posTrans , factor);
-    ret.posClip = posClip.interpolate(target.posClip, factor);
-    ret.posScrn = posScrn.interpolate(target.posScrn , factor);
+    ret.pos = pos.interpolate(target.pos, factor);
+    ret.oneDivZ = MathUtil::interpolate(oneDivZ , target.oneDivZ , factor);
+    
+    
+    Ldouble z1 = getZ();
+    Ldouble z = ret.getZ();
+    Ldouble z2 = target.getZ();
+    Ldouble cfactor;
+    if (z1 == z2) {
+        cfactor = factor;
+    } else {
+        cfactor = (z - z1) / (z2 - z1);
+    }
+    ret.color = color.interpolate(target.color, cfactor);
     
     return ret;
 }
