@@ -30,7 +30,7 @@ public:
         return ret;
     }
     
-    void updateTransform();
+    void updateTransform(double dt);
     
     void init();
     

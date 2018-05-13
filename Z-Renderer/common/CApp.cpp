@@ -30,7 +30,7 @@ CApp::CApp() :
     _canvas(nullptr),
 	running(false)
 {
-    
+    _time = getCurrentMillSecond();
 }
 
 CApp::~CApp()
@@ -133,28 +133,14 @@ int CApp::OnExecute()
 	
 	while (running)
 	{
-        long lastTime = getCurrentMillSecond();
         while (SDL_PollEvent(&event)) {
         	OnEvent(&event);
         }
-		
-		OnUpdate();
-        OnRender();
-        long curTime = getCurrentMillSecond();
-        long dt = curTime - lastTime;
-        
-        // translate to millisecond
-        double interval = _interval * 1000;
-        if (dt < interval) {
-            // sleep
-            useconds_t time = static_cast<useconds_t>(interval - dt);
-            usleep(time);
-        }
-        long t3 = getCurrentMillSecond();
-        dt = (t3 - lastTime);
-//        sprintf(title , "Z-Renderer dt : %d ms" , dt);
-        
-//        SDL_SetWindowTitle(window , title);
+        auto curTime = getCurrentMillSecond();
+        auto dt = (curTime - _time) * 1.0f / 1000;
+		OnUpdate(dt);
+        OnRender(dt);
+        _time = curTime;
 	}
 
 	return state;
@@ -176,16 +162,16 @@ void CApp::OnEvent(SDL_Event* event)
 	}
 }
 
-void CApp::OnUpdate()
+void CApp::OnUpdate(double dt)
 {
 	// Update your game logic here
 }
 
-void CApp::OnRender()
+void CApp::OnRender(double dt)
 {
     SDL_RenderClear(renderer);
 
-    _canvas->update();
+    _canvas->update(dt);
     
     SDL_UpdateWindowSurface(window);
 	

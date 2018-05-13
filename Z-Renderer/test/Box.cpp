@@ -19,8 +19,9 @@ Box::~Box() {
     
 }
 
-void Box::updateTransform() {
-    _rotate.y += 1;
+void Box::updateTransform(double dt) {
+    double velo = 45;
+    _rotate.y += velo * dt;
     if (_rotate.y > 360) {
         _rotate.y -= 360;
     }
@@ -34,8 +35,6 @@ void Box::updateTransform() {
 
 void Box::init() {
     
-//    _vertice.resize(36);
-    
     _shader = Shader::create();
     
     Vertex v1 = Vertex(Vec3(1 , 1, 1), Color(1 , 0 , 0 , 0));
@@ -48,7 +47,6 @@ void Box::init() {
     Vertex v4_ = Vertex(Vec3(1 , -1, -1), Color(1 , 0 , 1 , 0));
     
     _position = Vec3(0 , 0 , -3);
-//    _scale = Vec3(0.1 , 0.2);
     
     _vertice.resize(36);
     
@@ -110,16 +108,11 @@ void Box::init() {
 }
 
 void Box::draw(Ldouble dt) {
-    updateTransform();
+    updateTransform(dt);
     auto canvas = Canvas::getInstance();
     canvas->setShader(_shader);
     for (int i = 0; i < 36; i += 3) {
-//        i = 18;
         canvas->drawTriangle(_vertice[i], _vertice[i+1], _vertice[i+2]);
-//        if (i > 1) {
-//            break;
-//        }
-//        break;
     }
 }
 

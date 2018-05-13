@@ -51,6 +51,8 @@ private:
     
 	SDL_Renderer*	renderer;
     
+    long            _time;
+    
     Canvas *        _canvas;
     
     Camera *        _camara;
@@ -65,8 +67,8 @@ private:
 	void 			OnEvent(SDL_Event* event);
 
 	// Called to update game logic
-	void			OnUpdate();
+	void			OnUpdate(double dt);
 	
 	// Called to render the app.
-	void 			OnRender();
+	void 			OnRender(double dt);
 };

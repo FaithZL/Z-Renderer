@@ -18,12 +18,12 @@ _maxFov(130),
 _minFov(20),
 _farPlane(10),
 _nearPlane(1),
-_fovy(90),
+_fovy(70),
 _maxPitch(80),
 _moveVelo(0.07),
 _lookAt(0 , 0 , -1),
 _headVec(0 , 0 , 0){
-    _position = Vec3(0 ,0 , 1);
+    _position = Vec3(0 ,0 , 3);
 }
 
 Camera * Camera::s_pCamera = nullptr;
@@ -57,9 +57,9 @@ Mat4 Camera::getViewProjectionMat() const {
 }
 
 Mat4 Camera::getCurDirectionMat() const {
-    Mat4 vertical = Mat4::rotateX(MathUtil::angle2radian(_pitch));
+    Mat4 vertical = Mat4::rotateX(MathUtil::angle2radian(-_pitch));
     Mat4 horizontal = Mat4::rotateY(MathUtil::angle2radian(_yaw));
-    Mat4 ret = vertical * horizontal;
+    Mat4 ret = horizontal * vertical ;
     return ret;
 }
 
@@ -73,18 +73,20 @@ void Camera::initLookAt(Vec3 lookAt){
 
 Vec3 Camera::forward() {
     Vec3 ret;
-    
-    return ret;
+    Vec4 temp = getCurDirectionMat().getInverseMat().transform(Vec4(0 , 0 , -1 , 0));
+    return temp.getVec3();
 }
 
 Vec3 Camera::up() {
     Vec3 ret;
-    return ret;
+    Vec4 temp = getCurDirectionMat().getInverseMat().transform(Vec4(0 , 1 , 0 , 0));
+    return temp.getVec3();
 }
 
 Vec3 Camera::right() {
     Vec3 ret;
-    return ret;
+    Vec4 temp = getCurDirectionMat().getInverseMat().transform(Vec4(1 , 0 , 0 , 0));
+    return temp.getVec3();
 }
 
 Camera::~Camera() {

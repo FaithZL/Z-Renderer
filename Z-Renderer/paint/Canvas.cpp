@@ -45,48 +45,24 @@ void Canvas::clear() {
     std::fill(_depthBuffer, _depthBuffer + _bufferSize, MAXFLOAT);
 }
 
-void Canvas::update() {
+void Canvas::update(double dt) {
     
     lock();
     
     clear();
     
-    render();
+    render(dt);
     
     unlock();
     
 }
 
-void Canvas::render() {
+void Canvas::render(double dt) {
     
     for (int i = 0 ; i < _node.size() ; ++ i) {
         auto node = _node.at(i);
-        node->draw(0);
+        node->draw(dt);
     }
-    
-//    Ldouble z = -1;
-//    auto d =2;
-//    Vec3 p1 = Vec3(-1 ,0 ,z);
-//    Vec3 p2 = Vec3(1 , 2 ,z - d);
-//    Vec3 p3 = Vec3(1 , 0, z);
-//
-//    Vec3 p4 = Vec3(-1 , 2 , z- d);
-//
-//    auto camera = Camera::getInstance();
-//
-//    auto p = camera->getProjectionMat();
-//
-//    _shader->setProjectionMat(p);
-//    _shader->setViewMat(camera->getViewMat());
-//
-//    Vertex v1(p1 , Color(1 , 0 , 0 , 0));
-//    Vertex v2(p2 , Color(0 , 1 , 0 , 0));
-//    Vertex v3(p3 , Color(0 , 1 , 0 , 0));
-//    Vertex v4(p4 , Color(1 , 0 , 0 , 0));
-//
-//
-//    drawTriangle(v1 , v2 , v3);
-//    drawTriangle(v1 , v2 , v4);
 }
 
 void Canvas::lock() {

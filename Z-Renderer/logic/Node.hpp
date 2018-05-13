@@ -25,7 +25,7 @@ public:
         
     }
     
-    virtual void updateTransform() {
+    virtual void updateTransform(double dt) {
         
     }
     

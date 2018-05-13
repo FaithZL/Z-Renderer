@@ -89,8 +89,8 @@ public:
      */
     Vec3 right();
     
-    inline void offsetPosition(Vec4 moveVec){
-//        _position = _position + moveVec;
+    inline void offsetPosition(Vec3 moveVec){
+        _position = _position + moveVec;
     }
     
     /**

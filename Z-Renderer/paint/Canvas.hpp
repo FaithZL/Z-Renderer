@@ -29,11 +29,11 @@ public:
     
     static Canvas * getInstance();
     
-    void render();
+    void render(double dt);
     
     void lock();
     
-    void update();
+    void update(double dt);
     
     inline uint32_t * getPixels() const {
         return (uint32_t *) _surface->pixels;
