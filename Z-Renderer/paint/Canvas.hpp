@@ -102,6 +102,12 @@ public:
     
     void putPixel(int px , int py , const Color &color);
     
+    bool isClip(const Vec4 &pos) const {
+        return pos.x < -pos.w || pos.x > pos.w
+            || pos.y < -pos.w || pos.y > pos.w
+            || pos.z < 0 || pos.z > pos.w;
+    }
+    
     inline bool isPassDepth(int px , int py , Ldouble z) {
         int index = getIndex(px , py);
         return z <= _depthBuffer[index];

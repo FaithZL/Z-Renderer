@@ -20,7 +20,7 @@ _farPlane(10),
 _nearPlane(1),
 _fovy(70),
 _maxPitch(80),
-_moveVelo(0.07),
+_moveVelo(2),
 _lookAt(0 , 0 , -1),
 _headVec(0 , 0 , 0){
     _position = Vec3(0 ,0 , 3);

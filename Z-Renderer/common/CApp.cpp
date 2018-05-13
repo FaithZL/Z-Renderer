@@ -79,39 +79,49 @@ void CApp::OnCleanup()
 	SDL_Quit();
 }
 
-void CApp::onKeyPress(SDL_Keycode keyCode) {
-    
+void CApp::onKeyPress(SDL_Keycode keyCode , double dt) {
+    auto camera = Camera::getInstance();
+    auto v = 45;
+    auto velo = camera->getMoveVelo();
     switch (keyCode) {
         case SDLK_ESCAPE:
             running = false;
             break;
         case SDLK_w:
             // 前
-            cout<<"w"<<endl;
+            camera->offsetPosition(camera->forward() * velo * dt);
             break;
         case SDLK_s:
             // 后
-            cout<<"s";
+            camera->offsetPosition(-camera->forward() * velo * dt);
             break;
         case SDLK_a:
             // 左
-            cout<<"a";
+            camera->offsetPosition(-camera->right() * velo * dt);
             break;
         case SDLK_d:
             // 右
-            cout<<"d";
+            camera->offsetPosition(camera->right() * velo * dt);
+            break;
+        case SDLK_z:
+            // 上
+            camera->offsetPosition(camera->up() * velo * dt);
+            break;
+        case SDLK_x:
+            // 下
+            camera->offsetPosition(-camera->up() * velo * dt);
             break;
         case SDLK_UP:
-            
+            camera->offsetDirection(v * dt, 0);
             break;
         case SDLK_DOWN:
-            
+            camera->offsetDirection(-v * dt, 0);
             break;
         case SDLK_LEFT:
-            
+            camera->offsetDirection(0, -v*dt);
             break;
         case SDLK_RIGHT:
-            
+            camera->offsetDirection(0, v *dt);
             break;
         default:
             break;
@@ -133,11 +143,11 @@ int CApp::OnExecute()
 	
 	while (running)
 	{
-        while (SDL_PollEvent(&event)) {
-        	OnEvent(&event);
-        }
         auto curTime = getCurrentMillSecond();
         auto dt = (curTime - _time) * 1.0f / 1000;
+        while (SDL_PollEvent(&event)) {
+        	OnEvent(&event , dt);
+        }
 		OnUpdate(dt);
         OnRender(dt);
         _time = curTime;
@@ -146,7 +156,7 @@ int CApp::OnExecute()
 	return state;
 }
 
-void CApp::OnEvent(SDL_Event* event)
+void CApp::OnEvent(SDL_Event* event , double dt)
 {
 	switch (event->type)
 	{
@@ -155,7 +165,7 @@ void CApp::OnEvent(SDL_Event* event)
 			break;
 			
 		case SDL_KEYDOWN:
-            onKeyPress(event->key.keysym.sym);
+            onKeyPress(event->key.keysym.sym , dt);
             break;
 		default:
 			break;

@@ -35,7 +35,7 @@ public:
         _interval = val;
     }
     
-    void onKeyPress(SDL_Keycode keyCode);
+    void onKeyPress(SDL_Keycode keyCode , double dt);
     
 	// Run application, called by your code.
 	int 			OnExecute();
@@ -64,7 +64,7 @@ private:
 	void 			OnCleanup();
 
 	// Called to process SDL event.
-	void 			OnEvent(SDL_Event* event);
+	void 			OnEvent(SDL_Event* event , double dt);
 
 	// Called to update game logic
 	void			OnUpdate(double dt);

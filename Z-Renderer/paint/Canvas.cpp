@@ -78,6 +78,16 @@ void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) 
     VertexOut vOut2 = handleVertex(v2);
     VertexOut vOut3 = handleVertex(v3);
     
+    if (isClip(vOut1.pos)
+        || isClip(vOut2.pos)
+        || isClip(vOut3.pos)) {
+        return;
+    }
+    
+    transformToScrn(vOut1);
+    transformToScrn(vOut2);
+    transformToScrn(vOut3);
+    
     if (_drawMode == Fill) {
         _triangleRasterize(vOut1, vOut2, vOut3);
     } else if (_drawMode == Frame) {
@@ -197,7 +207,6 @@ void Canvas::scanLineFill(const VertexOut &v1, const VertexOut &v2 , int yIndex)
 
 VertexOut Canvas::handleVertex(const Vertex &vert) const {
     VertexOut vertOut = _shader->vs(vert);
-    transformToScrn(vertOut);
     return vertOut;
 }
 

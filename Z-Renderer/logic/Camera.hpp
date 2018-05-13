@@ -149,7 +149,7 @@ protected:
     
     Ldouble _farPlane;
     
-    Ldouble _moveVelo = 10;
+    Ldouble _moveVelo = 100;
     
     Ldouble _minFov;
     
