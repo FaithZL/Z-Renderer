@@ -18,6 +18,18 @@ class Node : public Ref {
 public:
     
     Node() {
+        _scale = Vec3(1 , 1 , 1);
+    }
+    
+    virtual void init() {
+        
+    }
+    
+    virtual void updateTransform() {
+        
+    }
+    
+    virtual void draw(double dt) {
         
     }
     

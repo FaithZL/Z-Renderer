@@ -21,7 +21,7 @@ public:
     Vec3 normal;
     Vec2 tex;
     
-    Vertex(Vec3 pos , Color color = Color(), Vec3 normal = Vec3() , Vec2 tex = Vec2());
+    Vertex(Vec3 pos = Vec3() , Color color = Color(), Vec3 normal = Vec3() , Vec2 tex = Vec2());
     
     Vertex interpolate(const Vertex &vertex , Ldouble factor) const;
     

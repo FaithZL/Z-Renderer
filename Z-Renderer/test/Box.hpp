@@ -11,8 +11,12 @@
 
 #include "Vertex.hpp"
 #include "Shader.hpp"
+#include <vector>
+#include "Node.hpp"
 
-class Box {
+using namespace std;
+
+class Box : public Node {
     
 public:
     Box();
@@ -20,7 +24,20 @@ public:
     
     Shader * _shader;
     
-    void draw();
+    static Box * create() {
+        Box *ret = new Box();
+        ret->init();
+        return ret;
+    }
+    
+    void updateTransform();
+    
+    void init();
+    
+    void draw(double dt);
+protected:
+    
+    vector<Vertex> _vertice;
 };
 
 #endif /* Box_hpp */

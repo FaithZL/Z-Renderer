@@ -9,6 +9,7 @@
 #include "Canvas.hpp"
 #include <algorithm>
 #include <vector>
+#include "Box.hpp"
 #include <iostream>
 
 using namespace std;
@@ -28,6 +29,8 @@ _PC(true),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
+    
+    _node.push_back(Box::create());
 }
 
 Canvas * Canvas::getInstance() {
@@ -55,29 +58,35 @@ void Canvas::update() {
 }
 
 void Canvas::render() {
-    Ldouble z = -1;
-    auto d =2;
-    Vec3 p1 = Vec3(-1 ,0 ,z);
-    Vec3 p2 = Vec3(1 , 2 ,z - d);
-    Vec3 p3 = Vec3(1 , 0, z);
     
-    Vec3 p4 = Vec3(-1 , 2 , z- d);
-
-    auto camera = Camera::getInstance();
+    for (int i = 0 ; i < _node.size() ; ++ i) {
+        auto node = _node.at(i);
+        node->draw(0);
+    }
     
-    auto p = camera->getProjectionMat();
-    
-    _shader->setProjectionMat(p);
-    _shader->setViewMat(camera->getViewMat());
-    
-    Vertex v1(p1 , Color(1 , 0 , 0 , 0));
-    Vertex v2(p2 , Color(0 , 1 , 0 , 0));
-    Vertex v3(p3 , Color(0 , 1 , 0 , 0));
-    Vertex v4(p4 , Color(1 , 0 , 0 , 0));
-
-    
-    drawTriangle(v1 , v2 , v3);
-    drawTriangle(v1 , v2 , v4);
+//    Ldouble z = -1;
+//    auto d =2;
+//    Vec3 p1 = Vec3(-1 ,0 ,z);
+//    Vec3 p2 = Vec3(1 , 2 ,z - d);
+//    Vec3 p3 = Vec3(1 , 0, z);
+//
+//    Vec3 p4 = Vec3(-1 , 2 , z- d);
+//
+//    auto camera = Camera::getInstance();
+//
+//    auto p = camera->getProjectionMat();
+//
+//    _shader->setProjectionMat(p);
+//    _shader->setViewMat(camera->getViewMat());
+//
+//    Vertex v1(p1 , Color(1 , 0 , 0 , 0));
+//    Vertex v2(p2 , Color(0 , 1 , 0 , 0));
+//    Vertex v3(p3 , Color(0 , 1 , 0 , 0));
+//    Vertex v4(p4 , Color(1 , 0 , 0 , 0));
+//
+//
+//    drawTriangle(v1 , v2 , v3);
+//    drawTriangle(v1 , v2 , v4);
 }
 
 void Canvas::lock() {

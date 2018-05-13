@@ -11,9 +11,11 @@
 
 #include "Shader.hpp"
 #include <SDL2/SDL.h>
+#include <vector>
 #include "Vertex.hpp"
 #include "Color.hpp"
 #include "Camera.hpp"
+#include "Node.hpp"
 
 enum DrawMode {
     Frame,
@@ -166,6 +168,8 @@ protected:
     
     //perspective correction 透视校正
     bool _PC;
+    
+    std::vector<Node *> _node;
     
     static Canvas * s_pCanvas;
     

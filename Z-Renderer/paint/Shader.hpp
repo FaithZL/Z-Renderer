@@ -27,6 +27,11 @@ public:
         
     }
     
+    static Shader * create() {
+        auto ret = new Shader();
+        return ret;
+    }
+    
     virtual VertexOut vs(const Vertex &vert) const;
     
     virtual VertexOut fs(const VertexOut &vert) const;
