@@ -32,19 +32,30 @@ class VertexOut {
     
 public:
     VertexOut interpolate(const VertexOut &target , Ldouble factor) const;
+    
+    Ldouble interpolateZ(const VertexOut &target , Ldouble factor) const;
 
     Color color;
     
     //相机空间坐标
     Vec4 posTrans;
-    //裁剪空间中的齐次坐标
+    
     Vec4 pos;
     
     inline Ldouble getZ() const {
         return 1 / oneDivZ;
     }
     
-    Ldouble oneDivZ;
+    inline void toNdc() {
+        oneDivZ = 1 / pos.w;
+        pos.x = pos.x / pos.w;
+        pos.y = pos.y / pos.w;
+        pos.z = pos.z / pos.w;
+        pos.w = 1;
+    }
+    
+protected:
+    Ldouble oneDivZ = 0;
 };
 
 #endif /* Vertex_hpp */

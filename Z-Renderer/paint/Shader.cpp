@@ -19,8 +19,8 @@ VertexOut Shader::vs(const Vertex &vert) const {
     return vOut;
 }
 
-VertexOut Shader::fs(const VertexOut &vert) const {
-    VertexOut vOut = vert;
+Color Shader::fs(const VertexOut &vert) const {
+    Color ret = vert.color;
     
-    return vOut;
+    return ret;
 }

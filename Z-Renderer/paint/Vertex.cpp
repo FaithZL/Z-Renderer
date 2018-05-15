@@ -29,10 +29,18 @@ void Vertex::transform(const Mat4 &mat4) {
 //    pos = mat4.transform(pos);
 }
 
+Ldouble VertexOut::interpolateZ(const VertexOut &target, Ldouble factor) const {
+    if (MathUtil::equal(oneDivZ , target.oneDivZ)) {
+        return 1 / oneDivZ;
+    }
+    Ldouble _oneDivZ;
+    _oneDivZ = MathUtil::interpolate(oneDivZ , target.oneDivZ , factor);
+    return 1 / _oneDivZ;
+}
+
 VertexOut VertexOut::interpolate(const VertexOut &target, Ldouble factor) const {
     VertexOut ret;
     
-    ret.posTrans = posTrans.interpolate(target.posTrans , factor);
     ret.pos = pos.interpolate(target.pos, factor);
     ret.oneDivZ = MathUtil::interpolate(oneDivZ , target.oneDivZ , factor);
     
@@ -41,12 +49,14 @@ VertexOut VertexOut::interpolate(const VertexOut &target, Ldouble factor) const 
     Ldouble z = ret.getZ();
     Ldouble z2 = target.getZ();
     Ldouble cfactor;
+    //透视校正
     if (z1 == z2) {
         cfactor = factor;
     } else {
         cfactor = (z - z1) / (z2 - z1);
     }
     ret.color = color.interpolate(target.color, cfactor);
+    ret.posTrans = posTrans.interpolate(target.posTrans , cfactor);
     
     return ret;
 }

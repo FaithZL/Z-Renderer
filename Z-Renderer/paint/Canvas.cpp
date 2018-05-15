@@ -58,7 +58,7 @@ void Canvas::update(double dt) {
 }
 
 void Canvas::render(double dt) {
-    
+    cout<<dt<<endl;
     for (int i = 0 ; i < _node.size() ; ++ i) {
         auto node = _node.at(i);
         node->draw(dt);
@@ -195,13 +195,18 @@ void Canvas::scanLineFill(const VertexOut &v1, const VertexOut &v2 , int yIndex)
     int endX = pVert2->pos.x;
     
     if (startX == endX) {
-        drawPixel(startX , yIndex, pVert1->getZ(), pVert1->color);
+        Ldouble z = pVert1->getZ();
+        if (isPassDepth(startX , yIndex , z)) {
+            drawPixel(startX , yIndex , z , _shader->fs(*pVert1));
+        }
     }
     for (int x = startX ; x <= endX ; ++ x) {
         Ldouble factor = (x - startX) * 1.0f / (endX - startX);
-        VertexOut v = pVert1->interpolate(*pVert2, factor);
-        Ldouble z = v.getZ();
-        drawPixel(x , yIndex , z , v.color);
+        Ldouble z = pVert1->interpolateZ(*pVert2 , factor);
+        if (isPassDepth(x , yIndex, z)) {
+            VertexOut fragment = pVert1->interpolate(*pVert2, factor);
+            drawPixel(x , yIndex , z , _shader->fs(fragment));
+        }
     }
 }
 
@@ -212,9 +217,8 @@ VertexOut Canvas::handleVertex(const Vertex &vert) const {
 
 void Canvas::transformToScrn(VertexOut &vert) const {
     // 透视除法将cvv坐标转化成Ndc坐标
-    vert.oneDivZ = 1 / vert.pos.w;
-    vert.pos = vert.pos.get3DNormal();
-    vert.pos.w = 1;
+    vert.toNdc();
+    // 转换到屏幕坐标
     vert.pos.x = _getPX(vert.pos.x);
     vert.pos.y = _getPY(vert.pos.y);
 }
@@ -253,27 +257,17 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
         int px2 = pVert2->pos.x;
         int py2 = pVert2->pos.y;
         
-        Color color1 = pVert1->color;
-        Color color2 = pVert2->color;
-        
         int sign = py2 >= py1 ? 1 : -1;  //斜率[-1,1]
         int k = sign * dy * 2;
         int e = -dx * sign;
         
-        Ldouble z1 = pVert1->getZ();
-        Ldouble z2 = pVert2->getZ();
-        
         for (int x = px1 , y = py1;x <= px2; ++x) {
             Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
-            Ldouble z;
-            if (!MathUtil::equal(z1, z2)) {
-                z = 1 / MathUtil::interpolate(1 / z1 , 1 / z2, factor);
-                factor = (z - z1) / (z2 - z1);
-            } else {
-                z = z1;
+            Ldouble z = pVert1->interpolateZ(*pVert2, factor);
+            if (isPassDepth(x , y , z)) {
+                VertexOut fragment = pVert1->interpolate(*pVert2, factor);
+                drawPixel(x , y , z, _shader->fs(fragment));
             }
-            Color color = color1.interpolate(color2, factor);
-            drawPixel(x , y , z, color);
             e += k;
             if (sign * e > 0) {
                 y += sign;
@@ -290,27 +284,17 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
         int px2 = pVert2->pos.x;
         int py2 = pVert2->pos.y;
         
-        Color color1 = pVert1->color;
-        Color color2 = pVert2->color;
-        
-        Ldouble z1 = pVert1->getZ();
-        Ldouble z2 = pVert2->getZ();
-        
         int sign = px2 > px1 ? 1 : -1;  //斜率[-1,1]
         int k = sign * dx * 2;
         int e = -dy * sign;
         
         for (int x = px1 , y = py1; y <= py2 ; ++y) {
-            Ldouble factor = static_cast<Ldouble>((x - px1) * 1.0 / (px2 - px1));
-            Ldouble z;
-            if (!MathUtil::equal(z1, z2)) {
-                z = 1 / MathUtil::interpolate(1 / z1 , 1 / z2, factor);
-                factor = (z - z1) / (z2 - z1);
-            } else {
-                z = z1;
+            Ldouble factor = static_cast<Ldouble>((y - py1) * 1.0 / (py2 - py1));
+            Ldouble z = pVert1->interpolateZ(*pVert2, factor);
+            if (isPassDepth(x , y , z)) {
+                VertexOut fragment = pVert1->interpolate(*pVert2, factor);
+                drawPixel(x , y , z, _shader->fs(fragment));
             }
-            Color color = color1.interpolate(color2, factor);
-            drawPixel(x , y , z, color);
             e += k;
             if (sign * e > 0) {
                 x += sign;

@@ -34,7 +34,7 @@ public:
     
     virtual VertexOut vs(const Vertex &vert) const;
     
-    virtual VertexOut fs(const VertexOut &vert) const;
+    virtual Color fs(const VertexOut &vert) const;
     
     virtual void setMvp(const Mat4 &m , const Mat4 &v , const Mat4 &p) {
         _model = m;

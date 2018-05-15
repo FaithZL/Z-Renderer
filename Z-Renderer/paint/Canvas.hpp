@@ -49,9 +49,6 @@ public:
         if (!isPassClip(px , py)) {
             return;
         }
-        if (!isPassDepth(px , py, z)) {
-            return;
-        }
         putPixel(px , py , color);
         _setDepth(px, py, z);
     }
