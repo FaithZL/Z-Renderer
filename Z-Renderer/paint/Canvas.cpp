@@ -58,7 +58,6 @@ void Canvas::update(double dt) {
 }
 
 void Canvas::render(double dt) {
-    cout<<dt<<endl;
     for (int i = 0 ; i < _node.size() ; ++ i) {
         auto node = _node.at(i);
         node->draw(dt);

@@ -140,7 +140,7 @@ int CApp::OnExecute()
 	SDL_Event event;
 
 	running = true;
-	
+    char * pTitle = new char[100]();
 	while (running)
 	{
         auto curTime = getCurrentMillSecond();
@@ -148,8 +148,11 @@ int CApp::OnExecute()
         while (SDL_PollEvent(&event)) {
         	OnEvent(&event , dt);
         }
+        
 		OnUpdate(dt);
         OnRender(dt);
+        sprintf(pTitle , "%f" , dt);
+        SDL_SetWindowTitle(window ,pTitle);
         _time = curTime;
 	}
 
