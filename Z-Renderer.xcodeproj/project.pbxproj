@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F616D56220A160790005B1B5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F616D56120A160790005B1B5 /* Shader.cpp */; };
+		F616D56A20AAAD390005B1B5 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F616D56820AAAD390005B1B5 /* Texture.cpp */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -37,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		F616D56120A160790005B1B5 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		F616D56820AAAD390005B1B5 /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		F616D56920AAAD390005B1B5 /* Texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -95,7 +98,7 @@
 			path = paint;
 			sourceTree = "<group>";
 		};
-		F6464CFE208E3D820019A75F /* logic */ = {
+		F6464CFE208E3D820019A75F /* base */ = {
 			isa = PBXGroup;
 			children = (
 				F6464CFF208E3DBC0019A75F /* Camera.cpp */,
@@ -104,8 +107,10 @@
 				F6464D03208E3E4D0019A75F /* Ref.hpp */,
 				F6464D05208E3E600019A75F /* Node.cpp */,
 				F6464D06208E3E600019A75F /* Node.hpp */,
+				F616D56820AAAD390005B1B5 /* Texture.cpp */,
+				F616D56920AAAD390005B1B5 /* Texture.hpp */,
 			);
-			path = logic;
+			path = base;
 			sourceTree = "<group>";
 		};
 		F6464D10209B5F930019A75F /* test */ = {
@@ -147,7 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				F6464D10209B5F930019A75F /* test */,
-				F6464CFE208E3D820019A75F /* logic */,
+				F6464CFE208E3D820019A75F /* base */,
 				F6464CE7208B26CC0019A75F /* paint */,
 				F6758CE82088EFF90036A8E8 /* common */,
 				F6758CE62088EF710036A8E8 /* math */,
@@ -248,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F616D56220A160790005B1B5 /* Shader.cpp in Sources */,
+				F616D56A20AAAD390005B1B5 /* Texture.cpp in Sources */,
 				F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */,
 				F6464CF0208B363C0019A75F /* Color.cpp in Sources */,
 				F6464CEA208B27330019A75F /* Vertex.cpp in Sources */,
