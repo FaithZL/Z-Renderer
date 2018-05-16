@@ -46,7 +46,7 @@ protected:
     
     Format _format;
     
-    unsigned char * _pixels;
+    unsigned char * _pixels = nullptr;
     
     int _width;
     

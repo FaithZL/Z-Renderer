@@ -11,6 +11,7 @@
 #include <vector>
 #include "Box.hpp"
 #include <iostream>
+#include "Bitmap.hpp"
 
 using namespace std;
 
@@ -29,6 +30,8 @@ _PC(true),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
+//    auto b = Bitmap("Z-Renderer.app/Contents/Resources/wooden-crate.jpg");
+    auto b = Bitmap("wooden-crate.jpg");
     
     _node.push_back(Box::create());
 }

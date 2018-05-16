@@ -13,6 +13,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image/stb_image.h"
 
+#include "fileUtil.hpp"
 
 Bitmap::Bitmap():
     _path(""),
@@ -23,12 +24,13 @@ Bitmap::Bitmap():
     
 }
 
-Bitmap::Bitmap(const string &fileName) {
+Bitmap::Bitmap(const string &fileName){
     int width , height , channel;
-    unsigned char * pixels = stbi_load(fileName.c_str(), &width, &height , &channel , 0);
+    unsigned char * pixels = stbi_load(getFullPath(fileName).c_str(), &width, &height , &channel , 0);
+    if(!pixels)
+        throw std::runtime_error(stbi_failure_reason());
+    init(width , height, (Format)channel , pixels);
     stbi_image_free(pixels);
-    init(width , height, _format , _pixels);
-    free(pixels);
     _path = fileName;
 }
 
