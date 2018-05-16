@@ -10,6 +10,60 @@
 		F616D56220A160790005B1B5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F616D56120A160790005B1B5 /* Shader.cpp */; };
 		F616D56A20AAAD390005B1B5 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F616D56820AAAD390005B1B5 /* Texture.cpp */; };
 		F616D56E20AB2FA70005B1B5 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F616D56C20AB2FA70005B1B5 /* Bitmap.cpp */; };
+		F616D5AF20ABF4600005B1B5 /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = F616D57420ABF4600005B1B5 /* box.obj */; };
+		F616D5B020ABF4600005B1B5 /* arm_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D57620ABF4600005B1B5 /* arm_dif.png */; };
+		F616D5B120ABF4600005B1B5 /* arm_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D57720ABF4600005B1B5 /* arm_showroom_ddn.png */; };
+		F616D5B220ABF4600005B1B5 /* arm_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D57820ABF4600005B1B5 /* arm_showroom_refl.png */; };
+		F616D5B320ABF4600005B1B5 /* arm_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D57920ABF4600005B1B5 /* arm_showroom_spec.png */; };
+		F616D5B420ABF4600005B1B5 /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D57A20ABF4600005B1B5 /* back.jpg */; };
+		F616D5B520ABF4600005B1B5 /* body_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D57B20ABF4600005B1B5 /* body_dif.png */; };
+		F616D5B620ABF4600005B1B5 /* body_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D57C20ABF4600005B1B5 /* body_showroom_ddn.png */; };
+		F616D5B720ABF4600005B1B5 /* body_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D57D20ABF4600005B1B5 /* body_showroom_refl.png */; };
+		F616D5B820ABF4600005B1B5 /* body_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D57E20ABF4600005B1B5 /* body_showroom_spec.png */; };
+		F616D5B920ABF4600005B1B5 /* cell_arm_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D57F20ABF4600005B1B5 /* cell_arm_alpha.png */; };
+		F616D5BA20ABF4600005B1B5 /* cell_body_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58020ABF4600005B1B5 /* cell_body_alpha.png */; };
+		F616D5BB20ABF4600005B1B5 /* cell_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58120ABF4600005B1B5 /* cell_ddn.png */; };
+		F616D5BC20ABF4600005B1B5 /* cell_hand_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58220ABF4600005B1B5 /* cell_hand_alpha.png */; };
+		F616D5BD20ABF4600005B1B5 /* cell_helmet_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58320ABF4600005B1B5 /* cell_helmet_alpha.png */; };
+		F616D5BE20ABF4600005B1B5 /* cell_leg_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58420ABF4600005B1B5 /* cell_leg_alpha.png */; };
+		F616D5BF20ABF4600005B1B5 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D58520ABF4600005B1B5 /* front.jpg */; };
+		F616D5C020ABF4600005B1B5 /* glass_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58620ABF4600005B1B5 /* glass_ddn.png */; };
+		F616D5C120ABF4600005B1B5 /* glass_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58720ABF4600005B1B5 /* glass_dif.png */; };
+		F616D5C220ABF4600005B1B5 /* glass_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58820ABF4600005B1B5 /* glass_refl.png */; };
+		F616D5C320ABF4600005B1B5 /* hand_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58920ABF4600005B1B5 /* hand_dif.png */; };
+		F616D5C420ABF4600005B1B5 /* hand_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58A20ABF4600005B1B5 /* hand_showroom_ddn.png */; };
+		F616D5C520ABF4600005B1B5 /* hand_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58B20ABF4600005B1B5 /* hand_showroom_refl.png */; };
+		F616D5C620ABF4600005B1B5 /* hand_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58C20ABF4600005B1B5 /* hand_showroom_spec.png */; };
+		F616D5C720ABF4600005B1B5 /* helmet_diff.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58D20ABF4600005B1B5 /* helmet_diff.png */; };
+		F616D5C820ABF4600005B1B5 /* helmet_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58E20ABF4600005B1B5 /* helmet_showroom_ddn.png */; };
+		F616D5C920ABF4600005B1B5 /* helmet_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D58F20ABF4600005B1B5 /* helmet_showroom_refl.png */; };
+		F616D5CA20ABF4600005B1B5 /* helmet_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D59020ABF4600005B1B5 /* helmet_showroom_spec.png */; };
+		F616D5CB20ABF4600005B1B5 /* leg_dif.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D59120ABF4600005B1B5 /* leg_dif.png */; };
+		F616D5CC20ABF4600005B1B5 /* leg_showroom_ddn.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D59220ABF4600005B1B5 /* leg_showroom_ddn.png */; };
+		F616D5CD20ABF4600005B1B5 /* leg_showroom_refl.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D59320ABF4600005B1B5 /* leg_showroom_refl.png */; };
+		F616D5CE20ABF4600005B1B5 /* leg_showroom_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D59420ABF4600005B1B5 /* leg_showroom_spec.png */; };
+		F616D5CF20ABF4600005B1B5 /* nanosuit.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F616D59520ABF4600005B1B5 /* nanosuit.mtl */; };
+		F616D5D020ABF4600005B1B5 /* nanosuit.obj in Resources */ = {isa = PBXBuildFile; fileRef = F616D59620ABF4600005B1B5 /* nanosuit.obj */; };
+		F616D5D120ABF4600005B1B5 /* planet.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F616D59820ABF4600005B1B5 /* planet.mtl */; };
+		F616D5D220ABF4600005B1B5 /* planet.obj in Resources */ = {isa = PBXBuildFile; fileRef = F616D59920ABF4600005B1B5 /* planet.obj */; };
+		F616D5D320ABF4600005B1B5 /* planet_Quom1200.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D59A20ABF4600005B1B5 /* planet_Quom1200.png */; };
+		F616D5D420ABF4600005B1B5 /* Rock-Texture-Surface.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D59C20ABF4600005B1B5 /* Rock-Texture-Surface.jpg */; };
+		F616D5D520ABF4600005B1B5 /* rock.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F616D59D20ABF4600005B1B5 /* rock.mtl */; };
+		F616D5D620ABF4600005B1B5 /* rock.obj in Resources */ = {isa = PBXBuildFile; fileRef = F616D59E20ABF4600005B1B5 /* rock.obj */; };
+		F616D5D720ABF4600005B1B5 /* _model.fs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A020ABF4600005B1B5 /* _model.fs */; };
+		F616D5D820ABF4600005B1B5 /* _model.vs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A120ABF4600005B1B5 /* _model.vs */; };
+		F616D5D920ABF4600005B1B5 /* _skyBox.fs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A220ABF4600005B1B5 /* _skyBox.fs */; };
+		F616D5DA20ABF4600005B1B5 /* _skyBox.vs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A320ABF4600005B1B5 /* _skyBox.vs */; };
+		F616D5DB20ABF4600005B1B5 /* _sprite.fs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A420ABF4600005B1B5 /* _sprite.fs */; };
+		F616D5DC20ABF4600005B1B5 /* _sprite.vs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A520ABF4600005B1B5 /* _sprite.vs */; };
+		F616D5DD20ABF4600005B1B5 /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A720ABF4600005B1B5 /* back.jpg */; };
+		F616D5DE20ABF4600005B1B5 /* bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A820ABF4600005B1B5 /* bottom.jpg */; };
+		F616D5DF20ABF4600005B1B5 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A920ABF4600005B1B5 /* front.jpg */; };
+		F616D5E020ABF4600005B1B5 /* left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AA20ABF4600005B1B5 /* left.jpg */; };
+		F616D5E120ABF4600005B1B5 /* right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AB20ABF4600005B1B5 /* right.jpg */; };
+		F616D5E220ABF4600005B1B5 /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AC20ABF4600005B1B5 /* top.jpg */; };
+		F616D5E320ABF4600005B1B5 /* wooden-crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AD20ABF4600005B1B5 /* wooden-crate.jpg */; };
+		F616D5E420ABF4600005B1B5 /* WusonOBJ.obj in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AE20ABF4600005B1B5 /* WusonOBJ.obj */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -44,6 +98,60 @@
 		F616D56C20AB2FA70005B1B5 /* Bitmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
 		F616D56D20AB2FA70005B1B5 /* Bitmap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bitmap.hpp; sourceTree = "<group>"; };
 		F616D57020AB38870005B1B5 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		F616D57420ABF4600005B1B5 /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = box.obj; sourceTree = "<group>"; };
+		F616D57620ABF4600005B1B5 /* arm_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm_dif.png; sourceTree = "<group>"; };
+		F616D57720ABF4600005B1B5 /* arm_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm_showroom_ddn.png; sourceTree = "<group>"; };
+		F616D57820ABF4600005B1B5 /* arm_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm_showroom_refl.png; sourceTree = "<group>"; };
+		F616D57920ABF4600005B1B5 /* arm_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm_showroom_spec.png; sourceTree = "<group>"; };
+		F616D57A20ABF4600005B1B5 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		F616D57B20ABF4600005B1B5 /* body_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_dif.png; sourceTree = "<group>"; };
+		F616D57C20ABF4600005B1B5 /* body_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_ddn.png; sourceTree = "<group>"; };
+		F616D57D20ABF4600005B1B5 /* body_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_refl.png; sourceTree = "<group>"; };
+		F616D57E20ABF4600005B1B5 /* body_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_showroom_spec.png; sourceTree = "<group>"; };
+		F616D57F20ABF4600005B1B5 /* cell_arm_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_arm_alpha.png; sourceTree = "<group>"; };
+		F616D58020ABF4600005B1B5 /* cell_body_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_body_alpha.png; sourceTree = "<group>"; };
+		F616D58120ABF4600005B1B5 /* cell_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_ddn.png; sourceTree = "<group>"; };
+		F616D58220ABF4600005B1B5 /* cell_hand_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_hand_alpha.png; sourceTree = "<group>"; };
+		F616D58320ABF4600005B1B5 /* cell_helmet_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_helmet_alpha.png; sourceTree = "<group>"; };
+		F616D58420ABF4600005B1B5 /* cell_leg_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_leg_alpha.png; sourceTree = "<group>"; };
+		F616D58520ABF4600005B1B5 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		F616D58620ABF4600005B1B5 /* glass_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glass_ddn.png; sourceTree = "<group>"; };
+		F616D58720ABF4600005B1B5 /* glass_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glass_dif.png; sourceTree = "<group>"; };
+		F616D58820ABF4600005B1B5 /* glass_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glass_refl.png; sourceTree = "<group>"; };
+		F616D58920ABF4600005B1B5 /* hand_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand_dif.png; sourceTree = "<group>"; };
+		F616D58A20ABF4600005B1B5 /* hand_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand_showroom_ddn.png; sourceTree = "<group>"; };
+		F616D58B20ABF4600005B1B5 /* hand_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand_showroom_refl.png; sourceTree = "<group>"; };
+		F616D58C20ABF4600005B1B5 /* hand_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand_showroom_spec.png; sourceTree = "<group>"; };
+		F616D58D20ABF4600005B1B5 /* helmet_diff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_diff.png; sourceTree = "<group>"; };
+		F616D58E20ABF4600005B1B5 /* helmet_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_showroom_ddn.png; sourceTree = "<group>"; };
+		F616D58F20ABF4600005B1B5 /* helmet_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_showroom_refl.png; sourceTree = "<group>"; };
+		F616D59020ABF4600005B1B5 /* helmet_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helmet_showroom_spec.png; sourceTree = "<group>"; };
+		F616D59120ABF4600005B1B5 /* leg_dif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_dif.png; sourceTree = "<group>"; };
+		F616D59220ABF4600005B1B5 /* leg_showroom_ddn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_showroom_ddn.png; sourceTree = "<group>"; };
+		F616D59320ABF4600005B1B5 /* leg_showroom_refl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_showroom_refl.png; sourceTree = "<group>"; };
+		F616D59420ABF4600005B1B5 /* leg_showroom_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_showroom_spec.png; sourceTree = "<group>"; };
+		F616D59520ABF4600005B1B5 /* nanosuit.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nanosuit.mtl; sourceTree = "<group>"; };
+		F616D59620ABF4600005B1B5 /* nanosuit.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nanosuit.obj; sourceTree = "<group>"; };
+		F616D59820ABF4600005B1B5 /* planet.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = planet.mtl; sourceTree = "<group>"; };
+		F616D59920ABF4600005B1B5 /* planet.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = planet.obj; sourceTree = "<group>"; };
+		F616D59A20ABF4600005B1B5 /* planet_Quom1200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet_Quom1200.png; sourceTree = "<group>"; };
+		F616D59C20ABF4600005B1B5 /* Rock-Texture-Surface.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Rock-Texture-Surface.jpg"; sourceTree = "<group>"; };
+		F616D59D20ABF4600005B1B5 /* rock.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock.mtl; sourceTree = "<group>"; };
+		F616D59E20ABF4600005B1B5 /* rock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock.obj; sourceTree = "<group>"; };
+		F616D5A020ABF4600005B1B5 /* _model.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _model.fs; sourceTree = "<group>"; };
+		F616D5A120ABF4600005B1B5 /* _model.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _model.vs; sourceTree = "<group>"; };
+		F616D5A220ABF4600005B1B5 /* _skyBox.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _skyBox.fs; sourceTree = "<group>"; };
+		F616D5A320ABF4600005B1B5 /* _skyBox.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _skyBox.vs; sourceTree = "<group>"; };
+		F616D5A420ABF4600005B1B5 /* _sprite.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _sprite.fs; sourceTree = "<group>"; };
+		F616D5A520ABF4600005B1B5 /* _sprite.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _sprite.vs; sourceTree = "<group>"; };
+		F616D5A720ABF4600005B1B5 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		F616D5A820ABF4600005B1B5 /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
+		F616D5A920ABF4600005B1B5 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		F616D5AA20ABF4600005B1B5 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
+		F616D5AB20ABF4600005B1B5 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
+		F616D5AC20ABF4600005B1B5 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
+		F616D5AD20ABF4600005B1B5 /* wooden-crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wooden-crate.jpg"; sourceTree = "<group>"; };
+		F616D5AE20ABF4600005B1B5 /* WusonOBJ.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WusonOBJ.obj; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -105,11 +213,105 @@
 			path = stb_image;
 			sourceTree = "<group>";
 		};
-		F616D57120ABF29E0005B1B5 /* res */ = {
+		F616D57320ABF4600005B1B5 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				F616D57420ABF4600005B1B5 /* box.obj */,
+				F616D57520ABF4600005B1B5 /* nanosuit */,
+				F616D59720ABF4600005B1B5 /* planet */,
+				F616D59B20ABF4600005B1B5 /* rock */,
+				F616D59F20ABF4600005B1B5 /* shader */,
+				F616D5A620ABF4600005B1B5 /* skyBox */,
+				F616D5AD20ABF4600005B1B5 /* wooden-crate.jpg */,
+				F616D5AE20ABF4600005B1B5 /* WusonOBJ.obj */,
 			);
 			path = res;
+			sourceTree = "<group>";
+		};
+		F616D57520ABF4600005B1B5 /* nanosuit */ = {
+			isa = PBXGroup;
+			children = (
+				F616D57620ABF4600005B1B5 /* arm_dif.png */,
+				F616D57720ABF4600005B1B5 /* arm_showroom_ddn.png */,
+				F616D57820ABF4600005B1B5 /* arm_showroom_refl.png */,
+				F616D57920ABF4600005B1B5 /* arm_showroom_spec.png */,
+				F616D57A20ABF4600005B1B5 /* back.jpg */,
+				F616D57B20ABF4600005B1B5 /* body_dif.png */,
+				F616D57C20ABF4600005B1B5 /* body_showroom_ddn.png */,
+				F616D57D20ABF4600005B1B5 /* body_showroom_refl.png */,
+				F616D57E20ABF4600005B1B5 /* body_showroom_spec.png */,
+				F616D57F20ABF4600005B1B5 /* cell_arm_alpha.png */,
+				F616D58020ABF4600005B1B5 /* cell_body_alpha.png */,
+				F616D58120ABF4600005B1B5 /* cell_ddn.png */,
+				F616D58220ABF4600005B1B5 /* cell_hand_alpha.png */,
+				F616D58320ABF4600005B1B5 /* cell_helmet_alpha.png */,
+				F616D58420ABF4600005B1B5 /* cell_leg_alpha.png */,
+				F616D58520ABF4600005B1B5 /* front.jpg */,
+				F616D58620ABF4600005B1B5 /* glass_ddn.png */,
+				F616D58720ABF4600005B1B5 /* glass_dif.png */,
+				F616D58820ABF4600005B1B5 /* glass_refl.png */,
+				F616D58920ABF4600005B1B5 /* hand_dif.png */,
+				F616D58A20ABF4600005B1B5 /* hand_showroom_ddn.png */,
+				F616D58B20ABF4600005B1B5 /* hand_showroom_refl.png */,
+				F616D58C20ABF4600005B1B5 /* hand_showroom_spec.png */,
+				F616D58D20ABF4600005B1B5 /* helmet_diff.png */,
+				F616D58E20ABF4600005B1B5 /* helmet_showroom_ddn.png */,
+				F616D58F20ABF4600005B1B5 /* helmet_showroom_refl.png */,
+				F616D59020ABF4600005B1B5 /* helmet_showroom_spec.png */,
+				F616D59120ABF4600005B1B5 /* leg_dif.png */,
+				F616D59220ABF4600005B1B5 /* leg_showroom_ddn.png */,
+				F616D59320ABF4600005B1B5 /* leg_showroom_refl.png */,
+				F616D59420ABF4600005B1B5 /* leg_showroom_spec.png */,
+				F616D59520ABF4600005B1B5 /* nanosuit.mtl */,
+				F616D59620ABF4600005B1B5 /* nanosuit.obj */,
+			);
+			path = nanosuit;
+			sourceTree = "<group>";
+		};
+		F616D59720ABF4600005B1B5 /* planet */ = {
+			isa = PBXGroup;
+			children = (
+				F616D59820ABF4600005B1B5 /* planet.mtl */,
+				F616D59920ABF4600005B1B5 /* planet.obj */,
+				F616D59A20ABF4600005B1B5 /* planet_Quom1200.png */,
+			);
+			path = planet;
+			sourceTree = "<group>";
+		};
+		F616D59B20ABF4600005B1B5 /* rock */ = {
+			isa = PBXGroup;
+			children = (
+				F616D59C20ABF4600005B1B5 /* Rock-Texture-Surface.jpg */,
+				F616D59D20ABF4600005B1B5 /* rock.mtl */,
+				F616D59E20ABF4600005B1B5 /* rock.obj */,
+			);
+			path = rock;
+			sourceTree = "<group>";
+		};
+		F616D59F20ABF4600005B1B5 /* shader */ = {
+			isa = PBXGroup;
+			children = (
+				F616D5A020ABF4600005B1B5 /* _model.fs */,
+				F616D5A120ABF4600005B1B5 /* _model.vs */,
+				F616D5A220ABF4600005B1B5 /* _skyBox.fs */,
+				F616D5A320ABF4600005B1B5 /* _skyBox.vs */,
+				F616D5A420ABF4600005B1B5 /* _sprite.fs */,
+				F616D5A520ABF4600005B1B5 /* _sprite.vs */,
+			);
+			path = shader;
+			sourceTree = "<group>";
+		};
+		F616D5A620ABF4600005B1B5 /* skyBox */ = {
+			isa = PBXGroup;
+			children = (
+				F616D5A720ABF4600005B1B5 /* back.jpg */,
+				F616D5A820ABF4600005B1B5 /* bottom.jpg */,
+				F616D5A920ABF4600005B1B5 /* front.jpg */,
+				F616D5AA20ABF4600005B1B5 /* left.jpg */,
+				F616D5AB20ABF4600005B1B5 /* right.jpg */,
+				F616D5AC20ABF4600005B1B5 /* top.jpg */,
+			);
+			path = skyBox;
 			sourceTree = "<group>";
 		};
 		F6464CE7208B26CC0019A75F /* paint */ = {
@@ -180,8 +382,8 @@
 		F6758CD82088D6E00036A8E8 /* Z-Renderer */ = {
 			isa = PBXGroup;
 			children = (
-				F616D57120ABF29E0005B1B5 /* res */,
 				F616D56B20AB2E4A0005B1B5 /* util */,
+				F616D57320ABF4600005B1B5 /* res */,
 				F6464D10209B5F930019A75F /* test */,
 				F6464CFE208E3D820019A75F /* base */,
 				F6464CE7208B26CC0019A75F /* paint */,
@@ -273,6 +475,60 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F616D5D520ABF4600005B1B5 /* rock.mtl in Resources */,
+				F616D5D320ABF4600005B1B5 /* planet_Quom1200.png in Resources */,
+				F616D5BD20ABF4600005B1B5 /* cell_helmet_alpha.png in Resources */,
+				F616D5CD20ABF4600005B1B5 /* leg_showroom_refl.png in Resources */,
+				F616D5BE20ABF4600005B1B5 /* cell_leg_alpha.png in Resources */,
+				F616D5B620ABF4600005B1B5 /* body_showroom_ddn.png in Resources */,
+				F616D5C220ABF4600005B1B5 /* glass_refl.png in Resources */,
+				F616D5B020ABF4600005B1B5 /* arm_dif.png in Resources */,
+				F616D5CA20ABF4600005B1B5 /* helmet_showroom_spec.png in Resources */,
+				F616D5CE20ABF4600005B1B5 /* leg_showroom_spec.png in Resources */,
+				F616D5DB20ABF4600005B1B5 /* _sprite.fs in Resources */,
+				F616D5B820ABF4600005B1B5 /* body_showroom_spec.png in Resources */,
+				F616D5CC20ABF4600005B1B5 /* leg_showroom_ddn.png in Resources */,
+				F616D5D820ABF4600005B1B5 /* _model.vs in Resources */,
+				F616D5D020ABF4600005B1B5 /* nanosuit.obj in Resources */,
+				F616D5B920ABF4600005B1B5 /* cell_arm_alpha.png in Resources */,
+				F616D5D720ABF4600005B1B5 /* _model.fs in Resources */,
+				F616D5DC20ABF4600005B1B5 /* _sprite.vs in Resources */,
+				F616D5BB20ABF4600005B1B5 /* cell_ddn.png in Resources */,
+				F616D5BA20ABF4600005B1B5 /* cell_body_alpha.png in Resources */,
+				F616D5D620ABF4600005B1B5 /* rock.obj in Resources */,
+				F616D5C420ABF4600005B1B5 /* hand_showroom_ddn.png in Resources */,
+				F616D5DA20ABF4600005B1B5 /* _skyBox.vs in Resources */,
+				F616D5DF20ABF4600005B1B5 /* front.jpg in Resources */,
+				F616D5B720ABF4600005B1B5 /* body_showroom_refl.png in Resources */,
+				F616D5E220ABF4600005B1B5 /* top.jpg in Resources */,
+				F616D5D120ABF4600005B1B5 /* planet.mtl in Resources */,
+				F616D5C620ABF4600005B1B5 /* hand_showroom_spec.png in Resources */,
+				F616D5B220ABF4600005B1B5 /* arm_showroom_refl.png in Resources */,
+				F616D5C820ABF4600005B1B5 /* helmet_showroom_ddn.png in Resources */,
+				F616D5B320ABF4600005B1B5 /* arm_showroom_spec.png in Resources */,
+				F616D5BC20ABF4600005B1B5 /* cell_hand_alpha.png in Resources */,
+				F616D5DE20ABF4600005B1B5 /* bottom.jpg in Resources */,
+				F616D5E320ABF4600005B1B5 /* wooden-crate.jpg in Resources */,
+				F616D5C120ABF4600005B1B5 /* glass_dif.png in Resources */,
+				F616D5C920ABF4600005B1B5 /* helmet_showroom_refl.png in Resources */,
+				F616D5E420ABF4600005B1B5 /* WusonOBJ.obj in Resources */,
+				F616D5B120ABF4600005B1B5 /* arm_showroom_ddn.png in Resources */,
+				F616D5D420ABF4600005B1B5 /* Rock-Texture-Surface.jpg in Resources */,
+				F616D5E020ABF4600005B1B5 /* left.jpg in Resources */,
+				F616D5DD20ABF4600005B1B5 /* back.jpg in Resources */,
+				F616D5B420ABF4600005B1B5 /* back.jpg in Resources */,
+				F616D5E120ABF4600005B1B5 /* right.jpg in Resources */,
+				F616D5AF20ABF4600005B1B5 /* box.obj in Resources */,
+				F616D5CF20ABF4600005B1B5 /* nanosuit.mtl in Resources */,
+				F616D5D920ABF4600005B1B5 /* _skyBox.fs in Resources */,
+				F616D5C020ABF4600005B1B5 /* glass_ddn.png in Resources */,
+				F616D5BF20ABF4600005B1B5 /* front.jpg in Resources */,
+				F616D5C720ABF4600005B1B5 /* helmet_diff.png in Resources */,
+				F616D5D220ABF4600005B1B5 /* planet.obj in Resources */,
+				F616D5CB20ABF4600005B1B5 /* leg_dif.png in Resources */,
+				F616D5C320ABF4600005B1B5 /* hand_dif.png in Resources */,
+				F616D5C520ABF4600005B1B5 /* hand_showroom_refl.png in Resources */,
+				F616D5B520ABF4600005B1B5 /* body_dif.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
