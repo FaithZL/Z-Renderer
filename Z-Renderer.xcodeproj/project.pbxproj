@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F616D56220A160790005B1B5 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F616D56120A160790005B1B5 /* Shader.cpp */; };
 		F616D56A20AAAD390005B1B5 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F616D56820AAAD390005B1B5 /* Texture.cpp */; };
+		F616D56E20AB2FA70005B1B5 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F616D56C20AB2FA70005B1B5 /* Bitmap.cpp */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -40,6 +41,9 @@
 		F616D56120A160790005B1B5 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		F616D56820AAAD390005B1B5 /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		F616D56920AAAD390005B1B5 /* Texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		F616D56C20AB2FA70005B1B5 /* Bitmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
+		F616D56D20AB2FA70005B1B5 /* Bitmap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bitmap.hpp; sourceTree = "<group>"; };
+		F616D57020AB38870005B1B5 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -83,6 +87,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F616D56B20AB2E4A0005B1B5 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				F616D56F20AB38870005B1B5 /* stb_image */,
+				F616D56C20AB2FA70005B1B5 /* Bitmap.cpp */,
+				F616D56D20AB2FA70005B1B5 /* Bitmap.hpp */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		F616D56F20AB38870005B1B5 /* stb_image */ = {
+			isa = PBXGroup;
+			children = (
+				F616D57020AB38870005B1B5 /* stb_image.h */,
+			);
+			path = stb_image;
+			sourceTree = "<group>";
+		};
+		F616D57120ABF29E0005B1B5 /* res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
 		F6464CE7208B26CC0019A75F /* paint */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +180,8 @@
 		F6758CD82088D6E00036A8E8 /* Z-Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				F616D57120ABF29E0005B1B5 /* res */,
+				F616D56B20AB2E4A0005B1B5 /* util */,
 				F6464D10209B5F930019A75F /* test */,
 				F6464CFE208E3D820019A75F /* base */,
 				F6464CE7208B26CC0019A75F /* paint */,
@@ -263,6 +294,7 @@
 				F6758CDF2088D6E00036A8E8 /* CApp.cpp in Sources */,
 				F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */,
 				F6464D13209B5FBF0019A75F /* Box.cpp in Sources */,
+				F616D56E20AB2FA70005B1B5 /* Bitmap.cpp in Sources */,
 				F6758CF02089BA570036A8E8 /* Vec.cpp in Sources */,
 				F6758CEC2089B9030036A8E8 /* Canvas.cpp in Sources */,
 				F6464D19209D66800019A75F /* Mat4.cpp in Sources */,
