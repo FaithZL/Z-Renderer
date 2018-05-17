@@ -15,12 +15,19 @@ VertexOut Shader::vs(const Vertex &vert) const {
     vOut.posTrans = _mv.transform(temp);
     vOut.pos = _mvp.transform(Vec4(vert.pos , 1.0f));
     vOut.color = vert.color;
+    vOut.tex = vert.tex;
     
     return vOut;
 }
 
 Color Shader::fs(const VertexOut &vert) const {
-    Color ret = vert.color;
+//    Color ret = vert.color;
+    
+    auto texture = Canvas::getInstance()->getTexture();
+    
+    auto ret = texture->sample(vert.tex.u, vert.tex.v);
+    
+    
     
     return ret;
 }

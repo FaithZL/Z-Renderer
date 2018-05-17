@@ -48,7 +48,7 @@ public:
         uint32_t G = (uint32_t)(g * 255.0f);
         uint32_t B = (uint32_t)(b * 255.0f);
         uint32_t A = (uint32_t)(a * 255.0f);
-        uint32_t value = (R << 16) | (G << 8) | B | (A << 24);
+        uint32_t value =B | (G << 8) | (R << 16) | (A << 24);
         return value;
     }
     

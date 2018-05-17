@@ -42,6 +42,8 @@ public:
     
     Vec4 pos;
     
+    Vec2 tex;
+    
     inline Ldouble getZ() const {
         return 1 / oneDivZ;
     }

@@ -65,6 +65,7 @@
 		F616D5E320ABF4600005B1B5 /* wooden-crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AD20ABF4600005B1B5 /* wooden-crate.jpg */; };
 		F616D5E420ABF4600005B1B5 /* WusonOBJ.obj in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AE20ABF4600005B1B5 /* WusonOBJ.obj */; };
 		F616D5E720AC7FE50005B1B5 /* fileUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = F616D5E620AC7FE50005B1B5 /* fileUtil.mm */; };
+		F616D5EC20AD4BFA0005B1B5 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D5EB20AD4BF90005B1B5 /* HelloWorld.png */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -155,6 +156,7 @@
 		F616D5AE20ABF4600005B1B5 /* WusonOBJ.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WusonOBJ.obj; sourceTree = "<group>"; };
 		F616D5E620AC7FE50005B1B5 /* fileUtil.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = fileUtil.mm; sourceTree = "<group>"; };
 		F616D5E820AC806D0005B1B5 /* fileUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fileUtil.hpp; sourceTree = "<group>"; };
+		F616D5EB20AD4BF90005B1B5 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		F616D57320ABF4600005B1B5 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				F616D5EB20AD4BF90005B1B5 /* HelloWorld.png */,
 				F616D57420ABF4600005B1B5 /* box.obj */,
 				F616D57520ABF4600005B1B5 /* nanosuit */,
 				F616D59720ABF4600005B1B5 /* planet */,
@@ -388,12 +391,12 @@
 			isa = PBXGroup;
 			children = (
 				F616D56B20AB2E4A0005B1B5 /* util */,
-				F616D57320ABF4600005B1B5 /* res */,
 				F6464D10209B5F930019A75F /* test */,
 				F6464CFE208E3D820019A75F /* base */,
 				F6464CE7208B26CC0019A75F /* paint */,
 				F6758CE82088EFF90036A8E8 /* common */,
 				F6758CE62088EF710036A8E8 /* math */,
+				F616D57320ABF4600005B1B5 /* res */,
 				F6758CD92088D6E00036A8E8 /* main.cpp */,
 			);
 			path = "Z-Renderer";
@@ -530,6 +533,7 @@
 				F616D5BF20ABF4600005B1B5 /* front.jpg in Resources */,
 				F616D5C720ABF4600005B1B5 /* helmet_diff.png in Resources */,
 				F616D5D220ABF4600005B1B5 /* planet.obj in Resources */,
+				F616D5EC20AD4BFA0005B1B5 /* HelloWorld.png in Resources */,
 				F616D5CB20ABF4600005B1B5 /* leg_dif.png in Resources */,
 				F616D5C320ABF4600005B1B5 /* hand_dif.png in Resources */,
 				F616D5C520ABF4600005B1B5 /* hand_showroom_refl.png in Resources */,

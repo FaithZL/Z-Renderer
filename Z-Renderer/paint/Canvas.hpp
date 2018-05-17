@@ -16,6 +16,7 @@
 #include "Color.hpp"
 #include "Camera.hpp"
 #include "Node.hpp"
+#include "Texture.hpp"
 
 enum DrawMode {
     Frame,
@@ -134,6 +135,10 @@ public:
         delete [] _depthBuffer;
     }
     
+    Texture * getTexture() const {
+        return _texture;
+    }
+    
 protected:
     
     Canvas(int width = 800 , int height = 600);
@@ -181,6 +186,8 @@ protected:
     int _bufferSize;
     
     DrawMode _drawMode;
+    
+    Texture * _texture;
     
     /**
      * 深度缓冲，储存Z坐标的倒数，用于深度测试

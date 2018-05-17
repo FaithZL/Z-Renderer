@@ -26,12 +26,13 @@ _width(width),
 _height(height),
 _drawMode(DrawMode::Fill),
 _bufferSize(height * width),
+_texture(nullptr),
 _PC(true),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
-//    auto b = Bitmap("Z-Renderer.app/Contents/Resources/wooden-crate.jpg");
-    auto b = Bitmap("wooden-crate.jpg");
+    
+    _texture = Texture::create("HelloWorld.png");
     
     _node.push_back(Box::create());
 }
@@ -200,6 +201,7 @@ void Canvas::scanLineFill(const VertexOut &v1, const VertexOut &v2 , int yIndex)
         Ldouble z = pVert1->getZ();
         if (isPassDepth(startX , yIndex , z)) {
             drawPixel(startX , yIndex , z , _shader->fs(*pVert1));
+            return;
         }
     }
     for (int x = startX ; x <= endX ; ++ x) {

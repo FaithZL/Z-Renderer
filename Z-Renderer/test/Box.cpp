@@ -21,7 +21,7 @@ Box::~Box() {
 
 void Box::updateTransform(double dt) {
     double velo = 45;
-    _rotate.y += velo * dt;
+//    _rotate.y += velo * dt;
     if (_rotate.y > 360) {
         _rotate.y -= 360;
     }
@@ -45,6 +45,11 @@ void Box::init() {
     Vertex v2_ = Vertex(Vec3(-1 , 1, -1), Color(0 , 0 , 1 , 0));
     Vertex v3_ = Vertex(Vec3(-1 , -1, -1), Color(1 , 0 , 0 , 0));
     Vertex v4_ = Vertex(Vec3(1 , -1, -1), Color(1 , 0 , 1 , 0));
+    
+    v1.tex = Vec2(1 , 1);
+    v2.tex = Vec2(0 , 1);
+    v3.tex = Vec2(0 , 0);
+    v4.tex = Vec2(1 , 0);
     
     _position = Vec3(0 , 0 , -3);
     
@@ -113,6 +118,9 @@ void Box::draw(Ldouble dt) {
     canvas->setShader(_shader);
     for (int i = 0; i < 36; i += 3) {
         canvas->drawTriangle(_vertice[i], _vertice[i+1], _vertice[i+2]);
+        if (i > 5) {
+            break;
+        }
     }
 }
 

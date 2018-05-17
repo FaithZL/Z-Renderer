@@ -44,7 +44,6 @@ VertexOut VertexOut::interpolate(const VertexOut &target, Ldouble factor) const 
     ret.pos = pos.interpolate(target.pos, factor);
     ret.oneDivZ = MathUtil::interpolate(oneDivZ , target.oneDivZ , factor);
     
-    
     Ldouble z1 = getZ();
     Ldouble z = ret.getZ();
     Ldouble z2 = target.getZ();
@@ -57,6 +56,7 @@ VertexOut VertexOut::interpolate(const VertexOut &target, Ldouble factor) const 
     }
     ret.color = color.interpolate(target.color, cfactor);
     ret.posTrans = posTrans.interpolate(target.posTrans , cfactor);
+    ret.tex = tex.interpolate(target.tex , cfactor);
     
     return ret;
 }

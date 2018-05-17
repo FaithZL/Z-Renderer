@@ -36,7 +36,25 @@ public:
     
     ~Bitmap();
     
-//    static Bitmap * create(const string &fileName);
+    inline unsigned char * getPixels() const {
+        return _pixels;
+    }
+    
+    inline Format getFormat() const {
+        return _format;
+    }
+    
+    inline int getWidth() const {
+        return  _width;
+    }
+    
+    inline int getHeight() const {
+        return _height;
+    }
+    
+    inline unsigned getSize() const {
+        return _width * _height * (int)_format;
+    }
     
     void init(int width , int height , Format format ,unsigned char * pixel);
     

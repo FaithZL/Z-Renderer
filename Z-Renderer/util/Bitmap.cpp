@@ -29,6 +29,8 @@ Bitmap::Bitmap(const string &fileName){
     unsigned char * pixels = stbi_load(getFullPath(fileName).c_str(), &width, &height , &channel , 0);
     if(!pixels)
         throw std::runtime_error(stbi_failure_reason());
+    u_int32_t *p = (u_int32_t *)pixels;
+    
     init(width , height, (Format)channel , pixels);
     stbi_image_free(pixels);
     _path = fileName;
