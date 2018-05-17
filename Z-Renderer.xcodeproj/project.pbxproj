@@ -50,12 +50,6 @@
 		F616D5D420ABF4600005B1B5 /* Rock-Texture-Surface.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D59C20ABF4600005B1B5 /* Rock-Texture-Surface.jpg */; };
 		F616D5D520ABF4600005B1B5 /* rock.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F616D59D20ABF4600005B1B5 /* rock.mtl */; };
 		F616D5D620ABF4600005B1B5 /* rock.obj in Resources */ = {isa = PBXBuildFile; fileRef = F616D59E20ABF4600005B1B5 /* rock.obj */; };
-		F616D5D720ABF4600005B1B5 /* _model.fs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A020ABF4600005B1B5 /* _model.fs */; };
-		F616D5D820ABF4600005B1B5 /* _model.vs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A120ABF4600005B1B5 /* _model.vs */; };
-		F616D5D920ABF4600005B1B5 /* _skyBox.fs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A220ABF4600005B1B5 /* _skyBox.fs */; };
-		F616D5DA20ABF4600005B1B5 /* _skyBox.vs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A320ABF4600005B1B5 /* _skyBox.vs */; };
-		F616D5DB20ABF4600005B1B5 /* _sprite.fs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A420ABF4600005B1B5 /* _sprite.fs */; };
-		F616D5DC20ABF4600005B1B5 /* _sprite.vs in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A520ABF4600005B1B5 /* _sprite.vs */; };
 		F616D5DD20ABF4600005B1B5 /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A720ABF4600005B1B5 /* back.jpg */; };
 		F616D5DE20ABF4600005B1B5 /* bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A820ABF4600005B1B5 /* bottom.jpg */; };
 		F616D5DF20ABF4600005B1B5 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A920ABF4600005B1B5 /* front.jpg */; };
@@ -140,12 +134,6 @@
 		F616D59C20ABF4600005B1B5 /* Rock-Texture-Surface.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Rock-Texture-Surface.jpg"; sourceTree = "<group>"; };
 		F616D59D20ABF4600005B1B5 /* rock.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock.mtl; sourceTree = "<group>"; };
 		F616D59E20ABF4600005B1B5 /* rock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock.obj; sourceTree = "<group>"; };
-		F616D5A020ABF4600005B1B5 /* _model.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _model.fs; sourceTree = "<group>"; };
-		F616D5A120ABF4600005B1B5 /* _model.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _model.vs; sourceTree = "<group>"; };
-		F616D5A220ABF4600005B1B5 /* _skyBox.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _skyBox.fs; sourceTree = "<group>"; };
-		F616D5A320ABF4600005B1B5 /* _skyBox.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _skyBox.vs; sourceTree = "<group>"; };
-		F616D5A420ABF4600005B1B5 /* _sprite.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _sprite.fs; sourceTree = "<group>"; };
-		F616D5A520ABF4600005B1B5 /* _sprite.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = _sprite.vs; sourceTree = "<group>"; };
 		F616D5A720ABF4600005B1B5 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
 		F616D5A820ABF4600005B1B5 /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
 		F616D5A920ABF4600005B1B5 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
@@ -228,7 +216,6 @@
 				F616D57520ABF4600005B1B5 /* nanosuit */,
 				F616D59720ABF4600005B1B5 /* planet */,
 				F616D59B20ABF4600005B1B5 /* rock */,
-				F616D59F20ABF4600005B1B5 /* shader */,
 				F616D5A620ABF4600005B1B5 /* skyBox */,
 				F616D5AD20ABF4600005B1B5 /* wooden-crate.jpg */,
 				F616D5AE20ABF4600005B1B5 /* WusonOBJ.obj */,
@@ -294,19 +281,6 @@
 				F616D59E20ABF4600005B1B5 /* rock.obj */,
 			);
 			path = rock;
-			sourceTree = "<group>";
-		};
-		F616D59F20ABF4600005B1B5 /* shader */ = {
-			isa = PBXGroup;
-			children = (
-				F616D5A020ABF4600005B1B5 /* _model.fs */,
-				F616D5A120ABF4600005B1B5 /* _model.vs */,
-				F616D5A220ABF4600005B1B5 /* _skyBox.fs */,
-				F616D5A320ABF4600005B1B5 /* _skyBox.vs */,
-				F616D5A420ABF4600005B1B5 /* _sprite.fs */,
-				F616D5A520ABF4600005B1B5 /* _sprite.vs */,
-			);
-			path = shader;
 			sourceTree = "<group>";
 		};
 		F616D5A620ABF4600005B1B5 /* skyBox */ = {
@@ -493,19 +467,14 @@
 				F616D5B020ABF4600005B1B5 /* arm_dif.png in Resources */,
 				F616D5CA20ABF4600005B1B5 /* helmet_showroom_spec.png in Resources */,
 				F616D5CE20ABF4600005B1B5 /* leg_showroom_spec.png in Resources */,
-				F616D5DB20ABF4600005B1B5 /* _sprite.fs in Resources */,
 				F616D5B820ABF4600005B1B5 /* body_showroom_spec.png in Resources */,
 				F616D5CC20ABF4600005B1B5 /* leg_showroom_ddn.png in Resources */,
-				F616D5D820ABF4600005B1B5 /* _model.vs in Resources */,
 				F616D5D020ABF4600005B1B5 /* nanosuit.obj in Resources */,
 				F616D5B920ABF4600005B1B5 /* cell_arm_alpha.png in Resources */,
-				F616D5D720ABF4600005B1B5 /* _model.fs in Resources */,
-				F616D5DC20ABF4600005B1B5 /* _sprite.vs in Resources */,
 				F616D5BB20ABF4600005B1B5 /* cell_ddn.png in Resources */,
 				F616D5BA20ABF4600005B1B5 /* cell_body_alpha.png in Resources */,
 				F616D5D620ABF4600005B1B5 /* rock.obj in Resources */,
 				F616D5C420ABF4600005B1B5 /* hand_showroom_ddn.png in Resources */,
-				F616D5DA20ABF4600005B1B5 /* _skyBox.vs in Resources */,
 				F616D5DF20ABF4600005B1B5 /* front.jpg in Resources */,
 				F616D5B720ABF4600005B1B5 /* body_showroom_refl.png in Resources */,
 				F616D5E220ABF4600005B1B5 /* top.jpg in Resources */,
@@ -528,7 +497,6 @@
 				F616D5E120ABF4600005B1B5 /* right.jpg in Resources */,
 				F616D5AF20ABF4600005B1B5 /* box.obj in Resources */,
 				F616D5CF20ABF4600005B1B5 /* nanosuit.mtl in Resources */,
-				F616D5D920ABF4600005B1B5 /* _skyBox.fs in Resources */,
 				F616D5C020ABF4600005B1B5 /* glass_ddn.png in Resources */,
 				F616D5BF20ABF4600005B1B5 /* front.jpg in Resources */,
 				F616D5C720ABF4600005B1B5 /* helmet_diff.png in Resources */,
