@@ -28,8 +28,12 @@ Color Texture::sample(double u, double v) const {
     int tu = u * (width - 1);
     int tv = v * (height - 1);
     int index = (width * tv * (int)format) + tu * (int)format;
-    uint32_t colorBit = pixel[index];
-    return Color((uint32_t)colorBit);
+    Color ret;
+    int stride = (int)format;
+    for (int i = 0; i < stride; ++ i) {
+        ret.e[i] = pixel[index + i] / 255.0;
+    }
+    return ret;
 }
 
 Texture * Texture::create(const std::string &fileName) {

@@ -60,6 +60,7 @@
 		F616D5E420ABF4600005B1B5 /* WusonOBJ.obj in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AE20ABF4600005B1B5 /* WusonOBJ.obj */; };
 		F616D5E720AC7FE50005B1B5 /* fileUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = F616D5E620AC7FE50005B1B5 /* fileUtil.mm */; };
 		F616D5EC20AD4BFA0005B1B5 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D5EB20AD4BF90005B1B5 /* HelloWorld.png */; };
+		F616D5EE20ADD82A0005B1B5 /* skeleton.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D5ED20ADD8290005B1B5 /* skeleton.png */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -145,6 +146,7 @@
 		F616D5E620AC7FE50005B1B5 /* fileUtil.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = fileUtil.mm; sourceTree = "<group>"; };
 		F616D5E820AC806D0005B1B5 /* fileUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fileUtil.hpp; sourceTree = "<group>"; };
 		F616D5EB20AD4BF90005B1B5 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
+		F616D5ED20ADD8290005B1B5 /* skeleton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skeleton.png; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		F616D57320ABF4600005B1B5 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				F616D5ED20ADD8290005B1B5 /* skeleton.png */,
 				F616D5EB20AD4BF90005B1B5 /* HelloWorld.png */,
 				F616D57420ABF4600005B1B5 /* box.obj */,
 				F616D57520ABF4600005B1B5 /* nanosuit */,
@@ -477,6 +480,7 @@
 				F616D5C420ABF4600005B1B5 /* hand_showroom_ddn.png in Resources */,
 				F616D5DF20ABF4600005B1B5 /* front.jpg in Resources */,
 				F616D5B720ABF4600005B1B5 /* body_showroom_refl.png in Resources */,
+				F616D5EE20ADD82A0005B1B5 /* skeleton.png in Resources */,
 				F616D5E220ABF4600005B1B5 /* top.jpg in Resources */,
 				F616D5D120ABF4600005B1B5 /* planet.mtl in Resources */,
 				F616D5C620ABF4600005B1B5 /* hand_showroom_spec.png in Resources */,

@@ -32,7 +32,8 @@ _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
     
-    _texture = Texture::create("HelloWorld.png");
+    _texture = Texture::create("wooden-crate.jpg");
+//    _texture = Texture::create("skeleton.png");
     
     _node.push_back(Box::create());
 }

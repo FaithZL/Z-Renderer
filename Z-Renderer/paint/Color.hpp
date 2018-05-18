@@ -16,10 +16,15 @@
 class Color {
     
 public:
-    Ldouble r;
-    Ldouble g;
-    Ldouble b;
-    Ldouble a;
+    union {
+        struct {
+            Ldouble r;
+            Ldouble g;
+            Ldouble b;
+            Ldouble a;
+        };
+        Ldouble e[4];
+    };
     
     Color(Ldouble r = 1.0f , Ldouble g = 1.0f , Ldouble b = 1.0f , Ldouble a = 1.0f):
     r(r),
@@ -30,10 +35,10 @@ public:
     }
     
     Color(uint32_t rgba){
-        r = ((rgba & 0x00ff0000) >> 16) / 255.0f;
-        g = ((rgba & 0x0000ff00) >> 8) / 255.0f;
-        b = ((rgba & 0x000000ff)) / 255.0f;
-        a = ((rgba & 0xff000000) >> 24) / 255.0f;
+        r = ((rgba & 0xff000000) >> 24) / 255.0f;
+        g = ((rgba & 0x00ff0000) >> 16) / 255.0f;
+        b = ((rgba & 0x0000ff00) >> 8) / 255.0f;
+        a = (rgba & 0x000000ff) / 255.0f;
     }
     
     static Color randomColor() {
