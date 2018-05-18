@@ -22,8 +22,6 @@ public:
     Box();
     ~Box();
     
-    Shader * _shader;
-    
     static Box * create() {
         Box *ret = new Box();
         ret->init();
@@ -41,3 +39,12 @@ protected:
 };
 
 #endif /* Box_hpp */
+
+
+
+
+
+
+
+
+

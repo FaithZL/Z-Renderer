@@ -77,6 +77,24 @@ void Canvas::unlock() {
     SDL_UnlockSurface(_surface);
 }
 
+void Canvas::drawArray(const vector<Vertex> &verts) {
+    for (int i = 0 ; i < verts.size() ; i = i + 3) {
+        const Vertex &v1 = verts.at(i);
+        const Vertex &v2 = verts.at(i + 1);
+        const Vertex &v3 = verts.at(i + 2);
+        drawTriangle(v1 , v2, v3);
+    }
+}
+
+void Canvas::drawElement(const vector<Vertex> &verts, const vector<int> &indice) {
+    for (int i = 0 ; i < indice.size() ; i = i + 3) {
+        const Vertex &v1 = verts.at(indice.at(i));
+        const Vertex &v2 = verts.at(indice.at(i + 1));
+        const Vertex &v3 = verts.at(indice.at(i + 2));
+        drawTriangle(v1 , v2 , v3);
+    }
+}
+
 void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     VertexOut vOut1 = handleVertex(v1);
     VertexOut vOut2 = handleVertex(v2);
@@ -85,6 +103,7 @@ void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) 
     if (isClip(vOut1.pos)
         || isClip(vOut2.pos)
         || isClip(vOut3.pos)) {
+        //简单粗暴的裁剪，完成主干之后再
         return;
     }
     

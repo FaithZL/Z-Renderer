@@ -70,6 +70,10 @@ public:
         return _drawMode;
     }
     
+    void drawArray(const vector<Vertex> &verts);
+    
+    void drawElement(const vector<Vertex> &verts , const vector<int> &indice);
+    
     VertexOut handleVertex(const Vertex &vert) const;
     
     void transformToScrn(VertexOut &vert) const;
@@ -111,7 +115,7 @@ public:
         return z <= _depthBuffer[index];
     }
     
-    inline void setShader(Shader * shader) {
+    inline void setShader(const Shader * shader) {
         _shader = shader;
     }
     
@@ -140,6 +144,7 @@ public:
     }
     
 protected:
+
     
     Canvas(int width = 800 , int height = 600);
     
@@ -181,7 +186,7 @@ protected:
     
     static Canvas * s_pCanvas;
     
-    Shader * _shader;
+    Shader const  * _shader;
     
     int _bufferSize;
     

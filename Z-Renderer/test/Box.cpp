@@ -10,8 +10,7 @@
 #include "Camera.hpp"
 #include "Canvas.hpp"
 
-Box::Box():
-_shader(nullptr) {
+Box::Box() {
     
 }
 
@@ -21,7 +20,7 @@ Box::~Box() {
 
 void Box::updateTransform(double dt) {
     double velo = 45;
-//    _rotate.y += velo * dt;
+    _rotate.y += velo * dt;
     if (_rotate.y > 360) {
         _rotate.y -= 360;
     }
@@ -113,15 +112,9 @@ void Box::init() {
 }
 
 void Box::draw(Ldouble dt) {
-    updateTransform(dt);
-    auto canvas = Canvas::getInstance();
-    canvas->setShader(_shader);
-    for (int i = 0; i < 36; i += 3) {
-        canvas->drawTriangle(_vertice[i], _vertice[i+1], _vertice[i+2]);
-        if (i > 5) {
-            break;
-        }
-    }
+    begin(dt);
+    Canvas::getInstance()->drawArray(_vertice);
+    end();
 }
 
 

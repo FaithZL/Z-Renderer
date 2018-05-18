@@ -20,14 +20,21 @@ VertexOut Shader::vs(const Vertex &vert) const {
     return vOut;
 }
 
+void Shader::use() const {
+    Canvas::getInstance()->setShader(this);
+}
+
+void Shader::unUse() const {
+    Canvas::getInstance()->setShader(nullptr);
+}
+
 Color Shader::fs(const VertexOut &vert) const {
-//    Color ret = vert.color;
     
     auto texture = Canvas::getInstance()->getTexture();
     
     auto ret = texture->sample(vert.tex.u, vert.tex.v);
     
-    
+    ret = vert.color;
     
     return ret;
 }

@@ -44,6 +44,10 @@ public:
         updateMvp();
     }
     
+    virtual void use() const;
+    
+    virtual void unUse() const;
+    
     virtual void setModelMat(const Mat4 &mat) {
         _model = mat;
         updateMv();
