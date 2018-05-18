@@ -95,6 +95,23 @@ void Canvas::drawElement(const vector<Vertex> &verts, const vector<int> &indice)
     }
 }
 
+bool Canvas::isBack(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) const {
+    
+    const Vec3 &pos1 = v1.posTrans.getVec3();
+    const Vec3 &pos2 = v2.posTrans.getVec3();
+    const Vec3 &pos3 = v3.posTrans.getVec3();
+    
+    Vec3 v12 = pos2 - pos1;
+    Vec3 v23 = pos3 - pos2;
+    
+    Vec3 crs = v12.cross(v23);
+    
+    Vec3 pos = Camera::getInstance()->getPosition();
+    Vec3 dir = pos1 - pos;
+    
+    return dir.dot(crs) > 0;
+}
+
 void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     VertexOut vOut1 = handleVertex(v1);
     VertexOut vOut2 = handleVertex(v2);
@@ -121,6 +138,11 @@ void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) 
 }
 
 void Canvas::_triangleRasterize(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) {
+    
+    if (isBack(v1, v2, v3)) {
+        return;
+    }
+    
     VertexOut const * pVert1 = &v1;
     VertexOut const * pVert2 = &v2;
     VertexOut const * pVert3 = &v3;

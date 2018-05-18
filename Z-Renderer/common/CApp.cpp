@@ -151,7 +151,7 @@ int CApp::OnExecute()
         
 		OnUpdate(dt);
         OnRender(dt);
-        sprintf(pTitle , "%f" , dt);
+        sprintf(pTitle , "%d fps" , int(1 / dt));
         SDL_SetWindowTitle(window ,pTitle);
         _time = curTime;
 	}
