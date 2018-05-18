@@ -33,81 +33,69 @@ void Box::updateTransform(double dt) {
 }
 
 void Box::init() {
+
+    double a[] = {
+        //  X     Y     Z       U     V          Normal
+        // bottom
+        -1.0f,-1.0f,-1.0f,   0.0f, 0.0f,   0.0f, -1.0f, 0.0f,
+        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   0.0f, -1.0f, 0.0f,
+        -1.0f,-1.0f, 1.0f,   0.0f, 1.0f,   0.0f, -1.0f, 0.0f,
+        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   0.0f, -1.0f, 0.0f,
+        1.0f,-1.0f, 1.0f,   1.0f, 1.0f,   0.0f, -1.0f, 0.0f,
+        -1.0f,-1.0f, 1.0f,   0.0f, 1.0f,   0.0f, -1.0f, 0.0f,
+        
+        // top
+        -1.0f, 1.0f,-1.0f,   0.0f, 0.0f,   0.0f, 1.0f, 0.0f,
+        -1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   0.0f, 1.0f, 0.0f,
+        1.0f, 1.0f,-1.0f,   1.0f, 0.0f,   0.0f, 1.0f, 0.0f,
+        1.0f, 1.0f,-1.0f,   1.0f, 0.0f,   0.0f, 1.0f, 0.0f,
+        -1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   0.0f, 1.0f, 0.0f,
+        1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   0.0f, 1.0f, 0.0f,
+        
+        // front
+        -1.0f,-1.0f, 1.0f,   1.0f, 0.0f,   0.0f, 0.0f, 1.0f,
+        1.0f,-1.0f, 1.0f,   0.0f, 0.0f,   0.0f, 0.0f, 1.0f,
+        -1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   0.0f, 0.0f, 1.0f,
+        1.0f,-1.0f, 1.0f,   0.0f, 0.0f,   0.0f, 0.0f, 1.0f,
+        1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   0.0f, 0.0f, 1.0f,
+        -1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   0.0f, 0.0f, 1.0f,
+        
+        // back
+        -1.0f,-1.0f,-1.0f,   0.0f, 0.0f,   0.0f, 0.0f, -1.0f,
+        -1.0f, 1.0f,-1.0f,   0.0f, 1.0f,   0.0f, 0.0f, -1.0f,
+        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   0.0f, 0.0f, -1.0f,
+        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   0.0f, 0.0f, -1.0f,
+        -1.0f, 1.0f,-1.0f,   0.0f, 1.0f,   0.0f, 0.0f, -1.0f,
+        1.0f, 1.0f,-1.0f,   1.0f, 1.0f,   0.0f, 0.0f, -1.0f,
+        
+        // left
+        -1.0f,-1.0f, 1.0f,   0.0f, 1.0f,   -1.0f, 0.0f, 0.0f,
+        -1.0f, 1.0f,-1.0f,   1.0f, 0.0f,   -1.0f, 0.0f, 0.0f,
+        -1.0f,-1.0f,-1.0f,   0.0f, 0.0f,   -1.0f, 0.0f, 0.0f,
+        -1.0f,-1.0f, 1.0f,   0.0f, 1.0f,   -1.0f, 0.0f, 0.0f,
+        -1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   -1.0f, 0.0f, 0.0f,
+        -1.0f, 1.0f,-1.0f,   1.0f, 0.0f,   -1.0f, 0.0f, 0.0f,
+        
+        // right
+        1.0f,-1.0f, 1.0f,   1.0f, 1.0f,   1.0f, 0.0f, 0.0f,
+        1.0f,-1.0f,-1.0f,   1.0f, 0.0f,   1.0f, 0.0f, 0.0f,
+        1.0f, 1.0f,-1.0f,   0.0f, 0.0f,   1.0f, 0.0f, 0.0f,
+        1.0f,-1.0f, 1.0f,   1.0f, 1.0f,   1.0f, 0.0f, 0.0f,
+        1.0f, 1.0f,-1.0f,   0.0f, 0.0f,   1.0f, 0.0f, 0.0f,
+        1.0f, 1.0f, 1.0f,   0.0f, 1.0f,   1.0f, 0.0f, 0.0f
+    };
+    
+    unsigned size = sizeof(a) / sizeof(double);
+    
+    for (int i = 0 ; i < size ; i = i + 8) {
+        Vertex v = Vertex(Vec3(a[i] , a[i + 1] , a[i + 2]),
+                          Color(1 , 0 , 0 , 0),
+                          Vec3(a[i + 5] , a[i + 6] , a[i + 7]),
+                          Vec2(a[i + 3] , a[i + 4]));
+        _vertice.push_back(v);
+    }
     
     _shader = Shader::create();
-    
-    Vertex v1 = Vertex(Vec3(1 , 1, 1), Color(1 , 0 , 0 , 0));
-    Vertex v2 = Vertex(Vec3(-1 , 1, 1), Color(0 , 1 , 0 , 0));
-    Vertex v3 = Vertex(Vec3(-1 , -1, 1), Color(0 , 0 , 1 , 0));
-    Vertex v4 = Vertex(Vec3(1 , -1, 1), Color(1 , 0 , 0 , 0));
-    Vertex v1_ = Vertex(Vec3(1 , 1, -1), Color(0 , 1 , 0 , 0));
-    Vertex v2_ = Vertex(Vec3(-1 , 1, -1), Color(0 , 0 , 1 , 0));
-    Vertex v3_ = Vertex(Vec3(-1 , -1, -1), Color(1 , 0 , 0 , 0));
-    Vertex v4_ = Vertex(Vec3(1 , -1, -1), Color(1 , 0 , 1 , 0));
-    
-    v1.tex = Vec2(1 , 1);
-    v2.tex = Vec2(0 , 1);
-    v3.tex = Vec2(0 , 0);
-    v4.tex = Vec2(1 , 0);
-    
-    _position = Vec3(0 , 0 , -3);
-    
-    _vertice.resize(36);
-    
-    
-    // 前面
-    _vertice[0] = v1;
-    _vertice[1] = v2;
-    _vertice[2] = v3;
-    
-    _vertice[3] = v1;
-    _vertice[4] = v3;
-    _vertice[5] = v4;
-    
-    //后面
-    _vertice[6] = v1_;
-    _vertice[7] = v2_;
-    _vertice[8] = v3_;
-    
-    _vertice[9] = v1_;
-    _vertice[10] = v3_;
-    _vertice[11] = v4_;
-    
-    //左面
-    _vertice[12] = v2;
-    _vertice[13] = v3;
-    _vertice[14] = v3_;
-    
-    _vertice[15] = v3_;
-    _vertice[16] = v2_;
-    _vertice[17] = v2;
-    
-    //右面
-    _vertice[18] = v1;
-    _vertice[19] = v4;
-    _vertice[20] = v4_;
-
-    _vertice[21] = v1_;
-    _vertice[22] = v4_;
-    _vertice[23] = v1; 
-
-    //上面
-    _vertice[24] = v1;   
-    _vertice[25] = v2;   
-    _vertice[26] = v1_;
-
-    _vertice[27] = v1_;   
-    _vertice[28] = v2_;   
-    _vertice[29] = v2;
-
-    //下面   
-    _vertice[30] = v3;   
-    _vertice[31] = v4;   
-    _vertice[32] = v3_;   
-
-    _vertice[33] = v3_;   
-    _vertice[34] = v4_;   
-    _vertice[35] = v4;   
 
 }
 

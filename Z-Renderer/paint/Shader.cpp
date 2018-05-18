@@ -34,7 +34,7 @@ Color Shader::fs(const VertexOut &vert) const {
     
     auto ret = texture->sample(vert.tex.u, vert.tex.v);
     
-    ret = vert.color;
+//    ret = vert.color;
     
     return ret;
 }
