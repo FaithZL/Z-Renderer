@@ -103,7 +103,7 @@ void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) 
     if (isClip(vOut1.pos)
         || isClip(vOut2.pos)
         || isClip(vOut3.pos)) {
-        //简单粗暴的裁剪，完成主干之后再
+        //简单粗暴的裁剪，完成主干之后再优化
         return;
     }
     
