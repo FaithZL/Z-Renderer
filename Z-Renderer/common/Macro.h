@@ -9,6 +9,11 @@
 #ifndef ZMath_h
 #define ZMath_h
 
+#define create_func(type) static type * create() { \
+auto ret = new type(); \
+return ret; \
+}
+
 #define Setter_and_getter_vec3(varName , funcName) \
 public : inline void set##funcName(const Vec3 &val) { \
     this->varName = val; \

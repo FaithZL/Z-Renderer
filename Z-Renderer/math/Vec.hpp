@@ -22,19 +22,24 @@ public:
     union {
         Ldouble u;
         Ldouble x;
+        Ldouble r;
     };
     
     union {
         Ldouble v;
         Ldouble y;
+        Ldouble g;
     };
     
     union {
         Ldouble w;
         Ldouble z;
+        Ldouble b;
     };
     
     Ldouble dot(const Vec3 &other) const;
+    
+    Vec3 reflect(const Vec3 &normal) const;
     
     Vec3 cross(const Vec3 &other) const;
     

@@ -37,8 +37,12 @@ public:
 
     Color color;
     
+    Vec3 normal;
+    
     //相机空间坐标
     Vec4 posTrans;
+    
+    Vec4 posWorld;
     
     Vec4 pos;
     

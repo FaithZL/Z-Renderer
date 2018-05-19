@@ -95,8 +95,21 @@ void Box::init() {
         _vertice.push_back(v);
     }
     
-    _shader = Shader::create();
+    Light light;
+    light.pos = Vec3(0 , 0 , 9);
+    light.color = Color(1 , 1 , 1 , 1);
+    
+    Material material;
+    material.diffuse = Color(1 , 1 , 1 , 1);
+    material.ambient = Color(0.12 , 0.12 , 0.12 , 1);
+    material.shininess = 32;
+    material.specular = Color(1 , 1 , 1 , 1);
+    
+    _shader = BoxShader::create();
 
+    (static_cast<BoxShader *>(_shader))->setMaterial(material);
+    
+    (static_cast<BoxShader *>(_shader))->setLight(light);
 }
 
 void Box::draw(Ldouble dt) {

@@ -15,6 +15,12 @@ z(z){
     
 }
 
+Vec3 Vec3::reflect(const Vec3 &normal) const {
+    Vec3 I = getNormalize();
+    float tmp = 2.f * I.dot(normal);
+    return I - (normal * tmp);
+}
+
 Ldouble Vec3::dot(const Vec3 &other) const {
     return x * other.x + y * other.y + z *other.z;
 }

@@ -10,27 +10,52 @@
 #define BoxShader_hpp
 
 #include "Shader.hpp"
+#include "Macro.h"
 
 struct Light {
     Vec3 pos;
     Color color;
 };
 
-struct Mertial {
+struct Material {
     // 环境光
-    Vec3 ambient;
+    Color ambient;
     // 漫反射
-    Vec3 diffuse;
+    Color diffuse;
     // 高光反射
-    Vec3 specular;
-    // 
-    Vec3 shininess;
+    Color specular;
+    //
+    double shininess;
 };
 
 class BoxShader : public Shader {
     
 public:
     
+    create_func(BoxShader)
+    
+    void setMaterial(const Material &material);
+    
+    void setLight(const Light &light);
+    
+    virtual VertexOut vs(const Vertex &vertex) const;
+    
+    virtual Color fs(const VertexOut &vOut) const;
+    
+protected:
+    Material _material;
+    
+    Light _light;
 };
 
 #endif /* BoxShader_hpp */
+
+
+
+
+
+
+
+
+
+

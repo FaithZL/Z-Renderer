@@ -10,7 +10,7 @@
 #define Box_hpp
 
 #include "Vertex.hpp"
-#include "Shader.hpp"
+#include "BoxShader.hpp"
 #include <vector>
 #include "Node.hpp"
 
