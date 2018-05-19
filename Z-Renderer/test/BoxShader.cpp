@@ -34,7 +34,21 @@ Color BoxShader::fs(const VertexOut &frag) const {
     double cosTheta = ray.dot(normal);
     double diff = max(cosTheta , (double)0.0f);
     Color diffuse = _light.color * diff;
+    
+    //处理高光
+    Vec3 cameraPos = Camera::getInstance()->getPosition();
+    Vec3 viewDir = (cameraPos - fragPos).getNormalize();
+    Vec3 reflectDir = (-ray).reflect(normal);
+    
+    auto spec = pow(max(viewDir.dot(reflectDir), 0.0), 64);
+    Color specular = _light.color * spec;
 
-    return fragColor * (ambient + diffuse);
+    return fragColor * (ambient + specular);
 }
+
+
+
+
+
+
 
