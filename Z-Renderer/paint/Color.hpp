@@ -31,7 +31,14 @@ public:
     g(g),
     b(b),
     a(a){
-        
+        format();
+    }
+    
+    inline void format() {
+        r = fmin(r, (Ldouble)1.0f);
+        g = fmin(g, (Ldouble)1.0f);
+        b = fmin(b, (Ldouble)1.0f);
+        a = fmin(a, (Ldouble)1.0f);
     }
     
     Color(uint32_t rgba){
@@ -49,10 +56,16 @@ public:
     };
     
     uint32_t uint32() const {
-        uint32_t R = (uint32_t)(r * 255.0f);
-        uint32_t G = (uint32_t)(g * 255.0f);
-        uint32_t B = (uint32_t)(b * 255.0f);
-        uint32_t A = (uint32_t)(a * 255.0f);
+        
+        double fr = fmin(r, (Ldouble)1.0f);
+        double fg = fmin(g, (Ldouble)1.0f);
+        double fb = fmin(b, (Ldouble)1.0f);
+        double fa = fmin(a, (Ldouble)1.0f);
+        
+        uint32_t R = (uint32_t)(fr * 255.0f);
+        uint32_t G = (uint32_t)(fg * 255.0f);
+        uint32_t B = (uint32_t)(fb * 255.0f);
+        uint32_t A = (uint32_t)(fa * 255.0f);
         uint32_t value =B | (G << 8) | (R << 16) | (A << 24);
         return value;
     }

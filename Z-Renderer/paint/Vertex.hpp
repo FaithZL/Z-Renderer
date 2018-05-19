@@ -42,7 +42,7 @@ public:
     //相机空间坐标
     Vec4 posTrans;
     
-    Vec4 posWorld;
+    Vec3 posWorld;
     
     Vec4 pos;
     

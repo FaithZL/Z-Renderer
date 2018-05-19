@@ -14,8 +14,8 @@ VertexOut Shader::vs(const Vertex &vert) const {
     auto temp = Vec4(vert.pos , 1.0f);
     vOut.posTrans = _mv.transform(temp);
     vOut.pos = _mvp.transform(Vec4(vert.pos , 1.0f));
-    vOut.posWorld = _model.transform(Vec4(vert.pos , 1.0f));
-    vOut.normal = _model.transform(Vec4(vert.normal , 0)).get3DNormal();
+    vOut.posWorld = _model.transform(Vec4(vert.pos , 1.0f)).get3DNormal();
+    vOut.normal = _model.transform(Vec4(vert.normal , 0)).getVec3();
     vOut.color = vert.color;
     vOut.tex = vert.tex;
     

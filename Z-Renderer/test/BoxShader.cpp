@@ -8,6 +8,7 @@
 
 #include "BoxShader.hpp"
 #include "Canvas.hpp"
+#include <algorithm>
 
 void BoxShader::setLight(const Light &light) {
     _light = light;
@@ -23,14 +24,17 @@ VertexOut BoxShader::vs(const Vertex &vertex) const {
 
 Color BoxShader::fs(const VertexOut &frag) const {
     auto texture = Canvas::getInstance()->getTexture();
-    auto texColor = texture->sample(frag.tex.u, frag.tex.v);
-    Color ambient = texColor * _material.ambient;
+    auto fragColor = texture->sample(frag.tex.u, frag.tex.v);
+    Color ambient = _material.ambient;
     
-    Vec4 fragPos = frag.posWorld;
-    Vec3 normal = frag.normal;
+    Vec3 fragPos = frag.posWorld;
+    Vec3 normal = frag.normal.getNormalize();
     
-    
-    
-    return ambient;
+    Vec3 ray = (_light.pos - fragPos).getNormalize();
+    double cosTheta = ray.dot(normal);
+    double diff = max(cosTheta , (double)0.0f);
+    Color diffuse = _light.color * diff;
+
+    return fragColor * (ambient + diffuse);
 }
 
