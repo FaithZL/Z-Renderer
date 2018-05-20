@@ -12,6 +12,7 @@
 #include "Box.hpp"
 #include <iostream>
 #include "Bitmap.hpp"
+#include "Sprite3D.hpp"
 
 using namespace std;
 
@@ -34,6 +35,9 @@ _shader(nullptr) {
     
     _texture = Texture::create("wooden-crate.jpg");
 //    _texture = Texture::create("skeleton.png");
+    
+    auto sp = Sprite3D::create("box.obj");
+    
     
     _node.push_back(Box::create());
 }

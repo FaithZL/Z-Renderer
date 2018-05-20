@@ -36,10 +36,6 @@ public:
     
     create_func(BoxShader)
     
-    inline void init() {
-        
-    }
-    
     void setMaterial(const Material &material);
     
     void setLight(const Light &light);

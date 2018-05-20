@@ -13,7 +13,7 @@
 #include "Ref.hpp"
 #include "Texture.hpp"
 #include <vector>
-
+#include "Shader.hpp"
 
 class Sprite3D;
 
@@ -27,7 +27,18 @@ public:
     
     void init(const vector<Vertex> &vertice , const vector<int> &indice , const vector<Texture *> &textures);
     
+    Mesh(){
+        
+    }
+    
+    Mesh(const vector<Vertex> &vertice , const vector<int> &indice , const vector<Texture *> &textures) {
+        init(vertice, indice, textures);
+    }
+    
+    void draw(Shader * shader) const;
+    
 protected:
+    void setUp();
     
     vector<Vertex> _vertice;
     

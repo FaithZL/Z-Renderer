@@ -73,6 +73,7 @@
 		F61AEC1920B197EF00DD8F80 /* vector3.inl in Resources */ = {isa = PBXBuildFile; fileRef = F61AEC1120B197EE00DD8F80 /* vector3.inl */; };
 		F61AEC1D20B19CCC00DD8F80 /* libassimp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F61AEC1C20B19CCC00DD8F80 /* libassimp.a */; };
 		F61AEC2720B1B2BD00DD8F80 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F61AEC2620B1B2BD00DD8F80 /* libz.1.2.5.dylib */; };
+		F61AEC2A20B1BE8000DD8F80 /* Sprite3DShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61AEC2820B1BE8000DD8F80 /* Sprite3DShader.cpp */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -210,6 +211,8 @@
 		F61AEC1220B197EE00DD8F80 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		F61AEC1C20B19CCC00DD8F80 /* libassimp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libassimp.a; path = "Z-Renderer/lib/libassimp.a"; sourceTree = "<group>"; };
 		F61AEC2620B1B2BD00DD8F80 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = ../../../../../../usr/lib/libz.1.2.5.dylib; sourceTree = "<group>"; };
+		F61AEC2820B1BE8000DD8F80 /* Sprite3DShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite3DShader.cpp; sourceTree = "<group>"; };
+		F61AEC2920B1BE8000DD8F80 /* Sprite3DShader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite3DShader.hpp; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -372,6 +375,8 @@
 				F61AEBE020B1272800DD8F80 /* Mesh.hpp */,
 				F61AEBE320B1296100DD8F80 /* Sprite3D.cpp */,
 				F61AEBE420B1296100DD8F80 /* Sprite3D.hpp */,
+				F61AEC2820B1BE8000DD8F80 /* Sprite3DShader.cpp */,
+				F61AEC2920B1BE8000DD8F80 /* Sprite3DShader.hpp */,
 			);
 			path = 3D;
 			sourceTree = "<group>";
@@ -683,6 +688,7 @@
 				F6464D13209B5FBF0019A75F /* Box.cpp in Sources */,
 				F616D56E20AB2FA70005B1B5 /* Bitmap.cpp in Sources */,
 				F6758CF02089BA570036A8E8 /* Vec.cpp in Sources */,
+				F61AEC2A20B1BE8000DD8F80 /* Sprite3DShader.cpp in Sources */,
 				F6758CEC2089B9030036A8E8 /* Canvas.cpp in Sources */,
 				F61AEBE520B1296100DD8F80 /* Sprite3D.cpp in Sources */,
 				F6464D19209D66800019A75F /* Mat4.cpp in Sources */,

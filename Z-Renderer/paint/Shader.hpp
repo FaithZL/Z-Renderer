@@ -27,6 +27,10 @@ public:
         
     }
     
+    virtual void init() {
+        
+    }
+    
     static Shader * create() {
         auto ret = new Shader();
         return ret;

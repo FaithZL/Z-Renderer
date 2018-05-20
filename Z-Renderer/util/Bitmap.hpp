@@ -58,6 +58,10 @@ public:
     
     void init(int width , int height , Format format ,unsigned char * pixel);
     
+    inline std::string getFileName() const {
+        return _path;
+    }
+    
 protected:
     
     string _path;

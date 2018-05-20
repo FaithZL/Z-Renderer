@@ -12,20 +12,29 @@
 #include <stdio.h>
 #include "Node.hpp"
 #include "Mesh.hpp"
+#include "Sprite3DShader.hpp"
+
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
 class Sprite3D : public Node {
-    
+
+public:
     static Sprite3D * create(const std::string &fileName);
     
-    void init();
+    void init(const std::string &fileName);
     
+    void handleNode(const aiNode * node , const aiScene * scene);
     
+    Mesh handleMesh(const aiMesh * mesh , const aiScene * scene);
     
-public:
-    vector<Mesh> meshes;
+    virtual void draw(double dt) const;
+    
+protected:
+    vector<Mesh> _meshes;
+    
+    std::string _fileName;
 };
 
 #endif /* Sprite3D_hpp */

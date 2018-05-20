@@ -25,6 +25,10 @@ public:
     
     static Texture * create(const std::string &fileName);
     
+    inline std::string getFileName() const {
+        return _bitmap->getFileName();
+    }
+    
 protected:
     
     Bitmap * _bitmap;
