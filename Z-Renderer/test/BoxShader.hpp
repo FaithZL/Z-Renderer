@@ -15,17 +15,19 @@
 struct Light {
     Vec3 pos;
     Color color;
+    Ldouble factor;
+};
+
+struct Ambient {
+    Color color;
+    Ldouble factor;
 };
 
 struct Material {
-    // 环境光
-    Color ambient;
-    // 漫反射
-    Color diffuse;
-    // 高光反射
-    Color specular;
+    Ldouble diffuseFactor;
+    Ldouble specularFactor;
     //
-    double shininess;
+    Ldouble shininess;
 };
 
 class BoxShader : public Shader {
@@ -38,12 +40,16 @@ public:
     
     void setLight(const Light &light);
     
+    void setAmbient(const Ambient &ambient);
+    
     virtual VertexOut vs(const Vertex &vertex) const;
     
     virtual Color fs(const VertexOut &vOut) const;
     
 protected:
     Material _material;
+    
+    Ambient _ambient;
     
     Light _light;
 };

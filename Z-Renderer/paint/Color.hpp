@@ -31,14 +31,6 @@ public:
     g(g),
     b(b),
     a(a){
-        format();
-    }
-    
-    inline void format() {
-        r = fmin(r, (Ldouble)1.0f);
-        g = fmin(g, (Ldouble)1.0f);
-        b = fmin(b, (Ldouble)1.0f);
-        a = fmin(a, (Ldouble)1.0f);
     }
     
     Color(uint32_t rgba){

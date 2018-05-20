@@ -20,7 +20,7 @@ Box::~Box() {
 
 void Box::updateTransform(double dt) {
     double velo = 45;
-    _rotate.y += velo * dt;
+//    _rotate.y += velo * dt;
     if (_rotate.y > 360) {
         _rotate.y -= 360;
     }
@@ -95,21 +95,24 @@ void Box::init() {
         _vertice.push_back(v);
     }
     
+    Ambient ambient;
+    ambient.color = Color(1,1,1,1);
+    ambient.factor = 0.15;
+    
     Light light;
     light.pos = Vec3(0 , 0 , 9);
     light.color = Color(1 , 1 , 1 , 1);
+    light.factor = 1.95;
     
     Material material;
-    material.diffuse = Color(1 , 1 , 1 , 1);
-    material.ambient = Color(0.12 , 0.12 , 0.12 , 1);
-    material.shininess = 32;
-    material.specular = Color(1 , 1 , 1 , 1);
+    material.diffuseFactor = 0.1;
+    material.specularFactor = 0.8;
+    material.shininess = 64;
     
     _shader = BoxShader::create();
-
-    (static_cast<BoxShader *>(_shader))->setMaterial(material);
-    
-    (static_cast<BoxShader *>(_shader))->setLight(light);
+    static_cast<BoxShader *>(_shader)->setMaterial(material);
+    static_cast<BoxShader *>(_shader)->setLight(light);
+    static_cast<BoxShader *>(_shader)->setAmbient(ambient);
 }
 
 void Box::draw(Ldouble dt) {
