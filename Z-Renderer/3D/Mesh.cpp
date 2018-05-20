@@ -7,6 +7,7 @@
 //
 
 #include "Mesh.hpp"
+#include "Canvas.hpp"
 
 Mesh * Mesh::create(const vector<Vertex> &vertice, const vector<int> &indice, const vector<Texture *> &textures) {
     Mesh * ret = new Mesh();
@@ -15,7 +16,9 @@ Mesh * Mesh::create(const vector<Vertex> &vertice, const vector<int> &indice, co
 }
 
 void Mesh::init(const vector<Vertex> &vertice, const vector<int> &indice, const vector<Texture *> &textures) {
-    
+    _vertice = vertice;
+    _indice = indice;
+    _textures = textures;
 }
 
 void Mesh::setUp() {
@@ -23,5 +26,6 @@ void Mesh::setUp() {
 }
 
 void Mesh::draw(Shader *shader) const {
-    
+    auto canvas = Canvas::getInstance();
+    canvas->drawElement(_vertice , _indice);
 }

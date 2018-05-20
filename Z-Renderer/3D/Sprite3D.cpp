@@ -57,7 +57,7 @@ Mesh Sprite3D::handleMesh(const aiMesh *mesh, const aiScene *scene) {
     return ret;
 }
 
-void Sprite3D::draw(double dt) const {
+void Sprite3D::draw(double dt) {
     for (int i = 0 ; i < _meshes.size() ; ++ i) {
         _meshes.at(i).draw(_shader);
     }

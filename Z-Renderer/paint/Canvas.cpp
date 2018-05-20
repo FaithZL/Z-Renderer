@@ -38,8 +38,11 @@ _shader(nullptr) {
     
     auto sp = Sprite3D::create("box.obj");
     
+    sp->setPositionZ(-4);
     
-    _node.push_back(Box::create());
+    _node.push_back(sp);
+    
+//    _node.push_back(Box::create());
 }
 
 Canvas * Canvas::getInstance() {

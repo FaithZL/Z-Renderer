@@ -29,7 +29,7 @@ public:
     
     Mesh handleMesh(const aiMesh * mesh , const aiScene * scene);
     
-    virtual void draw(double dt) const;
+    virtual void draw(double dt);
     
 protected:
     vector<Mesh> _meshes;
