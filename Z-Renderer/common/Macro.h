@@ -11,6 +11,7 @@
 
 #define create_func(type) static type * create() { \
 auto ret = new type(); \
+ret->init(); \
 return ret; \
 }
 

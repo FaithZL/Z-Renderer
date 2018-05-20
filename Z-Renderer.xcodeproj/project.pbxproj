@@ -62,6 +62,8 @@
 		F616D5EC20AD4BFA0005B1B5 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D5EB20AD4BF90005B1B5 /* HelloWorld.png */; };
 		F616D5EE20ADD82A0005B1B5 /* skeleton.png in Resources */ = {isa = PBXBuildFile; fileRef = F616D5ED20ADD8290005B1B5 /* skeleton.png */; };
 		F61AEBDE20AFAA9900DD8F80 /* BoxShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61AEBDC20AFAA9900DD8F80 /* BoxShader.cpp */; };
+		F61AEBE120B1272800DD8F80 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61AEBDF20B1272800DD8F80 /* Mesh.cpp */; };
+		F61AEBE520B1296100DD8F80 /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61AEBE320B1296100DD8F80 /* Sprite3D.cpp */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -150,6 +152,10 @@
 		F616D5ED20ADD8290005B1B5 /* skeleton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skeleton.png; sourceTree = "<group>"; };
 		F61AEBDC20AFAA9900DD8F80 /* BoxShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BoxShader.cpp; sourceTree = "<group>"; };
 		F61AEBDD20AFAA9900DD8F80 /* BoxShader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoxShader.hpp; sourceTree = "<group>"; };
+		F61AEBDF20B1272800DD8F80 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		F61AEBE020B1272800DD8F80 /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
+		F61AEBE320B1296100DD8F80 /* Sprite3D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite3D.cpp; sourceTree = "<group>"; };
+		F61AEBE420B1296100DD8F80 /* Sprite3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite3D.hpp; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -302,6 +308,17 @@
 			path = skyBox;
 			sourceTree = "<group>";
 		};
+		F61AEBE220B128CF00DD8F80 /* 3D */ = {
+			isa = PBXGroup;
+			children = (
+				F61AEBDF20B1272800DD8F80 /* Mesh.cpp */,
+				F61AEBE020B1272800DD8F80 /* Mesh.hpp */,
+				F61AEBE320B1296100DD8F80 /* Sprite3D.cpp */,
+				F61AEBE420B1296100DD8F80 /* Sprite3D.hpp */,
+			);
+			path = 3D;
+			sourceTree = "<group>";
+		};
 		F6464CE7208B26CC0019A75F /* paint */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +389,7 @@
 		F6758CD82088D6E00036A8E8 /* Z-Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				F61AEBE220B128CF00DD8F80 /* 3D */,
 				F616D56B20AB2E4A0005B1B5 /* util */,
 				F6464D10209B5F930019A75F /* test */,
 				F6464CFE208E3D820019A75F /* base */,
@@ -525,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F61AEBE120B1272800DD8F80 /* Mesh.cpp in Sources */,
 				F616D56220A160790005B1B5 /* Shader.cpp in Sources */,
 				F616D56A20AAAD390005B1B5 /* Texture.cpp in Sources */,
 				F6758CDA2088D6E00036A8E8 /* main.cpp in Sources */,
@@ -541,6 +560,7 @@
 				F616D56E20AB2FA70005B1B5 /* Bitmap.cpp in Sources */,
 				F6758CF02089BA570036A8E8 /* Vec.cpp in Sources */,
 				F6758CEC2089B9030036A8E8 /* Canvas.cpp in Sources */,
+				F61AEBE520B1296100DD8F80 /* Sprite3D.cpp in Sources */,
 				F6464D19209D66800019A75F /* Mat4.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
