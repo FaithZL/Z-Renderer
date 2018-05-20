@@ -35,6 +35,8 @@ public:
     void draw(double dt);
 protected:
     
+    
+    
     vector<Vertex> _vertice;
 };
 

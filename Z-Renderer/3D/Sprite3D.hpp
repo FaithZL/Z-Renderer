@@ -12,8 +12,17 @@
 #include <stdio.h>
 #include "Node.hpp"
 #include "Mesh.hpp"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 class Sprite3D : public Node {
+    
+    static Sprite3D * create(const std::string &fileName);
+    
+    void init();
+    
+    
     
 public:
     vector<Mesh> meshes;

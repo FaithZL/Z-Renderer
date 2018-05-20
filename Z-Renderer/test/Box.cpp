@@ -10,6 +10,7 @@
 #include "Camera.hpp"
 #include "Canvas.hpp"
 
+
 Box::Box() {
     
 }
@@ -20,7 +21,7 @@ Box::~Box() {
 
 void Box::updateTransform(double dt) {
     double velo = 45;
-//    _rotate.y += velo * dt;
+    _rotate.y += velo * dt;
     if (_rotate.y > 360) {
         _rotate.y -= 360;
     }
@@ -33,7 +34,7 @@ void Box::updateTransform(double dt) {
 }
 
 void Box::init() {
-
+    
     double a[] = {
         //  X     Y     Z       U     V          Normal
         // bottom
