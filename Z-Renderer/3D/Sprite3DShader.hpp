@@ -10,9 +10,9 @@
 #define Sprite3DShader_hpp
 
 #include <stdio.h>
-#include "Shader.hpp"
+#include "PhongShader.hpp"
 
-class Sprite3DShader : public Shader {
+class Sprite3DShader : public PhongShader {
     
 public:
     

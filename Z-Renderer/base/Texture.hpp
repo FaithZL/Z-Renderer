@@ -29,6 +29,10 @@ public:
         return _bitmap->getFileName();
     }
     
+    inline void bind() const;
+    
+    inline void unbind() const;
+    
 protected:
     
     Bitmap * _bitmap;

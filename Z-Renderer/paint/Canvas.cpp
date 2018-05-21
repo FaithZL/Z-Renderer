@@ -36,13 +36,13 @@ _shader(nullptr) {
     _texture = Texture::create("wooden-crate.jpg");
 //    _texture = Texture::create("skeleton.png");
     
-    auto sp = Sprite3D::create("planet.obj");
+    auto sp = Sprite3D::create("rock.obj");
     
     sp->setPositionZ(-3);
     
-//    _node.push_back(sp);
+    _node.push_back(sp);
     
-    _node.push_back(Box::create());
+//    _node.push_back(Box::create());
 }
 
 Canvas * Canvas::getInstance() {

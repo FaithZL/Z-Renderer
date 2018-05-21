@@ -9,9 +9,9 @@
 #include "Sprite3DShader.hpp"
 
 VertexOut Sprite3DShader::vs(const Vertex &vert) const {
-    return Shader::vs(vert);
+    return PhongShader::vs(vert);
 }
 
 Color Sprite3DShader::fs(const VertexOut &frag) const {
-    return Shader::fs(frag);
+    return PhongShader::fs(frag);
 }

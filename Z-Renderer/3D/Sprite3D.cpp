@@ -40,10 +40,10 @@ void Sprite3D::initShader() {
     material.specularFactor = 0.0;
     material.shininess = 64;
     
-    _shader = PhongShader::create();
-    static_cast<PhongShader *>(_shader)->setMaterial(material);
-    static_cast<PhongShader *>(_shader)->setLight(light);
-    static_cast<PhongShader *>(_shader)->setAmbient(ambient);
+    _shader = Sprite3DShader::create();
+    static_cast<Sprite3DShader *>(_shader)->setMaterial(material);
+    static_cast<Sprite3DShader *>(_shader)->setLight(light);
+    static_cast<Sprite3DShader *>(_shader)->setAmbient(ambient);
 }
 
 void Sprite3D::handleNode(const aiNode *node, const aiScene *scene) {

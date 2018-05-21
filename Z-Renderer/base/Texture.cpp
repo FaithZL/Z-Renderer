@@ -7,7 +7,7 @@
 //
 
 #include "Texture.hpp"
-
+#include "Canvas.hpp"
 
 Texture::Texture():
 _bitmap(nullptr){
@@ -16,6 +16,14 @@ _bitmap(nullptr){
 
 Texture::~Texture() {
     delete _bitmap;
+}
+
+void Texture::bind() const {
+    Canvas::getInstance()->setTexture(this);
+}
+
+void Texture::unbind() const {
+    Canvas::getInstance()->setTexture(nullptr);
 }
 
 Color Texture::sample(double u, double v) const {

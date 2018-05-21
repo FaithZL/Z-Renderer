@@ -142,8 +142,12 @@ public:
         delete [] _depthBuffer;
     }
     
-    Texture * getTexture() const {
+    Texture const * getTexture() const {
         return _texture;
+    }
+    
+    inline void setTexture(const Texture * texture) {
+        _texture = texture;
     }
     
 protected:
@@ -189,13 +193,13 @@ protected:
     
     static Canvas * s_pCanvas;
     
-    Shader const  * _shader;
+    Shader const * _shader;
     
     int _bufferSize;
     
     DrawMode _drawMode;
     
-    Texture * _texture;
+    Texture const * _texture;
     
     /**
      * 深度缓冲，储存Z坐标的倒数，用于深度测试
