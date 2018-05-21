@@ -37,9 +37,9 @@ _shader(nullptr) {
     
 //    auto sp = Sprite3D::create("nanosuit.obj");
 //    auto sp = Sprite3D::create("planet.obj");
-    auto sp = Sprite3D::create("cow.obj");
+    auto sp = Sprite3D::create("WusonOBJ.obj");
 //
-    sp->setPositionZ(-5);
+    sp->setPositionZ(-1);
 //    sp->setPositionY(-5);
     _node.push_back(sp);
     
