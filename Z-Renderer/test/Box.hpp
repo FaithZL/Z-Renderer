@@ -16,6 +16,8 @@
 
 using namespace std;
 
+class Texture;
+
 class Box : public Node {
     
 public:
@@ -35,7 +37,7 @@ public:
     void draw(double dt);
 protected:
     
-    
+    Texture * _texture;
     
     vector<Vertex> _vertice;
 };

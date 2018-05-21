@@ -27,9 +27,7 @@ public:
         
     }
     
-    virtual void updateTransform(double dt) {
-        
-    }
+    virtual void updateTransform(double dt);
     
     virtual void begin(double dt) {
         updateTransform(dt);

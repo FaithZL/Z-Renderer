@@ -11,7 +11,8 @@
 #include "Canvas.hpp"
 
 
-Box::Box() {
+Box::Box() :
+_texture(nullptr){
     
 }
 
@@ -34,7 +35,7 @@ void Box::updateTransform(double dt) {
 }
 
 void Box::init() {
-    
+    _texture = Texture::create("wooden-crate.jpg");
     double a[] = {
         //  X     Y     Z       U     V          Normal
         // bottom
@@ -95,12 +96,12 @@ void Box::init() {
                           Color(1 , 1 , 1 , 0),
                           Vec3(a[i + 5] , a[i + 6] , a[i + 7]),
                           Vec2(a[i + 3] , a[i + 4]));
-        temp.push_back(v);
+        _vertice.push_back(v);
     }
     
-    for (auto iter = temp.rbegin() ; iter != temp.rend(); ++ iter) {
-        _vertice.push_back(*iter);
-    }
+//    for (auto iter = temp.rbegin() ; iter != temp.rend(); ++ iter) {
+//        _vertice.push_back(*iter);
+//    }
     
     Ambient ambient;
     ambient.color = Color(1,1,1,1);
@@ -124,6 +125,7 @@ void Box::init() {
 
 void Box::draw(Ldouble dt) {
     begin(dt);
+    Canvas::getInstance()->setTexture(_texture);
     Canvas::getInstance()->drawArray(_vertice);
     end();
 }

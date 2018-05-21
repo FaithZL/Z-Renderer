@@ -114,22 +114,11 @@ Mesh Sprite3D::handleMesh(const aiMesh *mesh, const aiScene *scene) {
 }
 
 void Sprite3D::draw(double dt) {
-    
-    double velo = 45;
-    _rotate.y += velo * dt;
-    if (_rotate.y > 360) {
-        _rotate.y -= 360;
-    }
-    Mat4 r = Mat4::rotateY(MathUtil::angle2radian(_rotate.y));
-    Mat4 model = r * Mat4::scale(_scale) * Mat4::translate(_position);
-    auto camera = Camera::getInstance();
-    auto v = camera->getViewMat();
-    auto p = camera->getProjectionMat();
-    _shader->setMvp(model , v, p);
-    _shader->use();
+    begin(dt);
     for (int i = 0 ; i < _meshes.size() ; ++ i) {
         _meshes.at(i).draw(_shader);
     }
+    end();
 }
 
 

@@ -48,9 +48,6 @@ public:
     
     void unlock();
     
-    // for back culling
-    bool isBack(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3) const;
-    
     void lineBresenham(const VertexOut &v1 , const VertexOut &v2);
     
     void scanLineFill(const VertexOut &v1 , const VertexOut &v2 , int yIndex);

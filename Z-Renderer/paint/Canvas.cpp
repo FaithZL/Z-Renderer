@@ -26,7 +26,7 @@ _surface(nullptr),
 _width(width),
 _height(height),
 _drawMode(DrawMode::Fill),
-_cullingMode(CullingMode::CCW),
+_cullingMode(CullingMode::CW),
 _bufferSize(height * width),
 _texture(nullptr),
 _PC(true),
@@ -34,16 +34,13 @@ _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
     
-//    _texture = Texture::create("wooden-crate.jpg");
-    _texture = Texture::create("Rock-Texture-Surface.jpg");
+//    auto sp = Sprite3D::create("nanosuit.obj");
     
-    auto sp = Sprite3D::create("rock.obj");
+//    sp->setPositionZ(-10);
+//    sp->setPositionY(-5);
+//    _node.push_back(sp);
     
-    sp->setPositionZ(-3);
-    
-    _node.push_back(sp);
-    
-//    _node.push_back(Box::create());
+    _node.push_back(Box::create());
 }
 
 Canvas * Canvas::getInstance() {
@@ -101,23 +98,6 @@ void Canvas::drawElement(const vector<Vertex> &verts, const vector<int> &indice)
         const Vertex &v3 = verts.at(indice.at(i + 2));
         drawTriangle(v1 , v2 , v3);
     }
-}
-
-bool Canvas::isBack(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) const {
-    
-    const Vec3 &pos1 = v1.posTrans.getVec3();
-    const Vec3 &pos2 = v2.posTrans.getVec3();
-    const Vec3 &pos3 = v3.posTrans.getVec3();
-    
-    Vec3 v12 = pos2 - pos1;
-    Vec3 v23 = pos3 - pos2;
-    
-    Vec3 crs = v12.cross(v23);
-    
-    Vec3 pos = Camera::getInstance()->getPosition();
-    Vec3 dir = pos1 - pos;
-    
-    return dir.dot(crs) < 0;
 }
 
 bool Canvas::isCulling(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) const {
