@@ -13,6 +13,7 @@
 #include <iostream>
 #include "Bitmap.hpp"
 #include "Sprite3D.hpp"
+#include "Ground.hpp"
 
 using namespace std;
 
@@ -35,14 +36,16 @@ _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
     
+    auto ground = Ground::create();
+    
 //    auto sp = Sprite3D::create("nanosuit.obj");
 //    auto sp = Sprite3D::create("planet.obj");
     auto sp = Sprite3D::create("WusonOBJ.obj");
-//
     sp->setPositionZ(-1);
 //    sp->setPositionY(-5);
     _node.push_back(sp);
     
+    _node.push_back(ground);
 //    _node.push_back(Box::create());
 }
 
