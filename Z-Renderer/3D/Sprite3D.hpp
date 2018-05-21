@@ -27,6 +27,8 @@ public:
     
     void handleNode(const aiNode * node , const aiScene * scene);
     
+    void initShader();
+    
     Mesh handleMesh(const aiMesh * mesh , const aiScene * scene);
     
     virtual void draw(double dt);

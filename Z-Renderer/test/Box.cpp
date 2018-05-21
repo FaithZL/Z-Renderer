@@ -88,12 +88,18 @@ void Box::init() {
     
     unsigned size = sizeof(a) / sizeof(double);
     
+    decltype(_vertice) temp;
+    
     for (int i = 0 ; i < size ; i = i + 8) {
         Vertex v = Vertex(Vec3(a[i] , a[i + 1] , a[i + 2]),
-                          Color(1 , 0 , 0 , 0),
+                          Color(1 , 1 , 1 , 0),
                           Vec3(a[i + 5] , a[i + 6] , a[i + 7]),
                           Vec2(a[i + 3] , a[i + 4]));
-        _vertice.push_back(v);
+        temp.push_back(v);
+    }
+    
+    for (auto iter = temp.rbegin() ; iter != temp.rend(); ++ iter) {
+        _vertice.push_back(*iter);
     }
     
     Ambient ambient;
@@ -110,10 +116,10 @@ void Box::init() {
     material.specularFactor = 0.8;
     material.shininess = 64;
     
-    _shader = BoxShader::create();
-    static_cast<BoxShader *>(_shader)->setMaterial(material);
-    static_cast<BoxShader *>(_shader)->setLight(light);
-    static_cast<BoxShader *>(_shader)->setAmbient(ambient);
+    _shader = PhongShader::create();
+    static_cast<PhongShader *>(_shader)->setMaterial(material);
+    static_cast<PhongShader *>(_shader)->setLight(light);
+    static_cast<PhongShader *>(_shader)->setAmbient(ambient);
 }
 
 void Box::draw(Ldouble dt) {

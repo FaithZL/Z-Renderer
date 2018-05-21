@@ -21,10 +21,6 @@ void Mesh::init(const vector<Vertex> &vertice, const vector<int> &indice, const 
     _textures = textures;
 }
 
-void Mesh::setUp() {
-    
-}
-
 void Mesh::draw(Shader *shader) const {
     auto canvas = Canvas::getInstance();
     canvas->drawElement(_vertice , _indice);

@@ -30,13 +30,13 @@ void Shader::unUse() const {
     Canvas::getInstance()->setShader(nullptr);
 }
 
-Color Shader::fs(const VertexOut &vert) const {
+Color Shader::fs(const VertexOut &frag) const {
     
     auto texture = Canvas::getInstance()->getTexture();
     
-    auto ret = texture->sample(vert.tex.u, vert.tex.v);
+//    auto ret = texture->sample(vert.tex.u, vert.tex.v);
     
 //    ret = vert.color;
     
-    return ret;
+    return frag.color;
 }

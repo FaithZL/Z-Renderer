@@ -10,7 +10,7 @@
 #define Box_hpp
 
 #include "Vertex.hpp"
-#include "BoxShader.hpp"
+#include "PhongShader.hpp"
 #include <vector>
 #include "Node.hpp"
 

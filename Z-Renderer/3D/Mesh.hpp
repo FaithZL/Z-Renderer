@@ -38,7 +38,6 @@ public:
     void draw(Shader * shader) const;
     
 protected:
-    void setUp();
     
     vector<Vertex> _vertice;
     

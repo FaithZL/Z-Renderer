@@ -36,13 +36,13 @@ _shader(nullptr) {
     _texture = Texture::create("wooden-crate.jpg");
 //    _texture = Texture::create("skeleton.png");
     
-    auto sp = Sprite3D::create("box.obj");
+    auto sp = Sprite3D::create("planet.obj");
     
-    sp->setPositionZ(-4);
+    sp->setPositionZ(-3);
     
-    _node.push_back(sp);
+//    _node.push_back(sp);
     
-//    _node.push_back(Box::create());
+    _node.push_back(Box::create());
 }
 
 Canvas * Canvas::getInstance() {
@@ -116,7 +116,7 @@ bool Canvas::isBack(const VertexOut &v1, const VertexOut &v2, const VertexOut &v
     Vec3 pos = Camera::getInstance()->getPosition();
     Vec3 dir = pos1 - pos;
     
-    return dir.dot(crs) > 0;
+    return dir.dot(crs) < 0;
 }
 
 void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) {

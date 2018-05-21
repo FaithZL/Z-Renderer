@@ -30,11 +30,11 @@ struct Material {
     Ldouble shininess;
 };
 
-class BoxShader : public Shader {
+class PhongShader : public Shader {
     
 public:
     
-    create_func(BoxShader)
+    create_func(PhongShader)
     
     void setMaterial(const Material &material);
     
@@ -44,7 +44,13 @@ public:
     
     virtual VertexOut vs(const Vertex &vertex) const;
     
-    virtual Color fs(const VertexOut &vOut) const;
+    virtual Color fs(const VertexOut &frag) const;
+    
+    Color getDiffuse(const VertexOut &frag) const;
+    
+    Color getAmbient(const VertexOut &frag) const;
+    
+    Color getSpecular(const VertexOut &frag) const;
     
 protected:
     Material _material;
