@@ -16,12 +16,10 @@ a tiny software rasterize renderer
 * 法线修正
 
 #渲染流程
-
 * 处理顶点，在vertex shader里完成
 * 物体坐标系转换至世界坐标系转换到相机坐标系
 * 在经过透视投影转换到cvv
 * 输出顶点
-
 * 处理输出的顶点输出坐标
 * 空间裁剪
 * 对齐次坐标进行透视除法转换到标准设备坐标（NDC）
@@ -33,10 +31,7 @@ a tiny software rasterize renderer
 *简单理模型渲染（使用法线修正）
 ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/cow.jpg)
 ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/teapot.jpg)
-
-
 *phong着色
 ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/phong.jpg)
-
 *复杂模型渲染
 ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/model.jpg)
