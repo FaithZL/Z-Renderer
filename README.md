@@ -38,7 +38,7 @@ a tiny software rasterize renderer
 
    #效果截图 
  * 线框模型
-   ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/cow.jpg "线框模型")
+   ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/cow.jpg"线框模型")
  * 顶点色
    ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/cow.jpg "顶点色")
  * 纹理+光照
