@@ -34,13 +34,13 @@ _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
     
-//    auto sp = Sprite3D::create("nanosuit.obj");
+    auto sp = Sprite3D::create("nanosuit.obj");
     
-//    sp->setPositionZ(-10);
-//    sp->setPositionY(-5);
-//    _node.push_back(sp);
+    sp->setPositionZ(-10);
+    sp->setPositionY(-5);
+    _node.push_back(sp);
     
-    _node.push_back(Box::create());
+//    _node.push_back(Box::create());
 }
 
 Canvas * Canvas::getInstance() {

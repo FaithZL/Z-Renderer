@@ -1,6 +1,20 @@
 # Z-Renderer
 a tiny software rasterize renderer 
 
+简单的软件光栅化渲染器
+
+采用笛卡尔右手坐标系（与OpenGL一致）
+
+主要功能以及模块
+可移动摄像机
+数学库
+纹理贴图
+简单着色器
+phong着色
+简单粗暴的CVV裁剪
+面剔除
+obj模型渲染(使用assimp库解析模型文件)
+
 渲染流程
 
 处理顶点，在vertex shader里完成
@@ -10,6 +24,7 @@ a tiny software rasterize renderer
 
 处理输出的顶点输出坐标
     空间裁剪
-    齐次坐标进行透视除法，转换到标准设备坐标（NDC）
+    对齐次坐标进行透视除法转换到标准设备坐标（NDC）
+    转换到屏幕坐标
     深度测试
     绘制

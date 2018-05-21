@@ -99,10 +99,6 @@ void Box::init() {
         _vertice.push_back(v);
     }
     
-//    for (auto iter = temp.rbegin() ; iter != temp.rend(); ++ iter) {
-//        _vertice.push_back(*iter);
-//    }
-    
     Ambient ambient;
     ambient.color = Color(1,1,1,1);
     ambient.factor = 0.15;
