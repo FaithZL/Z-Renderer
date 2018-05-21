@@ -23,15 +23,15 @@ class Mesh : public Ref {
     
 public:
     
-    static Mesh * create(const vector<Vertex> &vertice , const vector<int> &indice , const vector<Texture *> &textures);
+    static Mesh * create(const vector<Vertex> &vertice , const vector<int> &indice , const vector<const Texture *> &textures);
     
-    void init(const vector<Vertex> &vertice , const vector<int> &indice , const vector<Texture *> &textures);
+    void init(const vector<Vertex> &vertice , const vector<int> &indice , const vector<const Texture *> &textures);
     
     Mesh(){
         
     }
     
-    Mesh(const vector<Vertex> &vertice , const vector<int> &indice , const vector<Texture *> &textures) {
+    Mesh(const vector<Vertex> &vertice , const vector<int> &indice , const vector<const Texture *> &textures) {
         init(vertice, indice, textures);
     }
     
@@ -41,7 +41,7 @@ protected:
     
     vector<Vertex> _vertice;
     
-    vector<Texture *> _textures;
+    vector<const Texture *> _textures;
     
     vector<int> _indice;
     

@@ -23,6 +23,12 @@ enum DrawMode {
     Fill
 };
 
+enum CullingMode {
+    None,  //不处理
+    CCW,  // 逆时针
+    CW,  //顺时针
+};
+
 class Canvas {
 public:
     
@@ -76,6 +82,8 @@ public:
     void drawArray(const vector<Vertex> &verts);
     
     void drawElement(const vector<Vertex> &verts , const vector<int> &indice);
+    
+    bool isCulling(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3) const;
     
     VertexOut handleVertex(const Vertex &vert) const;
     
@@ -150,6 +158,10 @@ public:
         _texture = texture;
     }
     
+    inline void setCullingMode(CullingMode mode) {
+        _cullingMode = mode;
+    }
+    
 protected:
 
     
@@ -185,6 +197,8 @@ protected:
     int _width;
     
     int _height;
+    
+    CullingMode _cullingMode;
     
     //perspective correction 透视校正
     bool _PC;

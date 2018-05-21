@@ -28,7 +28,7 @@ void Sprite3D::init(const std::string &fileName) {
 void Sprite3D::initShader() {
     Ambient ambient;
     ambient.color = Color(1,1,1,1);
-    ambient.factor = 0.15;
+    ambient.factor = 1;
     
     Light light;
     light.pos = Vec3(0 , 0 , 9);
@@ -36,7 +36,7 @@ void Sprite3D::initShader() {
     light.factor = 1.95;
     
     Material material;
-    material.diffuseFactor = 0.9;
+    material.diffuseFactor = 0.0;
     material.specularFactor = 0.0;
     material.shininess = 64;
     
@@ -56,10 +56,25 @@ void Sprite3D::handleNode(const aiNode *node, const aiScene *scene) {
     }
 }
 
+vector<const Texture *> Sprite3D::loadMaterialTextures(aiMaterial *material, aiTextureType type, const string &typeName) {
+    vector<const Texture *> textures;
+    for(int i = 0; i < material->GetTextureCount(type); i++)
+    {
+        aiString str;
+        material->GetTexture(type, i, &str);
+        
+        const string path = str.C_Str();
+        Texture * texture = Texture::create(path);
+        texture->setType(typeName);
+        textures.push_back(texture);
+    }
+    return textures;
+}
+
 Mesh Sprite3D::handleMesh(const aiMesh *mesh, const aiScene *scene) {
     vector<Vertex> vertice;
     vector<int> indice;
-    vector<Texture *> textures;
+    vector<const Texture *> textures;
     for (int i = 0 ; i < mesh->mNumVertices ; ++ i) {
         aiVector3D aiVec = mesh->mVertices[i];
         Vertex vertex;
@@ -88,6 +103,9 @@ Mesh Sprite3D::handleMesh(const aiMesh *mesh, const aiScene *scene) {
     if (mesh->mMaterialIndex > 0) {
         aiMaterial * aiM = scene->mMaterials[mesh->mMaterialIndex];
         
+        vector<const Texture *> diffuseMaps = loadMaterialTextures(aiM, aiTextureType_DIFFUSE , "diffuse");
+        
+        textures.insert(textures.end() , diffuseMaps.begin() , diffuseMaps.end());
     }
     
     Mesh ret(vertice , indice , textures);

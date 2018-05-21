@@ -29,11 +29,21 @@ public:
         return _bitmap->getFileName();
     }
     
+    inline void setType(const std::string &type) {
+        _type = type;
+    }
+    
+    inline std::string getType() const {
+        return _type;
+    }
+    
     inline void bind() const;
     
     inline void unbind() const;
     
 protected:
+    
+    std::string _type;
     
     Bitmap * _bitmap;
 };

@@ -65,7 +65,7 @@ Color PhongShader::fs(const VertexOut &frag) const {
     
     Color specular = getSpecular(frag);
 
-    return frag.color * (ambient + specular + diffuse);
+    return fragColor * (ambient + specular + diffuse);
 }
 
 

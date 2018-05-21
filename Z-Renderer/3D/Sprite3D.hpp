@@ -29,6 +29,8 @@ public:
     
     void initShader();
     
+    vector<const Texture *> loadMaterialTextures(aiMaterial *material, aiTextureType type, const string &typeName);
+    
     Mesh handleMesh(const aiMesh * mesh , const aiScene * scene);
     
     virtual void draw(double dt);

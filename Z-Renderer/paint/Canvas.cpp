@@ -26,6 +26,7 @@ _surface(nullptr),
 _width(width),
 _height(height),
 _drawMode(DrawMode::Fill),
+_cullingMode(CullingMode::CCW),
 _bufferSize(height * width),
 _texture(nullptr),
 _PC(true),
@@ -33,8 +34,8 @@ _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
     
-    _texture = Texture::create("wooden-crate.jpg");
-//    _texture = Texture::create("skeleton.png");
+//    _texture = Texture::create("wooden-crate.jpg");
+    _texture = Texture::create("Rock-Texture-Surface.jpg");
     
     auto sp = Sprite3D::create("rock.obj");
     
@@ -119,6 +120,31 @@ bool Canvas::isBack(const VertexOut &v1, const VertexOut &v2, const VertexOut &v
     return dir.dot(crs) < 0;
 }
 
+bool Canvas::isCulling(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) const {
+    if (_cullingMode == None) {
+        return false;
+    }
+    
+    const Vec3 &pos1 = v1.posTrans.getVec3();
+    const Vec3 &pos2 = v2.posTrans.getVec3();
+    const Vec3 &pos3 = v3.posTrans.getVec3();
+    
+    Vec3 v12 = pos2 - pos1;
+    Vec3 v23 = pos3 - pos2;
+    
+    Vec3 crs = v12.cross(v23);
+    
+    Vec3 pos = Camera::getInstance()->getPosition();
+    Vec3 dir = pos1 - pos;
+    
+    if (_cullingMode == CCW) {
+        return dir.dot(crs) < 0;
+    } else {
+        return dir.dot(crs) > 0;
+    }
+
+}
+
 void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     VertexOut vOut1 = handleVertex(v1);
     VertexOut vOut2 = handleVertex(v2);
@@ -146,7 +172,7 @@ void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) 
 
 void Canvas::_triangleRasterize(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) {
     
-    if (isBack(v1, v2, v3)) {
+    if (isCulling(v1, v2, v3)) {
         return;
     }
     
