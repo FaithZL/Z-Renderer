@@ -27,11 +27,11 @@ a tiny software rasterize renderer
 * 深度测试
 * 绘制
 
-#效果截图
-*简单理模型渲染（使用法线修正）
-![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/cow.jpg"简单模型")
-![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/teapot.jpg"简单模型")
-*纹理+phong着色
-![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/phong.jpg"纹理+phong着色")
-*复杂模型渲染
-![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/model.jpg"复杂模型渲染")
+#效果截图 
+ * 简单模型(使用法线修正+phong着色)
+   ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/cow.jpg"简单模型")
+   ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/teapot.jpg"简单模型")
+ * 纹理+phong着色
+   ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/phong.jpg"纹理+phong着色")
+ * 复杂模型渲染
+   ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/model.jpg"复杂模型渲染")
