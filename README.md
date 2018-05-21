@@ -34,6 +34,7 @@ a tiny software rasterize renderer
 ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/cow.jpg)
 ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/teapot.jpg)
 
+
 *phong着色
 ![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/phong.jpg)
 
