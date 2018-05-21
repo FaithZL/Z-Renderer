@@ -13,7 +13,7 @@ a tiny software rasterize renderer
 * 简单粗暴的CVV裁剪
 * 面剔除
 * obj模型渲染(使用assimp库解析模型文件)
-* 法线修正
+* 法线生成（有些模型的法线不正确或没有法线）
 
 #渲染流程
 * 处理顶点，在vertex shader里完成
@@ -28,7 +28,7 @@ a tiny software rasterize renderer
 * 绘制
 
 #效果截图 
- * 简单模型(使用法线修正+phong着色)
+ * 简单模型(使用生成法线+phong着色)
    ![](https://github.com/FaithZL/Z-Renderer/blob/master/Z-Renderer/res/pic/cow.jpg)
    ![](https://github.com/FaithZL/Z-Renderer/blob/master/Z-Renderer/res/pic/teapot.jpg)
  * 纹理+phong着色
