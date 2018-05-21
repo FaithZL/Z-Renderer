@@ -31,4 +31,11 @@ a tiny software rasterize renderer
 
 #效果截图
 *简单理模型渲染（使用法线修正）
-![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic)
+![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/cow.jpg)
+![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/teapot.jpg)
+
+*phong着色
+![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/phong.jpg)
+
+*复杂模型渲染
+![](https://github.com/FaithZL/Z-Renderer/tree/master/Z-Renderer/res/pic/model.jpg)
