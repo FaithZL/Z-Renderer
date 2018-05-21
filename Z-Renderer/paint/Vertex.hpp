@@ -39,6 +39,8 @@ public:
     
     Vec3 normal;
     
+    mutable Vec3 fixedNormal;
+    
     //相机空间坐标
     Vec4 posTrans;
     

@@ -34,10 +34,12 @@ _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
     
-    auto sp = Sprite3D::create("nanosuit.obj");
-    
-    sp->setPositionZ(-10);
-    sp->setPositionY(-5);
+//    auto sp = Sprite3D::create("nanosuit.obj");
+//    auto sp = Sprite3D::create("planet.obj");
+//    auto sp = Sprite3D::create("nanosuit.obj");
+//
+//    sp->setPositionZ(-10);
+//    sp->setPositionY(-5);
     _node.push_back(sp);
     
 //    _node.push_back(Box::create());
@@ -100,6 +102,21 @@ void Canvas::drawElement(const vector<Vertex> &verts, const vector<int> &indice)
     }
 }
 
+void Canvas::fixNormal(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) const {
+    const Vec3 &pos1 = v1.posTrans.getVec3();
+    const Vec3 &pos2 = v2.posTrans.getVec3();
+    const Vec3 &pos3 = v3.posTrans.getVec3();
+    
+    Vec3 v12 = pos2 - pos1;
+    Vec3 v23 = pos3 - pos2;
+    
+    Vec3 normal = v12.cross(v23);
+    
+    v1.fixedNormal = normal;
+    v2.fixedNormal = normal;
+    v3.fixedNormal = normal;
+}
+
 bool Canvas::isCulling(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) const {
     if (_cullingMode == None) {
         return false;
@@ -159,6 +176,8 @@ void Canvas::_triangleRasterize(const VertexOut &v1, const VertexOut &v2, const 
     VertexOut const * pVert1 = &v1;
     VertexOut const * pVert2 = &v2;
     VertexOut const * pVert3 = &v3;
+    
+    fixNormal(v1, v2, v3);
     
     vector<VertexOut const *> vector = {pVert1 , pVert2 , pVert3};
     
