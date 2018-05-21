@@ -74,6 +74,11 @@
 		F61AEC1D20B19CCC00DD8F80 /* libassimp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F61AEC1C20B19CCC00DD8F80 /* libassimp.a */; };
 		F61AEC2720B1B2BD00DD8F80 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F61AEC2620B1B2BD00DD8F80 /* libz.1.2.5.dylib */; };
 		F61AEC2A20B1BE8000DD8F80 /* Sprite3DShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F61AEC2820B1BE8000DD8F80 /* Sprite3DShader.cpp */; };
+		F61AEC3020B28D7A00DD8F80 /* pumpkin.obj in Resources */ = {isa = PBXBuildFile; fileRef = F61AEC2B20B28D7900DD8F80 /* pumpkin.obj */; };
+		F61AEC3120B28D7A00DD8F80 /* sample.obj in Resources */ = {isa = PBXBuildFile; fileRef = F61AEC2C20B28D7A00DD8F80 /* sample.obj */; };
+		F61AEC3220B28D7A00DD8F80 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = F61AEC2D20B28D7A00DD8F80 /* teapot.obj */; };
+		F61AEC3320B28D7A00DD8F80 /* cow.obj in Resources */ = {isa = PBXBuildFile; fileRef = F61AEC2E20B28D7A00DD8F80 /* cow.obj */; };
+		F61AEC3420B28D7A00DD8F80 /* teddy.obj in Resources */ = {isa = PBXBuildFile; fileRef = F61AEC2F20B28D7A00DD8F80 /* teddy.obj */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -213,6 +218,11 @@
 		F61AEC2620B1B2BD00DD8F80 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = ../../../../../../usr/lib/libz.1.2.5.dylib; sourceTree = "<group>"; };
 		F61AEC2820B1BE8000DD8F80 /* Sprite3DShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite3DShader.cpp; sourceTree = "<group>"; };
 		F61AEC2920B1BE8000DD8F80 /* Sprite3DShader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite3DShader.hpp; sourceTree = "<group>"; };
+		F61AEC2B20B28D7900DD8F80 /* pumpkin.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pumpkin.obj; sourceTree = "<group>"; };
+		F61AEC2C20B28D7A00DD8F80 /* sample.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.obj; sourceTree = "<group>"; };
+		F61AEC2D20B28D7A00DD8F80 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
+		F61AEC2E20B28D7A00DD8F80 /* cow.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cow.obj; sourceTree = "<group>"; };
+		F61AEC2F20B28D7A00DD8F80 /* teddy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teddy.obj; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -282,6 +292,11 @@
 		F616D57320ABF4600005B1B5 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				F61AEC2E20B28D7A00DD8F80 /* cow.obj */,
+				F61AEC2B20B28D7900DD8F80 /* pumpkin.obj */,
+				F61AEC2C20B28D7A00DD8F80 /* sample.obj */,
+				F61AEC2D20B28D7A00DD8F80 /* teapot.obj */,
+				F61AEC2F20B28D7A00DD8F80 /* teddy.obj */,
 				F616D5ED20ADD8290005B1B5 /* skeleton.png */,
 				F616D5EB20AD4BF90005B1B5 /* HelloWorld.png */,
 				F616D57420ABF4600005B1B5 /* box.obj */,
@@ -621,6 +636,7 @@
 				F616D5D020ABF4600005B1B5 /* nanosuit.obj in Resources */,
 				F616D5B920ABF4600005B1B5 /* cell_arm_alpha.png in Resources */,
 				F616D5BB20ABF4600005B1B5 /* cell_ddn.png in Resources */,
+				F61AEC3020B28D7A00DD8F80 /* pumpkin.obj in Resources */,
 				F616D5BA20ABF4600005B1B5 /* cell_body_alpha.png in Resources */,
 				F61AEC1520B197EF00DD8F80 /* matrix3x3.inl in Resources */,
 				F61AEC1720B197EF00DD8F80 /* quaternion.inl in Resources */,
@@ -636,6 +652,7 @@
 				F616D5C820ABF4600005B1B5 /* helmet_showroom_ddn.png in Resources */,
 				F616D5B320ABF4600005B1B5 /* arm_showroom_spec.png in Resources */,
 				F616D5BC20ABF4600005B1B5 /* cell_hand_alpha.png in Resources */,
+				F61AEC3320B28D7A00DD8F80 /* cow.obj in Resources */,
 				F616D5DE20ABF4600005B1B5 /* bottom.jpg in Resources */,
 				F616D5E320ABF4600005B1B5 /* wooden-crate.jpg in Resources */,
 				F61AEC1820B197EF00DD8F80 /* vector2.inl in Resources */,
@@ -643,11 +660,13 @@
 				F616D5C920ABF4600005B1B5 /* helmet_showroom_refl.png in Resources */,
 				F616D5E420ABF4600005B1B5 /* WusonOBJ.obj in Resources */,
 				F616D5B120ABF4600005B1B5 /* arm_showroom_ddn.png in Resources */,
+				F61AEC3420B28D7A00DD8F80 /* teddy.obj in Resources */,
 				F616D5D420ABF4600005B1B5 /* Rock-Texture-Surface.jpg in Resources */,
 				F61AEC1620B197EF00DD8F80 /* matrix4x4.inl in Resources */,
 				F61AEC1920B197EF00DD8F80 /* vector3.inl in Resources */,
 				F616D5E020ABF4600005B1B5 /* left.jpg in Resources */,
 				F616D5DD20ABF4600005B1B5 /* back.jpg in Resources */,
+				F61AEC3220B28D7A00DD8F80 /* teapot.obj in Resources */,
 				F616D5B420ABF4600005B1B5 /* back.jpg in Resources */,
 				F616D5E120ABF4600005B1B5 /* right.jpg in Resources */,
 				F616D5AF20ABF4600005B1B5 /* box.obj in Resources */,
@@ -656,6 +675,7 @@
 				F616D5BF20ABF4600005B1B5 /* front.jpg in Resources */,
 				F616D5C720ABF4600005B1B5 /* helmet_diff.png in Resources */,
 				F616D5D220ABF4600005B1B5 /* planet.obj in Resources */,
+				F61AEC3120B28D7A00DD8F80 /* sample.obj in Resources */,
 				F616D5EC20AD4BFA0005B1B5 /* HelloWorld.png in Resources */,
 				F616D5CB20ABF4600005B1B5 /* leg_dif.png in Resources */,
 				F61AEC1420B197EF00DD8F80 /* material.inl in Resources */,

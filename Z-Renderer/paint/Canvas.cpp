@@ -30,15 +30,16 @@ _cullingMode(CullingMode::CW),
 _bufferSize(height * width),
 _texture(nullptr),
 _PC(true),
+_normalFix(true),
 _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
     
 //    auto sp = Sprite3D::create("nanosuit.obj");
 //    auto sp = Sprite3D::create("planet.obj");
-//    auto sp = Sprite3D::create("nanosuit.obj");
+    auto sp = Sprite3D::create("cow.obj");
 //
-//    sp->setPositionZ(-10);
+    sp->setPositionZ(-5);
 //    sp->setPositionY(-5);
     _node.push_back(sp);
     
@@ -112,9 +113,9 @@ void Canvas::fixNormal(const VertexOut &v1, const VertexOut &v2, const VertexOut
     
     Vec3 normal = v12.cross(v23);
     
-    v1.fixedNormal = normal;
-    v2.fixedNormal = normal;
-    v3.fixedNormal = normal;
+    v1.normal = normal;
+    v2.normal = normal;
+    v3.normal = normal;
 }
 
 bool Canvas::isCulling(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) const {
@@ -177,7 +178,9 @@ void Canvas::_triangleRasterize(const VertexOut &v1, const VertexOut &v2, const 
     VertexOut const * pVert2 = &v2;
     VertexOut const * pVert3 = &v3;
     
-    fixNormal(v1, v2, v3);
+    if (_normalFix) {
+        fixNormal(v1, v2, v3);
+    }
     
     vector<VertexOut const *> vector = {pVert1 , pVert2 , pVert3};
     

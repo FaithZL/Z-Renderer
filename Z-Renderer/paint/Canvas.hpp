@@ -193,6 +193,8 @@ protected:
         return py;
     }
     
+    bool _normalFix;
+    
     int _width;
     
     int _height;

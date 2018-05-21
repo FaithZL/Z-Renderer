@@ -54,7 +54,7 @@ VertexOut VertexOut::interpolate(const VertexOut &target, Ldouble factor) const 
     } else {
         cfactor = (z - z1) / (z2 - z1);
     }
-    ret.fixedNormal = fixedNormal.interpolate(target.fixedNormal, cfactor);
+
     ret.posWorld = posWorld.interpolate(target.posWorld, cfactor);
     ret.normal = normal.interpolate(target.normal , cfactor);
     ret.color = color.interpolate(target.color, cfactor);

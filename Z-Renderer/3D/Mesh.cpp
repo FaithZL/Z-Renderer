@@ -23,7 +23,11 @@ void Mesh::init(const vector<Vertex> &vertice, const vector<int> &indice, const 
 
 void Mesh::draw(Shader *shader) const {
     auto canvas = Canvas::getInstance();
-    const Texture * texture = _textures.at(0);
-    canvas->setTexture(texture);
+    if (_textures.size() == 0) {
+        canvas->setTexture(nullptr);
+    } else {
+        const Texture * texture = _textures.at(0);
+        canvas->setTexture(texture);
+    }
     canvas->drawElement(_vertice , _indice);
 }

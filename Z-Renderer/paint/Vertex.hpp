@@ -37,9 +37,7 @@ public:
 
     Color color;
     
-    Vec3 normal;
-    
-    mutable Vec3 fixedNormal;
+    mutable Vec3 normal;
     
     //相机空间坐标
     Vec4 posTrans;

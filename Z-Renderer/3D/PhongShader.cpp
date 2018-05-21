@@ -57,7 +57,12 @@ Color PhongShader::getSpecular(const VertexOut &frag) const {
 
 Color PhongShader::fs(const VertexOut &frag) const {
     auto texture = Canvas::getInstance()->getTexture();
-    auto fragColor = texture->sample(frag.tex.u, frag.tex.v);
+    Color fragColor;
+    if (texture == nullptr) {
+        fragColor = frag.color;
+    } else {
+        fragColor = texture->sample(frag.tex.u, frag.tex.v);
+    }
     
     Color ambient = getAmbient(frag);
     

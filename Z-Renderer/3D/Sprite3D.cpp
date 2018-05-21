@@ -28,7 +28,7 @@ void Sprite3D::init(const std::string &fileName) {
 void Sprite3D::initShader() {
     Ambient ambient;
     ambient.color = Color(1,1,1,1);
-    ambient.factor = 1;
+    ambient.factor = 0.15;
     
     Light light;
     light.pos = Vec3(0 , 0 , 9);
@@ -36,8 +36,8 @@ void Sprite3D::initShader() {
     light.factor = 1.95;
     
     Material material;
-    material.diffuseFactor = 0.0;
-    material.specularFactor = 0.0;
+    material.diffuseFactor = 0.2;
+    material.specularFactor = 0.7;
     material.shininess = 64;
     
     _shader = Sprite3DShader::create();
@@ -114,6 +114,11 @@ Mesh Sprite3D::handleMesh(const aiMesh *mesh, const aiScene *scene) {
 }
 
 void Sprite3D::draw(double dt) {
+    double velo = 45;
+    _rotate.y += velo * dt;
+    if (_rotate.y > 360) {
+        _rotate.y -= 360;
+    }
     begin(dt);
     for (int i = 0 ; i < _meshes.size() ; ++ i) {
         _meshes.at(i).draw(_shader);
