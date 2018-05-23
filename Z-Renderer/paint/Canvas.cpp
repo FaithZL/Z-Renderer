@@ -26,7 +26,7 @@ Canvas::Canvas(int width , int height):
 _surface(nullptr),
 _width(width),
 _height(height),
-_drawMode(DrawMode::Fill),
+_drawMode(DrawMode::Frame),
 _cullingMode(CullingMode::CW),
 _bufferSize(height * width),
 _texture(nullptr),
@@ -40,10 +40,10 @@ _shader(nullptr) {
     
 //    auto sp = Sprite3D::create("nanosuit.obj");
 //    auto sp = Sprite3D::create("planet.obj");
-    auto sp = Sprite3D::create("WusonOBJ.obj");
-    sp->setPositionZ(-1);
+//    auto sp = Sprite3D::create("WusonOBJ.obj");
+//    sp->setPositionZ(-1);
 //    sp->setPositionY(-5);
-    _node.push_back(sp);
+//    _node.push_back(sp);
     
     _node.push_back(ground);
 //    _node.push_back(Box::create());
@@ -93,7 +93,7 @@ void Canvas::drawArray(const vector<Vertex> &verts) {
         const Vertex &v1 = verts.at(i);
         const Vertex &v2 = verts.at(i + 1);
         const Vertex &v3 = verts.at(i + 2);
-        drawTriangle(v1 , v2, v3);
+        processTriangle(v1 , v2, v3);
     }
 }
 
@@ -102,7 +102,7 @@ void Canvas::drawElement(const vector<Vertex> &verts, const vector<int> &indice)
         const Vertex &v1 = verts.at(indice.at(i));
         const Vertex &v2 = verts.at(indice.at(i + 1));
         const Vertex &v3 = verts.at(indice.at(i + 2));
-        drawTriangle(v1 , v2 , v3);
+        processTriangle(v1 , v2 , v3);
     }
 }
 
@@ -146,18 +146,30 @@ bool Canvas::isCulling(const VertexOut &v1, const VertexOut &v2, const VertexOut
 
 }
 
-void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
+void Canvas::processTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) {
     VertexOut vOut1 = handleVertex(v1);
     VertexOut vOut2 = handleVertex(v2);
     VertexOut vOut3 = handleVertex(v3);
     
-    if (isClip(vOut1.pos)
-        || isClip(vOut2.pos)
-        || isClip(vOut3.pos)) {
-        //简单粗暴的裁剪，完成主干之后再优化
-        return;
-    }
+//    if (isClip(vOut1.pos)
+//        || isClip(vOut2.pos)
+//        || isClip(vOut3.pos)) {
+//        //简单粗暴的裁剪，完成主干之后再优化
+//        return;
+//    }
     
+    Triangle triangle(vOut1 , vOut2 , vOut3);
+    vector<Triangle> triangleList = {triangle};
+
+    doClippingInCvv(triangleList);
+    
+    for (int i = 0 ; i < triangleList.size(); ++i) {
+        Triangle &tri = triangleList.at(i);
+        _drawTriangle(tri.v1, tri.v2, tri.v3);
+    }
+}
+
+void Canvas::_drawTriangle(VertexOut &vOut1, VertexOut &vOut2, VertexOut &vOut3) {
     transformToScrn(vOut1);
     transformToScrn(vOut2);
     transformToScrn(vOut3);
@@ -169,6 +181,14 @@ void Canvas::drawTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) 
         lineBresenham(vOut1, vOut3);
         lineBresenham(vOut3, vOut2);
     }
+}
+
+void Canvas::doClippingInCvv(vector<Triangle> &triangleList) const {
+//    _doClppingInCvvAgainstNearplane(triangleList);
+}
+
+void Canvas::_doClppingInCvvAgainstNearplane(vector<Triangle> &triangleList) const {
+    
 }
 
 void Canvas::_triangleRasterize(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) {

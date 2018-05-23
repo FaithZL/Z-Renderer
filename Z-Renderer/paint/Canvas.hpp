@@ -29,6 +29,25 @@ enum CullingMode {
     CW,  //顺时针
 };
 
+class Triangle {
+public:
+
+    Triangle(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3):
+    v1(v1),
+    v2(v2),
+    v3(v3){
+        
+    }
+    
+    Triangle() {
+
+    }
+
+    VertexOut v1;
+    VertexOut v2;
+    VertexOut v3;
+};
+
 class Canvas {
 public:
     
@@ -88,7 +107,9 @@ public:
     
     void transformToScrn(VertexOut &vert) const;
     
-    void drawTriangle(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    void processTriangle(const Vertex &v1 , const Vertex &v2 , const Vertex &v3);
+    
+    void _drawTriangle(VertexOut &v1 , VertexOut &v2 , VertexOut &v3);
     
     void _triangleRasterize(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3);
     
@@ -112,6 +133,10 @@ public:
      */
     void _triangleBottomRasterize(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3);
     
+    void doClippingInCvv(vector<Triangle> &triangleList) const;
+    
+    void _doClppingInCvvAgainstNearplane(vector<Triangle> &triangleList) const;
+    
     void putPixel(int px , int py , const Color &color);
     
     bool isClip(const Vec4 &pos) const {
@@ -121,6 +146,9 @@ public:
     }
     
     inline bool isPassDepth(int px , int py , Ldouble z) {
+        if (px < 0 || px >= _width || py < 0 || py >= _height) {
+            return false;
+        }
         int index = getIndex(px , py);
         return z <= _depthBuffer[index];
     }
