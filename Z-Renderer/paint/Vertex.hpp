@@ -33,6 +33,8 @@ class VertexOut {
 public:
     VertexOut interpolate(const VertexOut &target , Ldouble factor) const;
     
+    VertexOut interpolateEarly(const VertexOut &target , Ldouble factor) const;
+    
     Ldouble interpolateZ(const VertexOut &target , Ldouble factor) const;
 
     Color color;

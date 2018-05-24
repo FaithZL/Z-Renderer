@@ -29,6 +29,17 @@ void Vertex::transform(const Mat4 &mat4) {
 //    pos = mat4.transform(pos);
 }
 
+VertexOut VertexOut::interpolateEarly(const VertexOut &target, Ldouble factor) const {
+    VertexOut ret;
+    ret.posWorld = posWorld.interpolate(target.posWorld, factor);
+    ret.pos = pos.interpolate(target.pos , factor);
+    ret.normal = normal.interpolate(target.normal, factor);
+    ret.color = color.interpolate(target.color, factor);
+    ret.posTrans = posTrans.interpolate(target.posTrans , factor);
+    ret.tex = tex.interpolate(target.tex , factor);
+    return ret;
+}
+
 Ldouble VertexOut::interpolateZ(const VertexOut &target, Ldouble factor) const {
     if (MathUtil::equal(oneDivZ , target.oneDivZ)) {
         return 1 / oneDivZ;

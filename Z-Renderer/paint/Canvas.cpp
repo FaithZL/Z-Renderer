@@ -197,10 +197,11 @@ void Canvas::_doClppingInCvvAgainstNearplane(vector<Triangle> &triangleList) con
         bool bOut1 = p1.z < 0;
         bool bOut2 = p2.z < 0;
         bool bOut3 = p3.z < 0;
+        vector<VertexOut> vertice = {tri.v1 , tri.v2 , tri.v3};
         vector<bool> bList = {bOut1 , bOut2 , bOut3};
         int outNum = 0;
-        for (int j = 0; j < bList.size() ; ++ j) {
-            bool out = bList.at(j);
+        for (int i = 0; i < bList.size() ; ++ i) {
+            bool out = bList.at(i);
             outNum = outNum + (out ? 1 : 0);
         }
         if (outNum == 0) {
@@ -209,9 +210,64 @@ void Canvas::_doClppingInCvvAgainstNearplane(vector<Triangle> &triangleList) con
             continue;
         } else if (outNum == 2) {
             // 如果有两个顶点在外部，构造一个新三角形（修改旧三角形）
-            
+            // 储存外侧顶点的索引
+            vector<int> indiceOut;
+            // 内侧顶点的索引
+            int inIdx = 0;
+            // 找到在外侧的点的索引
+            for (int i = 0; i < bList.size(); ++ i) {
+                if (bList.at(i)) {
+                    indiceOut.push_back(i);
+                } else {
+                    inIdx = i;
+                }
+            }
+            VertexOut &vertIn = vertice.at(inIdx);
+            // 遍历外侧顶点，插值生成新的顶点
+            for (int i = 0; i < indiceOut.size() ; ++ i) {
+                int index = indiceOut.at(i);
+                VertexOut &vert = vertice.at(index);
+                Ldouble factor = (vertIn.pos.z - 0) / (vertIn.pos.z - vert.pos.z);
+                VertexOut vertNew = vertIn.interpolate(vert, factor);
+                vertice[index] = vertNew;
+            }
+            tri.v1 = vertice[0];
+            tri.v2 = vertice[1];
+            tri.v3 = vertice[2];
+            ++iter;
         } else if (outNum == 1) {
             // 如果有一个顶点在外部 ,构造一个梯形（修改旧三角形+添加一个新三角形）
+            // 储存内侧顶点的索引
+            vector<int> indiceIn;
+            // 外侧顶点的索引
+            int outIdx = 0;
+            // 找到内侧的点的索引
+            for (int i = 0; i < bList.size(); ++ i) {
+                if (!bList.at(i)) {
+                    indiceIn.push_back(i);
+                } else {
+                    outIdx = i;
+                }
+            }
+            VertexOut &vertOut = vertice.at(outIdx);
+            // 遍历内侧顶点，插值生成新的顶点，并添加三角形
+            vector<VertexOut> vertNewList;
+            for (int i = 0 ; i < indiceIn.size() ; ++ i) {
+                // 生成对应新顶点
+                int index = indiceIn.at(i);
+                VertexOut vertIn = vertice.at(index);
+                Ldouble factor = (vertIn.pos.z - 0) / (vertIn.pos.z - vertOut.pos.z);
+                VertexOut vertNew = vertIn.interpolateEarly(vertOut, factor);
+                vertNewList.push_back(vertIn);
+                vertNewList.push_back(vertNew);
+            }
+            tri.v1 = vertNewList[0];
+            tri.v2 = vertNewList[1];
+            tri.v3 = vertNewList[2];
+            
+            Triangle triNew(vertNewList[1] , vertNewList[2] , vertNewList[3]);
+            iter = triangleList.insert(iter, triNew);
+            ++iter;
         } else if (outNum == 3) {
             // 如果有三个顶点在外部，整体剔除
             iter = triangleList.erase(iter);
