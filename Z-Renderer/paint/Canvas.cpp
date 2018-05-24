@@ -27,7 +27,7 @@ _surface(nullptr),
 _width(width),
 _height(height),
 _drawMode(DrawMode::Frame),
-_cullingMode(CullingMode::CW),
+_cullingMode(CullingMode::None),
 _bufferSize(height * width),
 _texture(nullptr),
 _PC(true),
@@ -184,11 +184,39 @@ void Canvas::_drawTriangle(VertexOut &vOut1, VertexOut &vOut2, VertexOut &vOut3)
 }
 
 void Canvas::doClippingInCvv(vector<Triangle> &triangleList) const {
-//    _doClppingInCvvAgainstNearplane(triangleList);
+    _doClppingInCvvAgainstNearplane(triangleList);
 }
 
 void Canvas::_doClppingInCvvAgainstNearplane(vector<Triangle> &triangleList) const {
     
+    for (auto iter = triangleList.begin() ; iter != triangleList.end() ; /*do nothing*/ ) {
+        Triangle &tri = *iter;
+        Vec4 p1 = tri.v1.pos;
+        Vec4 p2 = tri.v2.pos;
+        Vec4 p3 = tri.v3.pos;
+        bool bOut1 = p1.z < 0;
+        bool bOut2 = p2.z < 0;
+        bool bOut3 = p3.z < 0;
+        vector<bool> bList = {bOut1 , bOut2 , bOut3};
+        int outNum = 0;
+        for (int j = 0; j < bList.size() ; ++ j) {
+            bool out = bList.at(j);
+            outNum = outNum + (out ? 1 : 0);
+        }
+        if (outNum == 0) {
+            // 如果没有点在外部，不处理
+            ++ iter;
+            continue;
+        } else if (outNum == 2) {
+            // 如果有两个顶点在外部，构造一个新三角形（修改旧三角形）
+            
+        } else if (outNum == 1) {
+            // 如果有一个顶点在外部 ,构造一个梯形（修改旧三角形+添加一个新三角形）
+        } else if (outNum == 3) {
+            // 如果有三个顶点在外部，整体剔除
+            iter = triangleList.erase(iter);
+        }
+    }
 }
 
 void Canvas::_triangleRasterize(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) {

@@ -16,7 +16,7 @@ void Ground::init() {
     
     Vertex v1 = Vertex(Vec3(d , 0 , -d) , Color(1,1,1,1));
     Vertex v2 = Vertex(Vec3(-d , 0 , -d) , Color(1,1,1,1));
-    Vertex v3 = Vertex(Vec3(-d , 0 , d) , Color(1,1,1,1));
+    Vertex v3 = Vertex(Vec3(0 , 0 , d) , Color(1,1,1,1));
     Vertex v4 = Vertex(Vec3(d , 0 , d) , Color(1,1,1,1));
     
     _vertice.push_back(v1);
@@ -24,7 +24,8 @@ void Ground::init() {
     _vertice.push_back(v3);
     _vertice.push_back(v4);
     
-    _indice = {0 , 1 , 2 , 0 , 2 , 3};
+//    _indice = {0 , 1 , 2 , 0 , 2 , 3};
+    _indice = {0 , 1 , 2};
     
 }
 
