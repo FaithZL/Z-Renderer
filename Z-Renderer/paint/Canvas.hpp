@@ -133,9 +133,19 @@ public:
      */
     void _triangleBottomRasterize(const VertexOut &v1 , const VertexOut &v2 , const VertexOut &v3);
     
-    void doClippingInCvv(vector<Triangle> &triangleList) const;
+    void doClippingInCvv(vector<Triangle> &triList) const;
     
-    void _doClppingInCvvAgainstNearplane(vector<Triangle> &triangleList) const;
+    void _doClppingInCvvAgainstNearPlane(vector<Triangle> &triList) const;
+    
+    void _doClppingInCvvAgainstFarPlane(vector<Triangle> &triList) const;
+    
+    void _doClppingInCvvAgainstRightPlane(vector<Triangle> &triList) const;
+    
+    void _doClppingInCvvAgainstLeftPlane(vector<Triangle> &triList) const;
+    
+    void _doClppingInCvvAgainstTopPlane(vector<Triangle> &triList) const;
+    
+    void _doClppingInCvvAgainstBottomPlane(vector<Triangle> &triList) const;
     
     void putPixel(int px , int py , const Color &color);
     
