@@ -224,11 +224,10 @@ void Canvas::_doClppingInCvvAgainstLeftPlane(vector<Triangle> &triList) const {
             for (int i = 0; i < indiceOut.size() ; ++ i) {
                 int index = indiceOut.at(i);
                 VertexOut &vertOut = vertice.at(index);
-                // x与w成线性 ，假设映射方程为 x = k * w + b
-                Ldouble k = (vertIn.pos.x - vertOut.pos.x) / (vertIn.pos.w - vertOut.pos.w);
-                Ldouble b = vertIn.pos.x - k * vertIn.pos.w;
-                Ldouble x = b / (k + 1);
-                Ldouble factor = (vertIn.pos.x - x) / (vertIn.pos.x - vertOut.pos.x);
+                // ax + (cx - ax) * factor = newX
+                // aw + (cw - aw) * factor = newW
+                // newX = - newW
+                Ldouble factor = (vertIn.pos.x + vertIn.pos.w) / (vertIn.pos.x - vertOut.pos.x + vertIn.pos.w - vertOut.pos.w);
                 VertexOut vertNew = vertIn.interpolate(vertOut, factor);
                 vertice[index] = vertNew;
             }
@@ -257,12 +256,10 @@ void Canvas::_doClppingInCvvAgainstLeftPlane(vector<Triangle> &triList) const {
                 // 生成对应新顶点
                 int index = indiceIn.at(i);
                 VertexOut vertIn = vertice.at(index);
-                // x与w成线性 ，假设映射方程为 x = k * w + b
-                Ldouble k = (vertIn.pos.x - vertOut.pos.x) / (vertIn.pos.w - vertOut.pos.w);
-                Ldouble b = vertIn.pos.x - k * vertIn.pos.w;
-                // 将 x = -w 带入方程
-                Ldouble x = b / (k + 1);
-                Ldouble factor = (vertIn.pos.x - x) / (vertIn.pos.x - vertOut.pos.x);
+                // ax + (cx - ax) * factor = newX
+                // aw + (cw - aw) * factor = newW
+                // newX = - newW
+                Ldouble factor = (vertIn.pos.x + vertIn.pos.w) / (vertIn.pos.x - vertOut.pos.x + vertIn.pos.w - vertOut.pos.w);
                 VertexOut vertNew = vertIn.interpolateEarly(vertOut, factor);
                 vertNewList.push_back(vertIn);
                 vertNewList.push_back(vertNew);
