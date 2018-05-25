@@ -26,7 +26,7 @@ Canvas::Canvas(int width , int height):
 _surface(nullptr),
 _width(width),
 _height(height),
-_drawMode(DrawMode::Frame),
+_drawMode(DrawMode::Fill),
 _cullingMode(CullingMode::None),
 _bufferSize(height * width),
 _texture(nullptr),
@@ -36,17 +36,17 @@ _shader(nullptr) {
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
     
-    auto ground = Ground::create();
+//    auto ground = Ground::create();
     
 //    auto sp = Sprite3D::create("nanosuit.obj");
 //    auto sp = Sprite3D::create("planet.obj");
-//    auto sp = Sprite3D::create("WusonOBJ.obj");
+    auto sp = Sprite3D::create("sample.obj");
 //    sp->setPositionZ(-1);
 //    sp->setPositionY(-5);
 //    _node.push_back(sp);
     
-    _node.push_back(ground);
-//    _node.push_back(Box::create());
+//    _node.push_back(ground);
+    _node.push_back(Box::create());
 }
 
 Canvas * Canvas::getInstance() {
@@ -126,9 +126,9 @@ bool Canvas::isCulling(const VertexOut &v1, const VertexOut &v2, const VertexOut
         return false;
     }
     
-    const Vec3 &pos1 = v1.posTrans.getVec3();
-    const Vec3 &pos2 = v2.posTrans.getVec3();
-    const Vec3 &pos3 = v3.posTrans.getVec3();
+    const Vec3 &pos1 = v1.posWorld;
+    const Vec3 &pos2 = v2.posWorld;
+    const Vec3 &pos3 = v3.posWorld;
     
     Vec3 v12 = pos2 - pos1;
     Vec3 v23 = pos3 - pos2;
@@ -139,7 +139,7 @@ bool Canvas::isCulling(const VertexOut &v1, const VertexOut &v2, const VertexOut
     Vec3 dir = pos1 - pos;
     
     if (_cullingMode == CCW) {
-        return dir.dot(crs) < 0;
+        return dir.dot(crs) <= 0;
     } else {
         return dir.dot(crs) > 0;
     }
@@ -151,6 +151,12 @@ void Canvas::processTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v
     VertexOut vOut2 = handleVertex(v2);
     VertexOut vOut3 = handleVertex(v3);
     
+    if (isCulling(vOut1, vOut2, vOut3)) {
+        return;
+    }
+    if (_normalFix) {
+        fixNormal(vOut1, vOut2, vOut3);
+    }
     Triangle triangle(vOut1 , vOut2 , vOut3);
     vector<Triangle> triangleList = {triangle};
 
@@ -740,18 +746,10 @@ void Canvas::_doClppingInCvvAgainstNearPlane(vector<Triangle> &triList) const {
 
 void Canvas::_triangleRasterize(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) {
     
-    if (isCulling(v1, v2, v3)) {
-        return;
-    }
-    
     VertexOut const * pVert1 = &v1;
     VertexOut const * pVert2 = &v2;
     VertexOut const * pVert3 = &v3;
-    
-    if (_normalFix) {
-        fixNormal(v1, v2, v3);
-    }
-    
+  
     vector<VertexOut const *> vector = {pVert1 , pVert2 , pVert3};
     
     sort(vector.begin(), vector.end() , [](const VertexOut * p1 , const VertexOut * p2)->bool {
