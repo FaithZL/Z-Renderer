@@ -10,7 +10,7 @@ a tiny software rasterize renderer
 * 线框模式
 * 顶点着色器跟片段着色器
 * phong着色
-* 简单粗暴的CVV裁剪
+* CVV裁剪（六个平面）
 * 背面剔除
 * obj模型渲染(使用assimp库解析模型文件)
 * 法线生成（有些模型的法线不正确或没有法线）
