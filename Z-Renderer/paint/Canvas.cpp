@@ -27,7 +27,7 @@ _surface(nullptr),
 _width(width),
 _height(height),
 _drawMode(DrawMode::Fill),
-_cullingMode(CullingMode::None),
+_cullingMode(CullingMode::CW),
 _bufferSize(height * width),
 _texture(nullptr),
 _PC(true),
@@ -40,7 +40,8 @@ _shader(nullptr) {
     
 //    auto sp = Sprite3D::create("nanosuit.obj");
 //    auto sp = Sprite3D::create("planet.obj");
-    auto sp = Sprite3D::create("sample.obj");
+//    auto sp = Sprite3D::create("sample.obj");
+//    auto sp = Sprite3D::create("WusonOBJ.obj");
 //    sp->setPositionZ(-1);
 //    sp->setPositionY(-5);
 //    _node.push_back(sp);
@@ -107,9 +108,9 @@ void Canvas::drawElement(const vector<Vertex> &verts, const vector<int> &indice)
 }
 
 void Canvas::fixNormal(const VertexOut &v1, const VertexOut &v2, const VertexOut &v3) const {
-    const Vec3 &pos1 = v1.posTrans.getVec3();
-    const Vec3 &pos2 = v2.posTrans.getVec3();
-    const Vec3 &pos3 = v3.posTrans.getVec3();
+    const Vec3 &pos1 = v1.posWorld;
+    const Vec3 &pos2 = v2.posWorld;
+    const Vec3 &pos3 = v3.posWorld;
     
     Vec3 v12 = pos2 - pos1;
     Vec3 v23 = pos3 - pos2;
@@ -892,6 +893,13 @@ void Canvas::lineBresenham(const VertexOut &vert1, const VertexOut &vert2) {
     
     int px2 = pVert2->pos.x;
     int py2 = pVert2->pos.y;
+    
+    if (px1 == px2 && py1 == py2) {
+        Ldouble z = pVert1->getZ();
+        if (isPassDepth(px1, py1, pVert1->getZ())) {
+            drawPixel(px1, py1, z, _shader->fs(vert1));
+        }
+    }
     
     int dx = abs(px2 - px1);
     int dy = abs(py2 - py1);
