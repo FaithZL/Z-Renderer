@@ -48,9 +48,13 @@ Color PhongShader::getSpecular(const VertexOut &frag) const {
     Vec3 ray = (_light.pos - fragPos).getNormalize();
     Vec3 cameraPos = Camera::getInstance()->getPosition();
     Vec3 viewDir = (cameraPos - fragPos).getNormalize();
-    Vec3 reflectDir = (-ray).reflect(normal);
     
-    auto spec = pow(max(viewDir.dot(reflectDir), 0.0), _material.shininess);
+    Vec3 center = (ray + viewDir).getNormalize();
+    
+//    Vec3 reflectDir = (-ray).reflect(normal);
+    
+//    auto spec = pow(max(viewDir.dot(reflectDir), 0.0), _material.shininess);
+    auto spec = pow(max(center.dot(normal), 0.0), _material.shininess);
     Color specular = _light.color * _light.factor * spec * _material.specularFactor;
     return specular;
 }

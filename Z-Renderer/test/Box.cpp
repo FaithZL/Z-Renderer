@@ -22,7 +22,7 @@ Box::~Box() {
 
 void Box::updateTransform(double dt) {
     double velo = 45;
-//    _rotate.y += velo * dt;
+    _rotate.y += velo * dt;
     if (_rotate.y > 360) {
         _rotate.y -= 360;
     }
@@ -111,7 +111,7 @@ void Box::init() {
     Material material;
     material.diffuseFactor = 0.2;
     material.specularFactor = 0.7;
-    material.shininess = 64;
+    material.shininess = 128;
     
     _shader = PhongShader::create();
     static_cast<PhongShader *>(_shader)->setMaterial(material);
