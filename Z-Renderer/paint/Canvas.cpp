@@ -14,6 +14,7 @@
 #include "Bitmap.hpp"
 #include "Sprite3D.hpp"
 #include "Ground.hpp"
+#include "SkyBox.hpp"
 
 using namespace std;
 
@@ -27,12 +28,13 @@ _surface(nullptr),
 _width(width),
 _height(height),
 _drawMode(DrawMode::Fill),
-_cullingMode(CullingMode::CW),
+_cullingMode(CullingMode::None),
 _bufferSize(height * width),
 _texture(nullptr),
 _PC(true),
 _normalFix(true),
-_shader(nullptr) {
+_shader(nullptr),
+_textureCube(nullptr){
     _depthBuffer = new Ldouble[_bufferSize]();
     _shader = new Shader();
     
@@ -47,7 +49,12 @@ _shader(nullptr) {
 //    _node.push_back(sp);
     
 //    _node.push_back(ground);
-    _node.push_back(Box::create());
+//    _node.push_back(Box::create());
+    
+    
+    auto sky = SkyBox::create();
+    
+    _node.push_back(sky);
 }
 
 Canvas * Canvas::getInstance() {

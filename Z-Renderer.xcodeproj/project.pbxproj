@@ -80,6 +80,9 @@
 		F61AEC3320B28D7A00DD8F80 /* cow.obj in Resources */ = {isa = PBXBuildFile; fileRef = F61AEC2E20B28D7A00DD8F80 /* cow.obj */; };
 		F61AEC3420B28D7A00DD8F80 /* teddy.obj in Resources */ = {isa = PBXBuildFile; fileRef = F61AEC2F20B28D7A00DD8F80 /* teddy.obj */; };
 		F63E446920B2AC94007B50B5 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F63E446720B2AC94007B50B5 /* Ground.cpp */; };
+		F63E447220B9714F007B50B5 /* SkyBoxShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F63E447020B9714F007B50B5 /* SkyBoxShader.cpp */; };
+		F63E447520B9727E007B50B5 /* TextureCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F63E447320B9727E007B50B5 /* TextureCube.cpp */; };
+		F63E447820B98E21007B50B5 /* SkyBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F63E447620B98E21007B50B5 /* SkyBox.cpp */; };
 		F6464CEA208B27330019A75F /* Vertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CE8208B27330019A75F /* Vertex.cpp */; };
 		F6464CF0208B363C0019A75F /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CEE208B363C0019A75F /* Color.cpp */; };
 		F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F6464CF8208C7E790019A75F /* MathUtil.cpp */; };
@@ -226,6 +229,12 @@
 		F61AEC2F20B28D7A00DD8F80 /* teddy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teddy.obj; sourceTree = "<group>"; };
 		F63E446720B2AC94007B50B5 /* Ground.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ground.cpp; sourceTree = "<group>"; };
 		F63E446820B2AC94007B50B5 /* Ground.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Ground.hpp; sourceTree = "<group>"; };
+		F63E447020B9714F007B50B5 /* SkyBoxShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SkyBoxShader.cpp; sourceTree = "<group>"; };
+		F63E447120B9714F007B50B5 /* SkyBoxShader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SkyBoxShader.hpp; sourceTree = "<group>"; };
+		F63E447320B9727E007B50B5 /* TextureCube.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureCube.cpp; sourceTree = "<group>"; };
+		F63E447420B9727E007B50B5 /* TextureCube.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextureCube.hpp; sourceTree = "<group>"; };
+		F63E447620B98E21007B50B5 /* SkyBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SkyBox.cpp; sourceTree = "<group>"; };
+		F63E447720B98E21007B50B5 /* SkyBox.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SkyBox.hpp; sourceTree = "<group>"; };
 		F6464CE6208B1FAF0019A75F /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		F6464CE8208B27330019A75F /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		F6464CE9208B27330019A75F /* Vertex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
@@ -459,6 +468,17 @@
 			path = Compiler;
 			sourceTree = "<group>";
 		};
+		F63E446F20B970E7007B50B5 /* skyBox */ = {
+			isa = PBXGroup;
+			children = (
+				F63E447020B9714F007B50B5 /* SkyBoxShader.cpp */,
+				F63E447120B9714F007B50B5 /* SkyBoxShader.hpp */,
+				F63E447620B98E21007B50B5 /* SkyBox.cpp */,
+				F63E447720B98E21007B50B5 /* SkyBox.hpp */,
+			);
+			path = skyBox;
+			sourceTree = "<group>";
+		};
 		F6464CE7208B26CC0019A75F /* paint */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +505,8 @@
 				F6464D06208E3E600019A75F /* Node.hpp */,
 				F616D56820AAAD390005B1B5 /* Texture.cpp */,
 				F616D56920AAAD390005B1B5 /* Texture.hpp */,
+				F63E447320B9727E007B50B5 /* TextureCube.cpp */,
+				F63E447420B9727E007B50B5 /* TextureCube.hpp */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -531,6 +553,7 @@
 		F6758CD82088D6E00036A8E8 /* Z-Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				F63E446F20B970E7007B50B5 /* skyBox */,
 				F61AEBE220B128CF00DD8F80 /* 3D */,
 				F616D56B20AB2E4A0005B1B5 /* util */,
 				F6464D10209B5F930019A75F /* test */,
@@ -707,10 +730,13 @@
 				F6464D04208E3E4D0019A75F /* Ref.cpp in Sources */,
 				F61AEBDE20AFAA9900DD8F80 /* PhongShader.cpp in Sources */,
 				F6464D07208E3E600019A75F /* Node.cpp in Sources */,
+				F63E447520B9727E007B50B5 /* TextureCube.cpp in Sources */,
+				F63E447820B98E21007B50B5 /* SkyBox.cpp in Sources */,
 				F6464D01208E3DBC0019A75F /* Camera.cpp in Sources */,
 				F6758CDF2088D6E00036A8E8 /* CApp.cpp in Sources */,
 				F6464CFA208C7E790019A75F /* MathUtil.cpp in Sources */,
 				F6464D13209B5FBF0019A75F /* Box.cpp in Sources */,
+				F63E447220B9714F007B50B5 /* SkyBoxShader.cpp in Sources */,
 				F616D56E20AB2FA70005B1B5 /* Bitmap.cpp in Sources */,
 				F6758CF02089BA570036A8E8 /* Vec.cpp in Sources */,
 				F61AEC2A20B1BE8000DD8F80 /* Sprite3DShader.cpp in Sources */,

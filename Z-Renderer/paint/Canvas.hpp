@@ -17,6 +17,7 @@
 #include "Camera.hpp"
 #include "Node.hpp"
 #include "Texture.hpp"
+#include "TextureCube.hpp"
 
 enum DrawMode {
     Frame,
@@ -195,6 +196,14 @@ public:
         _texture = texture;
     }
     
+    TextureCube const * getTextureCube() const {
+        return _textureCube;
+    }
+    
+    inline void setTextureCube(const TextureCube * textureCube) {
+        _textureCube = textureCube;
+    }
+    
     inline void setCullingMode(CullingMode mode) {
         _cullingMode = mode;
     }
@@ -253,6 +262,8 @@ protected:
     DrawMode _drawMode;
     
     Texture const * _texture;
+    
+    TextureCube const * _textureCube;
     
     /**
      * 深度缓冲，储存Z坐标的倒数，用于深度测试
