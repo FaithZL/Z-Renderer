@@ -33,6 +33,8 @@ a tiny software rasterize renderer
    ![](https://github.com/FaithZL/Z-Renderer/blob/master/Z-Renderer/res/pic/teapot.jpg)
  * 纹理+phong着色
    ![](https://github.com/FaithZL/Z-Renderer/blob/master/Z-Renderer/res/pic/phong.jpg)
+ * skyBox
+   ![](https://github.com/FaithZL/Z-Renderer/blob/master/Z-Renderer/res/pic/skyBoxDemo.jpg)   
  * CVV六面裁剪，线框模式
     ![](https://github.com/FaithZL/Z-Renderer/blob/master/Z-Renderer/res/pic/cvv3.jpeg)
     ![](https://github.com/FaithZL/Z-Renderer/blob/master/Z-Renderer/res/pic/cvv.jpeg)

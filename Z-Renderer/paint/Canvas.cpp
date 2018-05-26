@@ -49,12 +49,12 @@ _textureCube(nullptr){
 //    _node.push_back(sp);
     
 //    _node.push_back(ground);
-//    _node.push_back(Box::create());
+    _node.push_back(Box::create());
     
     
-    auto sky = SkyBox::create();
+//    auto sky = SkyBox::create();
     
-    _node.push_back(sky);
+//    _node.push_back(sky);
 }
 
 Canvas * Canvas::getInstance() {
