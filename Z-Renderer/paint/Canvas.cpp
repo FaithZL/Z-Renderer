@@ -151,7 +151,7 @@ bool Canvas::isCulling(const VertexOut &v1, const VertexOut &v2, const VertexOut
     } else {
         return dir.dot(crs) > 0;
     }
-
+    
 }
 
 void Canvas::processTriangle(const Vertex &v1, const Vertex &v2, const Vertex &v3) {

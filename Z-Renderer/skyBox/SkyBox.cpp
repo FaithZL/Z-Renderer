@@ -24,7 +24,7 @@ SkyBox * SkyBox::create() {
 }
 
 void SkyBox::init() {
-    _textureCube = TextureCube::create("back.jpg", "front.jpg", "right.jpg", "left.jpg", "top.jpg", "bottom.jpg");
+    _textureCube = TextureCube::create("skyback.jpg", "skyfront.jpg", "right.jpg", "left.jpg", "top.jpg", "bottom.jpg");
     
     vector<Vec3> pos = {
         Vec3(1, -1, 1),Vec3(1, 1, 1),Vec3(-1, 1, 1),Vec3(-1, -1, 1),
@@ -50,6 +50,13 @@ void SkyBox::init() {
 
 void SkyBox::draw(Ldouble dt) {
     auto canvas = Canvas::getInstance();
+    
+    auto camera = Camera::getInstance();
+    
+    _shader->setViewMat(camera->getCurDirectionMat());
+//    _shader->setViewMat(camera->getViewMat());
+    _shader->setProjectionMat(camera->getProjectionMat());
+    
     canvas->setShader(_shader);
     canvas->setTextureCube(_textureCube);
     canvas->drawElement(_vertice, _indice);

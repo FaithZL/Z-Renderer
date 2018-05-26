@@ -22,19 +22,19 @@ Ldouble tranform(Ldouble v) {
 
 Color TextureCube::sample(Ldouble x, Ldouble y, Ldouble z) const {
     if (z == -1) {
-        x = tranform(x);
+        x = tranform(-x);
         y = tranform(y);
-        return _back->sample(x , y);
+        return _front->sample(x , y);
     } else if (z == 1) {
         x = tranform(x);
         y = tranform(y);
-        return _front->sample(x , y);
+        return _back->sample(x , y);
     } else if (y == -1) {
         z = tranform(z);
         x = tranform(x);
         return _bottom->sample(x, z);
     } else if (y == 1) {
-        z = tranform(z);
+        z = tranform(-z);
         x = tranform(x);
         return _top->sample(x, z);
     } else if (x == -1) {
@@ -43,7 +43,7 @@ Color TextureCube::sample(Ldouble x, Ldouble y, Ldouble z) const {
         return _left->sample(z, y);
     } else if (x == 1) {
         y = tranform(y);
-        z = tranform(z);
+        z = tranform(-z);
         return _right->sample(z , y);
     }
     

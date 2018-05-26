@@ -50,9 +50,9 @@
 		F616D5D420ABF4600005B1B5 /* Rock-Texture-Surface.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D59C20ABF4600005B1B5 /* Rock-Texture-Surface.jpg */; };
 		F616D5D520ABF4600005B1B5 /* rock.mtl in Resources */ = {isa = PBXBuildFile; fileRef = F616D59D20ABF4600005B1B5 /* rock.mtl */; };
 		F616D5D620ABF4600005B1B5 /* rock.obj in Resources */ = {isa = PBXBuildFile; fileRef = F616D59E20ABF4600005B1B5 /* rock.obj */; };
-		F616D5DD20ABF4600005B1B5 /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A720ABF4600005B1B5 /* back.jpg */; };
+		F616D5DD20ABF4600005B1B5 /* skyback.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A720ABF4600005B1B5 /* skyback.jpg */; };
 		F616D5DE20ABF4600005B1B5 /* bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A820ABF4600005B1B5 /* bottom.jpg */; };
-		F616D5DF20ABF4600005B1B5 /* front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A920ABF4600005B1B5 /* front.jpg */; };
+		F616D5DF20ABF4600005B1B5 /* skyfront.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5A920ABF4600005B1B5 /* skyfront.jpg */; };
 		F616D5E020ABF4600005B1B5 /* left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AA20ABF4600005B1B5 /* left.jpg */; };
 		F616D5E120ABF4600005B1B5 /* right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AB20ABF4600005B1B5 /* right.jpg */; };
 		F616D5E220ABF4600005B1B5 /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F616D5AC20ABF4600005B1B5 /* top.jpg */; };
@@ -157,9 +157,9 @@
 		F616D59C20ABF4600005B1B5 /* Rock-Texture-Surface.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Rock-Texture-Surface.jpg"; sourceTree = "<group>"; };
 		F616D59D20ABF4600005B1B5 /* rock.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock.mtl; sourceTree = "<group>"; };
 		F616D59E20ABF4600005B1B5 /* rock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock.obj; sourceTree = "<group>"; };
-		F616D5A720ABF4600005B1B5 /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		F616D5A720ABF4600005B1B5 /* skyback.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skyback.jpg; sourceTree = "<group>"; };
 		F616D5A820ABF4600005B1B5 /* bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bottom.jpg; sourceTree = "<group>"; };
-		F616D5A920ABF4600005B1B5 /* front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front.jpg; sourceTree = "<group>"; };
+		F616D5A920ABF4600005B1B5 /* skyfront.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skyfront.jpg; sourceTree = "<group>"; };
 		F616D5AA20ABF4600005B1B5 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
 		F616D5AB20ABF4600005B1B5 /* right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = right.jpg; sourceTree = "<group>"; };
 		F616D5AC20ABF4600005B1B5 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
@@ -385,9 +385,9 @@
 		F616D5A620ABF4600005B1B5 /* skyBox */ = {
 			isa = PBXGroup;
 			children = (
-				F616D5A720ABF4600005B1B5 /* back.jpg */,
+				F616D5A720ABF4600005B1B5 /* skyback.jpg */,
 				F616D5A820ABF4600005B1B5 /* bottom.jpg */,
-				F616D5A920ABF4600005B1B5 /* front.jpg */,
+				F616D5A920ABF4600005B1B5 /* skyfront.jpg */,
 				F616D5AA20ABF4600005B1B5 /* left.jpg */,
 				F616D5AB20ABF4600005B1B5 /* right.jpg */,
 				F616D5AC20ABF4600005B1B5 /* top.jpg */,
@@ -670,7 +670,7 @@
 				F61AEC1720B197EF00DD8F80 /* quaternion.inl in Resources */,
 				F616D5D620ABF4600005B1B5 /* rock.obj in Resources */,
 				F616D5C420ABF4600005B1B5 /* hand_showroom_ddn.png in Resources */,
-				F616D5DF20ABF4600005B1B5 /* front.jpg in Resources */,
+				F616D5DF20ABF4600005B1B5 /* skyfront.jpg in Resources */,
 				F616D5B720ABF4600005B1B5 /* body_showroom_refl.png in Resources */,
 				F616D5EE20ADD82A0005B1B5 /* skeleton.png in Resources */,
 				F616D5E220ABF4600005B1B5 /* top.jpg in Resources */,
@@ -693,7 +693,7 @@
 				F61AEC1620B197EF00DD8F80 /* matrix4x4.inl in Resources */,
 				F61AEC1920B197EF00DD8F80 /* vector3.inl in Resources */,
 				F616D5E020ABF4600005B1B5 /* left.jpg in Resources */,
-				F616D5DD20ABF4600005B1B5 /* back.jpg in Resources */,
+				F616D5DD20ABF4600005B1B5 /* skyback.jpg in Resources */,
 				F61AEC3220B28D7A00DD8F80 /* teapot.obj in Resources */,
 				F616D5B420ABF4600005B1B5 /* back.jpg in Resources */,
 				F616D5E120ABF4600005B1B5 /* right.jpg in Resources */,
