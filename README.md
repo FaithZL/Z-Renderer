@@ -1,6 +1,7 @@
 # Z-Renderer
 a tiny software rasterize renderer 
 简单的软件光栅化渲染器
+QQ:249002031(新手小白一枚，但是非常热爱图形学，有兴趣加我QQ，一起研究图形学)
 
 采用笛卡尔右手坐标系（与OpenGL一致）
 #主要功能以及模块
